@@ -22,15 +22,13 @@ const savesExists = function(){
 }
 
 const setup = function(data){
-    //load saves here
+    // load saves here
     data.firstBoot = savesExists() === false;
     data.secure = new Secure();
     if(data.firstBoot){
 	  data.id = Math.round(Math.random()*8998)+1000;
-	  
       data._key = data.secure.genKey(10);
     }
-
 	data.logger = new Logger(data)
 	console.log(data)
 }
@@ -38,7 +36,6 @@ const setup = function(data){
 class NodeLife {
     constructor() {
       setup(this);
-      
     }
     set name(name) {
       this._name = name.charAt(0).toUpperCase() + name.slice(1);
