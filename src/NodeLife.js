@@ -15,17 +15,24 @@
 
 const fs = require('fs');
 const Logger = require('./utils/Logger.js');
-//const Secure = require('./utils/Secure.js');
+const Secure = require('./utils/Secure.js');
 
 const savesExists = function(){
-
+    return false
 }
 
 const setup = function(data){
     //load saves here
-    data.firstBoot = savesExists();
-    data.id = Math.round(Math.random*9999);
-    data.logger = new Logger(data)
+    data.firstBoot = savesExists() === false;
+    data.secure = new Secure();
+    if(data.firstBoot){
+	  data.id = Math.round(Math.random()*8998)+1000;
+	  
+      data._key = data.secure.genKey(10);
+    }
+
+	data.logger = new Logger(data)
+	console.log(data)
 }
 
 class NodeLife {
@@ -39,7 +46,7 @@ class NodeLife {
     get name() {
       return this._name;
     }
-    sayHello() {
+    getConfig() {
       console.log('Hello, my name is ' + this.name + ', I have ID: ' + this.id);
     }
 }
