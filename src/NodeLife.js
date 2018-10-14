@@ -26,8 +26,8 @@ const setup = function(data){
     data.firstBoot = savesExists() === false;
     data.secure = new Secure();
     if(data.firstBoot){
-	  data.id = Math.round(Math.random()*8998)+1000;
-      data._key = data.secure.genKey(10);
+		data.id = Math.round(Math.random()*8998)+1000;
+		data._key = data.secure.genKey(10);
     }
 	data.logger = new Logger(data)
 	console.log(data)
@@ -35,16 +35,16 @@ const setup = function(data){
 
 class NodeLife {
     constructor() {
-      setup(this);
+		setup(this);
     }
     set name(name) {
-      this._name = name.charAt(0).toUpperCase() + name.slice(1);
+		this._name = name.charAt(0).toUpperCase() + name.slice(1);
     }
     get name() {
-      return this._name;
+		return this._name;
     }
     getConfig() {
-      console.log('Hello, my name is ' + this.name + ', I have ID: ' + this.id);
+		console.log('hi');
     }
 }
 
