@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const Logger = require('./utils/Logger.js');
-const Secure = require('./utils/Secure.js');
+//const Secure = require('./utils/Secure.js');
 
 const savesExists = function(){
 

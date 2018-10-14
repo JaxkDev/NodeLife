@@ -13,25 +13,38 @@
 *
 */
 
-const Base = require('./Base.js')
-const fs = require('fs')
-
-class JSON extends Base {
-    get type(){
-        return 'json';
-    }
-    
-    get typeCode(){
-        return 0;
+class Logger{
+    constructor(data){
+        this.cfg = data.getConfig();
     }
 
-    getData(path){
-        return JSON.parse(fs.readFileSync(path));
+    debug(msg){
+
     }
 
-    setData(path, data){
-        return fs.writeFileSync(path, JSON.stringify(data));
+    log(msg){
+
+    }
+
+    info(msg){
+
+    }
+
+    warn(msg){
+
+    }
+
+    error(msg){
+
+    }
+
+    critical(msg){
+
+    }
+
+    _logMsg(level, message){
+
     }
 }
 
-module.exports = JSON
+module.exports = Logger
