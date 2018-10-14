@@ -13,14 +13,19 @@
 *
 */
 
+const fs = require('fs');
 const Logger = require('./utils/Logger.js');
 const Secure = require('./utils/Secure.js');
 
+const savesExists = function(){
 
-const setup = function(this){
+}
+
+const setup = function(data){
     //load saves here
-    this.id = Math.round(Math.random*9999);
-    this.logger = new Logger(this)
+    data.firstBoot = savesExists();
+    data.id = Math.round(Math.random*9999);
+    data.logger = new Logger(data)
 }
 
 class NodeLife {
