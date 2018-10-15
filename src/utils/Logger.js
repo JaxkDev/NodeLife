@@ -67,7 +67,7 @@ class Logger{
     }
                                      
     _format(level, msg, colour){
-        let colour = ''
+        let colourCode = ''
         switch(level){
             case 0:
                 break;
