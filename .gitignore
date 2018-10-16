@@ -1,2 +1,6 @@
 NodeLife.code-workspace
 node_modules/*
+node/*
+bin/*
+notes/*
+issues/*
