@@ -1,0 +1,7 @@
+---
+  shutdown: "Shutting Down..."
+  startup: "Starting Systems..."
+  incompatibleDevice: "Your device does not meet the required device (Windows)."
+  incompatibleVersion: "Your windows version is not supported, as of now we only support 10.X"
+  recommendedProcessorArchitecture: "We recommend running this on a AMD64 Device."
+...

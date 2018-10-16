@@ -34,7 +34,7 @@ const levels = ['debug','info','warn','error','critical'];
 
 class Logger{
     constructor(data){
-        this.cfg = data.getConfig();
+        this.cfg = data.config;
     }
 
     debug(msg){
