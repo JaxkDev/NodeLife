@@ -27,7 +27,7 @@ class INI extends Base {
     }
 
     getData(path){
-        return ini.parse(fs.readFileSync(path));
+        return ini.parse(fs.readFileSync(path, 'utf8'));
     }
 
     setData(path, data){

@@ -27,7 +27,7 @@ class YAML extends Base {
     }
 
     getData(path){
-        return yaml.parse(fs.readFileSync(path));
+        return yaml.parse(fs.readFileSync(path, 'utf8'));
     }
 
     setData(path, data){

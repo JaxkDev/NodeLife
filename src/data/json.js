@@ -26,7 +26,7 @@ class JSON extends Base {
     }
 
     getData(path){
-        return JSON.parse(fs.readFileSync(path));
+        return JSON.parse(fs.readFileSync(path, 'utf8'));
     }
 
     setData(path, data){

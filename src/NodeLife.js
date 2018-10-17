@@ -27,10 +27,12 @@ const defaultConfig = function(data){
 }
 
 const loadConfig = function(data){
+	let yml = require('./data/yaml.js')
+	data.config = new yml().getData(data.dataPath+'\\config.yml');
 }
 
 const savesExists = function(data){
-    return fs.existsSync(data.dataPath+'\\Data')
+    return fs.existsSync(data.dataPath+'\\config.yml')
 }
 
 const setup = function(data){
@@ -53,7 +55,7 @@ const setup = function(data){
 	}
 	data.logger.info(data.messages.startup)
 	// boot
-	console.log(data)
+	// console.log(data)
 }
 
 class NodeLife {

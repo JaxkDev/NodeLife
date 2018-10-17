@@ -1,9 +1,3 @@
-#+-------------------------------+
-#|                               |
-#|      GAME CONFIGURATION       |
-#|      (ONLY EDIT VALUES)       |
-#+-------------------------------+
-
 ---
 debug: false
 log_format: "{time} | {level} | {msg}"
@@ -11,10 +5,3 @@ colour: true
 save_type: 0
 lang: "eng"
 ...
-
-#debug: true/false - for showing loads of info
-#log_file: PATH - path to file (will be created)
-#log_format: FORMAT - format to log stuff
-#colour: true/false - use colour in-GAME
-#save_type: 0 = JSON, 1 = INI, 2 = YAML-V3 More coming soon
-#lang: eng, more coming soon

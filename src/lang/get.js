@@ -15,6 +15,6 @@
 
 module.exports.get = function(data){
     const lang = data+'.yml';
-    let la = require('./src/data/yaml.js')
+    let la = require('../data/yaml.js')
     return new la().getData('./src/lang/'+lang);
 }
