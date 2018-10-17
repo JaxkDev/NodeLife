@@ -26,6 +26,9 @@ const defaultConfig = function(data){
 	data.config = new yml().getData('./src/resources/config.yml');
 }
 
+const loadConfig = function(data){
+}
+
 const savesExists = function(data){
     return fs.existsSync(data.dataPath+'\\Data')
 }
