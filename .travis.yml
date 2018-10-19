@@ -1,11 +1,11 @@
-language: node_js
-node_js:
-  - "10"
+language: python
+python:
+  - "3.6"
 
 os: windows
 
 before_script:
-  - npm install
+  - python tests/prep.py
 
 script:
-  - npm run lint
+  - python tests/start.py
