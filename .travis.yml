@@ -2,8 +2,6 @@ language: python
 python:
   - "3.6"
 
-os: windows
-
 before_script:
   - python tests/prep.py
 
