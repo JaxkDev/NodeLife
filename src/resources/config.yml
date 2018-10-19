@@ -1,7 +1,0 @@
----
-debug: false
-log_format: "{time} | {level} | {msg}"
-colour: true
-save_type: 0
-lang: "eng"
-...
