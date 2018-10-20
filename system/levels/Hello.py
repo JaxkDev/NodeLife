@@ -31,6 +31,10 @@ def exec(pr, Travis):
     time.sleep(0.5)
     pr('Ugh, Maybe one day they\'ll send someone to fetch my body...',5)
     if(Travis):
-        pr('TESTS ENDED.')
+        pr('TESTS ENDED.',2)
         return
-    pr('')
+    while(True):
+        pr('\nOption A:\nHello ?\n', 6)
+        if(input('Type a option: ').lower() == 'a'):
+            break
+    pr('Hello !!????\nWas that someone ???',5)

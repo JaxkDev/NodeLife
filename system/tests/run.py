@@ -29,7 +29,7 @@ def exec():
     system = platform.uname()
     if(system.system.lower() != 'windows'):
         pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
-    if(system.machine.lower() != 'amd64'):
+    if(system.machine.lower() != 'amd64' and system.machine.lower() != 'x64'):
         pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
 
     pr('System Check Complete.',0)
