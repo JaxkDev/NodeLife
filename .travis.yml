@@ -8,7 +8,7 @@ before_script:
   
 script:
   - pyinstaller --onefile start.py
-  - zip deploy
+  - zip -r deploy.zip *
 
 deploy:
   provider: releases
