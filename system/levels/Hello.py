@@ -12,17 +12,22 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-import requests
+# CHAPTER 1 - HELLO ?
+#
+# tHE USER WILL LEARN WHAT IS HAPPENING AND GET TO KNOW THE UI.
+import sys, time
 
-print('Beginning file download with requests')
-
-url = 'http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg'  
-r = requests.get(url)
-
-with open('/Users/scott/Downloads/cat3.jpg', 'wb') as f:  
-    f.write(r.content)
-
-# Retrieve HTTP meta-data
-print(r.status_code)  
-print(r.headers['content-type'])  
-print(r.encoding)  
+def exec(pr):
+    sys.stdout.write('\033[35m')
+    for i in 'INCOMING TRANSMISSION':
+        sys.stdout.write(i)
+        time.sleep(0.05)
+    for i in range(6):
+        sys.stdout.write('.')
+        time.sleep(0.6)
+    sys.stdout.write('.\n\n')
+    time.sleep(1.5)
+    sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
+    time.sleep(0.5)
+    pr('Ugh, Maybe one day they\'ll send someone to fetch my body...',5)
+    pr('')

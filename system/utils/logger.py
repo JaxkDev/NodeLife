@@ -12,7 +12,7 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-import sys, os
+import sys, os, time
 
 def log(msg, lvl = 5):
     sav(msg, lvl)
@@ -27,13 +27,25 @@ def log(msg, lvl = 5):
         sys.stdout.write('\033[91m[ERROR] : '+msg+'\033[39m\n')
     elif(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
-        sys.stdout.write('\033[97m'+msg+']\033[39m\n')
+        sys.stdout.write('\033[97m')
+        for i in msg:
+            sys.stdout.write(i)
+            time.sleep(0.05)
+        sys.stdout.write('\033[39m\n')
     elif(lvl == 5): 
         #In-Game message
-        sys.stdout.write('\033[36m[Mike] : '+msg+'\033[39m\n')
+        sys.stdout.write('\033[36m[Mike] : ')
+        for i in msg:
+            sys.stdout.write(i)
+            time.sleep(0.05)
+        sys.stdout.write('\033[39m\n')
     elif(lvl == 6): 
         #In-Game question
-        sys.stdout.write('\033[94m[Question] : '+msg+'\033[39m\n')
+        sys.stdout.write('\033[94m[Question] : ')
+        for i in msg:
+            sys.stdout.write(i)
+            time.sleep(0.05)
+        sys.stdout.write('\033[39m\n')
     elif(lvl == 9): 
         #Other
         sys.stdout.write(msg+'\n')

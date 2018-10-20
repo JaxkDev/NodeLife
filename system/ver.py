@@ -12,17 +12,14 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-from system.utils import logger
-import time, os
+def http():
+    return '100'
 
-def pr(msg, lvl):
-    logger.log(msg, lvl)
+def ver():
+    return '1.0.0'
 
-pr('Checking for saves',0)
-if(os.path.exists('data/saves')):
-    print(os.listdir('data/saves'))
-else:
-    pr('No saves found.', 0)
-    pr('Loading Chapter 1', 0)
-    from system.levels import Hello
-    Hello.exec(pr)
+def build():
+    return '0010'
+
+def codeName():
+    return 'Alpha'

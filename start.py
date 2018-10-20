@@ -31,7 +31,11 @@ if(system.system.lower() != 'windows'):
 if(system.machine.lower() != 'amd64'):
     pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
 
-pr('System Check complete.',0)
-pr('Starting Game...', 1)
+pr('System Check Complete.',0)
 pr('Checking for updates...', 1)
 autoUpdate.check()
+pr('Update Check Complete.',0)
+pr('Starting Game...', 1)
+time.sleep(3)
+print('\x1b[2J')
+from system import boot
