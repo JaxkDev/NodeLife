@@ -38,4 +38,6 @@ pr('Update Check Complete.',0)
 pr('Starting Game...', 1)
 time.sleep(3)
 print('\x1b[2J')
+
 from system import boot
+boot.run(False)

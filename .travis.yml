@@ -2,8 +2,5 @@ language: python
 python:
   - "3.6"
 
-before_script:
-  - python tests/test.py
-
 script:
-  - python tests/build.py
+  - python tests/start.py

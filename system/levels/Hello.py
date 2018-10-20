@@ -17,7 +17,7 @@
 # tHE USER WILL LEARN WHAT IS HAPPENING AND GET TO KNOW THE UI.
 import sys, time
 
-def exec(pr):
+def exec(pr, Travis):
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
         sys.stdout.write(i)
@@ -30,4 +30,7 @@ def exec(pr):
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
     pr('Ugh, Maybe one day they\'ll send someone to fetch my body...',5)
+    if(Travis):
+        pr('TESTS ENDED.')
+        return
     pr('')
