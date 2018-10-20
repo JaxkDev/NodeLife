@@ -13,7 +13,7 @@
 # This project and all its content is distributed under the GPL-V3 license
 
 from system.utils import logger
-import os, sys, time, platform
+import time, platform
 
 from system.utils.initialise import init
 from system.network import autoUpdate
