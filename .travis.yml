@@ -3,7 +3,7 @@ python:
   - "3.6"
 
 before_script:
-  - python tests/prep.py
+  - python tests/test.py
 
 script:
-  - python tests/start.py
+  - python tests/build.py

@@ -1,6 +1,5 @@
 NodeLife.code-workspace
-node_modules/*
-node/*
+data/*
 bin/*
 notes/*
 issues/*
