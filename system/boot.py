@@ -23,6 +23,7 @@ def run(Travis):
         pr('Travis Mode Enabled',2)
         from system.levels import Hello
         Hello.exec(pr, True)
+        return
     pr('Checking for saves',0)
     if(os.path.exists('data/saves')):
         print(os.listdir('data/saves'))
