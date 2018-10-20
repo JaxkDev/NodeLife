@@ -15,6 +15,10 @@
 # CHAPTER 1 - HELLO ?
 #
 # tHE USER WILL LEARN WHAT IS HAPPENING AND GET TO KNOW THE UI.
+
+#pylint: disable=W0612
+#Stupid rule
+
 import sys, time
 
 def exec(pr, Travis):
@@ -29,12 +33,28 @@ def exec(pr, Travis):
     time.sleep(1.5)
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
-    pr('Ugh, Maybe one day they\'ll send someone to fetch my body...',5)
+    pr('Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
     if(Travis):
         pr('TESTS ENDED.',2)
         return
+    response = ''
     while(True):
-        pr('\nOption A:\nHello ?\n', 6)
-        if(input('Type a option: ').lower() == 'a'):
+        pr('\nOption A:  Hello ?\nOption B:  Hi there Mike !\n', 6)
+        i = input('Type a option: ').lower()
+        sys.stdout.write('\n')
+        if(i == 'a' or i == 'b'):
+            response = i
             break
-    pr('Hello !!????\nWas that someone ???',5)
+    if(i == 'a'):
+        pr('Hello !!????\nWas that someone ???\n',5)
+        pr('Yes, Hello ?\n', 8)
+    else:
+        pr('Yes, Yes i knew i wasnt alone i knew someone would rescue me !\n', 5)
+        time.sleep(1)
+        pr('Of course they sent someone, why wouldnt they !\n', 5)
+        time.sleep(1)
+        pr('Erm, Hello ?\n', 8)
+    time.sleep(0.5)
+    pr('Ah yes of course sorry where\'s my manners, My name is \"Mike\"', 5)
+
+        

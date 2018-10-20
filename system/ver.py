@@ -13,13 +13,13 @@
 # This project and all its content is distributed under the GPL-V3 license
 
 def http():
-    return '100'
+    return '001'
 
 def ver():
-    return '1.0.0'
+    return '0.0.1'
 
 def build():
-    return '0010'
+    return '0011'
 
 def codeName():
     return 'Alpha'
