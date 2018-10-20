@@ -4,6 +4,7 @@ python:
 
 before_script:
   - pip install py2exe
+  - python travis.py
   
 script:
-  - python travis.py
+  - python build.py py2exe
