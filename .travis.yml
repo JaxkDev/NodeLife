@@ -8,10 +8,3 @@ before_script:
   
 script:
   - pyinstaller --onefile start.py
-  - zip -r deploy.zip *
-
-deploy:
-  provider: releases
-  api_key: $OATH_TOKEN
-  file: "deploy.zip"
-  skip_cleanup: true
