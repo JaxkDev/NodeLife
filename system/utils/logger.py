@@ -16,6 +16,18 @@ import sys, os, time
 
 user = os.getenv('USERNAME')
 
+data = {
+    "0": "Debug",
+    "1": "Log",
+    "2": "Warning",
+    "3": "Error",
+    "4": "In-Game Notification",
+    "5": "In-Game Message",
+    "6": "In-Game Question",
+    "8": "User Response",
+    "9": "Other"
+}
+
 def log(msg, lvl = 5):
     sav(msg, lvl)
     if(lvl == 1):
@@ -65,5 +77,5 @@ def sav(msg, lvl):
     if not os.path.exists('data'):
         os.makedirs('data')
     f = open('data/log.txt', 'a')
-    f.write(msg+'\n')
+    f.write('['+data[str(lvl)]+'] '+msg+'\n')
     f.close()
