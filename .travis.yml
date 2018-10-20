@@ -3,4 +3,4 @@ python:
   - "3.6"
 
 script:
-  - python system/tests/run.py
+  - python travis.py
