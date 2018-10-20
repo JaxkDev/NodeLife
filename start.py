@@ -16,16 +16,22 @@ from system.utils import logger
 import os, sys, time, platform
 
 from system.utils.initialise import init
+from system.network import autoUpdate
 init() #ENABLES COLOUR (WRAPS STDOUT & ERR)
 
 def pr(msg, lvl):
     logger.log(msg, lvl)
 
-print('\033[31m HI')
 pr('Booted on '+time.asctime(), 0)
 pr('Checking System...', 1)
 time.sleep(0.5)
 system = platform.uname()
-if(system.system != 'Windows'):
-    pr('Your system \''+system.system+'\' has not been tested, if you find issues please report bugs to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
+if(system.system.lower() != 'windows'):
+    pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
+if(system.machine.lower() != 'amd64'):
+    pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
 
+pr('System Check complete.',0)
+pr('Starting Game...', 1)
+pr('Checking for updates...', 1)
+autoUpdate.check()
