@@ -39,22 +39,29 @@ def exec(pr, Travis):
         return
     response = ''
     while(True):
-        pr('\nOption A:  Hello ?\nOption B:  Hi there Mike !\n', 6)
+        pr('\nOption A:  Hello ?\nOption B:  Hi there !\n', 6)
         i = input('Type a option: ').lower()
         sys.stdout.write('\n')
         if(i == 'a' or i == 'b'):
             response = i
             break
     if(i == 'a'):
+        pr('Hello ?\n', 8)
+        time.sleep(0.5)
         pr('Hello !!????\nWas that someone ???\n',5)
+        time.sleep(0.5)
         pr('Yes, Hello ?\n', 8)
     else:
+        pr('Hi there !\n',8)
+        time.sleep(0.5)
         pr('Yes, Yes i knew i wasnt alone i knew someone would rescue me !\n', 5)
-        time.sleep(1)
+        time.sleep(0.5)
         pr('Of course they sent someone, why wouldnt they !\n', 5)
-        time.sleep(1)
+        time.sleep(0.5)
         pr('Erm, Hello ?\n', 8)
     time.sleep(0.5)
-    pr('Ah yes of course sorry where\'s my manners, My name is \"Mike\"', 5)
+    pr('Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
+    time.sleep(0.5)
+    pr('Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
 
-        
+    

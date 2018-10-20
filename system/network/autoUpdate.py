@@ -29,7 +29,7 @@ def check():
         else:
             logger.log('Failed to retrieve update information, error code: '+r.status+' Please check your Internet Connection.', 2)
     logger.log('Sucessfully Got Update Information', 0)
-    data = json.loads(r.read())
+    data = json.loads(r.read().decode("utf-8"))
     logger.log('Recieved Data from server: '+str(data), 0)
     if(ver.ver() != data['ver']):
         logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
