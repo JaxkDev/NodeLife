@@ -3,8 +3,8 @@ python:
   - "3.4"
 
 before_script:
-  - pip install py2exe
+  - pip install pyinstaller
   - python travis.py
   
 script:
-  - python build.py py2exe
+  - pyinstaller --onefile start.py
