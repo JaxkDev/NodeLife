@@ -28,7 +28,6 @@ def exec():
     if(not system.ver.release()):
         pr('running development build',0)
         pr('Your running a development build, instead of a release please be aware this build has issues and if you dont know why your seeing this get a release from\nhttps://github.com/Jackthehack21/NodeLife/releases\n', 2)
-        input('Press enter to continue.\n')
     else:
         pr('running released version',0)
     pr('Checking System...', 1)
