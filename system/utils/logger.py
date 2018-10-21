@@ -14,8 +14,6 @@
 
 import sys, os, time
 
-user = os.getenv('USERNAME')
-
 data = {
     "0": "Debug",
     "1": "Log",
@@ -48,7 +46,7 @@ def log(msg, lvl = 5):
         sys.stdout.write('\033[39m\n')
     elif(lvl == 5): 
         #In-Game message
-        sys.stdout.write('\033[36m[Mike] : ')
+        sys.stdout.write('\033[36m')
         for i in msg:
             sys.stdout.write(i)
             time.sleep(0.09)
@@ -62,7 +60,7 @@ def log(msg, lvl = 5):
         sys.stdout.write('\033[39m\n')
     elif(lvl == 8):
         #USER RESPONSE
-        sys.stdout.write('\033[91m['+user+'] : ')
+        sys.stdout.write('\033[91m')
         for i in msg:
             sys.stdout.write(i)
             time.sleep(0.09)

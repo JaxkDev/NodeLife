@@ -21,6 +21,10 @@
 
 import sys, time, random
 
+user = os.getenv('USERNAME')
+if(user == NoneType):
+    user = "You"
+
 def exec(pr, Travis):
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
@@ -33,7 +37,7 @@ def exec(pr, Travis):
     time.sleep(1.5)
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
-    pr('Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
+    pr('[??] : Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
     response = ''
     while(True):
         pr('\nOption A:  Hello ?\nOption B:  Hi there !\n', 6)
@@ -50,23 +54,23 @@ def exec(pr, Travis):
             response = i
             break
     if(i == 'a'):
-        pr('Hello ?\n', 8)
+        pr('['+user+'] : Hello ?\n', 8)
         time.sleep(0.5)
-        pr('Hello !!????\nWas that someone ???\n',5)
+        pr('[??] : Hello !!????\nWas that someone ???\n',5)
         time.sleep(0.5)
-        pr('Yes, Hello ?\n', 8)
+        pr('['+user+'] : Yes, Hello ?\n', 8)
     else:
-        pr('Hi there !\n',8)
+        pr('['+user+'] : Hi there !\n',8)
         time.sleep(0.5)
-        pr('Yes, Yes i knew i wasnt alone i knew someone would rescue me !\n', 5)
+        pr('[??] : Yes, Yes i knew i wasnt alone i knew someone would rescue me !\n', 5)
         time.sleep(0.5)
-        pr('Of course they sent someone, why wouldnt they !\n', 5)
+        pr('[??] : Of course they sent someone, why wouldnt they !\n', 5)
         time.sleep(0.5)
-        pr('Erm, Hello ?\n', 8)
+        pr('['+user+'] : Erm, Hello ?\n', 8)
     time.sleep(0.5)
-    pr('Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
+    pr('[Mike] : Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
     time.sleep(0.5)
-    pr('Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
+    pr('[Mike] : Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
     #3 options, what happened, whats the crystal, floating around ?
     
 
