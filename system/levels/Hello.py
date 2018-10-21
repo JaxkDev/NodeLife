@@ -65,3 +65,30 @@ def exec(pr, Travis):
     time.sleep(0.5)
     pr('[Mike] : Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
     #3 options, what happened, whats the crystal, floating around ?
+    time.sleep(0.5)
+    response = ''
+    while(True):
+        pr('\nOption A:  What Happened?\nOption B:  Whats the crystal?\nOption C:  Floating?\n', 6)
+        if(Travis):
+            response = random.choice(['a','b','c'])
+            break
+        i = input('Type a option: ').lower()
+        sys.stdout.write('\n')
+        if(i == 'a' or i == 'b' or i == 'c'):
+            response = i
+            break
+    if(i == 'a'):
+        pr('['+user+'] : What Happened ?\n', 8)
+        time.sleep(0.5)
+        pr('[Mike] : Something happened in the lab and half of the Crystal is gone !\n', 5)
+        #Whats the crystal ?, what happened ?
+    elif(i == 'b'):
+        pr('['+user+'] : Whats the \'Crystal\' ?\n',8)
+        time.sleep(0.5)
+        pr('[Mike] : Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
+        #what happened ?
+    else:
+        pr('['+user+'] : \'Floating\' ?\n',8)
+        time.sleep(0.5)
+        pr('[Mike] : Oops forgot to mention im in outer space in the crystal...', 5)
+        #whats the crystal ?

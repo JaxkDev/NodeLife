@@ -12,17 +12,11 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-def http():
-    return '002_dev' #002_rel when releasing
+def encode(data, key):
+    return data
 
-def ver():
-    return '0.0.2'
+def decode(data, key):
+    return data
 
-def build():
-    return '0054'
-
-def codeName():
-    return 'Alpha'
-
-def release():
-    return False
+def genKey():
+    return

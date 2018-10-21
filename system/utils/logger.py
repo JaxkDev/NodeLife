@@ -26,6 +26,10 @@ data = {
     "9": "Other"
 }
 
+from time import gmtime, strftime
+def getTime():
+    return strftime("%H:%M:%S", gmtime())
+
 def log(msg, lvl = 5):
     sav(msg, lvl)
     if(lvl == 1):
@@ -75,5 +79,5 @@ def sav(msg, lvl):
     if not os.path.exists('data'):
         os.makedirs('data')
     f = open('data/log.txt', 'a')
-    f.write('['+data[str(lvl)]+'] '+msg+'\n')
+    f.write('['+getTime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n',' ')+'\n')
     f.close()

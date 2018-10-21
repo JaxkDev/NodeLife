@@ -12,17 +12,25 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-def http():
-    return '002_dev' #002_rel when releasing
+import os, sys
+import system.utils.secure as sec
 
-def ver():
-    return '0.0.2'
+def get():
+    #Get user data
+    if(not os.path.exists('data/')):
+        os.mkdir('data')
+        return
+    if(not os.path.exists('data/user/')):
+        os.mkdir('data/user')
+        return
+    if(not os.path.isfile('data/user/data.secure')):
+        return
+    
+    data = open('data/user/data.secure', 'r')
+    #decode data
+    print(data)
 
-def build():
-    return '0054'
-
-def codeName():
-    return 'Alpha'
-
-def release():
-    return False
+def set(data):
+    #Set user data
+    #encode data
+    return
