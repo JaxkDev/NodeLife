@@ -19,7 +19,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time
+import sys, time, random
 
 def exec(pr, Travis):
     sys.stdout.write('\033[35m')
@@ -34,12 +34,16 @@ def exec(pr, Travis):
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
     pr('Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
-    if(Travis):
-        pr('TESTS ENDED.',2)
-        return
     response = ''
     while(True):
         pr('\nOption A:  Hello ?\nOption B:  Hi there !\n', 6)
+        if(Travis):
+            response = random.randint(0,1)
+            if(response == 0):
+                response = "a"
+            else:
+                response = "b"
+            break
         i = input('Type a option: ').lower()
         sys.stdout.write('\n')
         if(i == 'a' or i == 'b'):
@@ -63,5 +67,7 @@ def exec(pr, Travis):
     pr('Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
     time.sleep(0.5)
     pr('Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
+    #3 options, what happened, whats the crystal, floating around ?
+    
 
     
