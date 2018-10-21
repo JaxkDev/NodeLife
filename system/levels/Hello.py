@@ -19,7 +19,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random
+import sys, time, random, os
 
 user = os.getenv('USERNAME')
 if(user == NoneType):
