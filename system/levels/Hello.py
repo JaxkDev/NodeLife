@@ -21,9 +21,8 @@
 
 import sys, time, random, os
 
-user = os.getenv('USERNAME')
-
 def exec(pr, Travis):
+    user = os.getenv('USERNAME')
     if(Travis):
         user = "Travis-CI"
     sys.stdout.write('\033[35m')

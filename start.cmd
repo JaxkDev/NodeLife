@@ -10,6 +10,6 @@ if exist start.py (
 	exit 1
 )
 
-python %FILE% %*
+py -3.6 %FILE% %*
 
 pause

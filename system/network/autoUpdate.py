@@ -31,10 +31,21 @@ def check():
     logger.log('Sucessfully Got Update Information', 0)
     data = json.loads(r.read().decode("utf-8"))
     logger.log('Recieved Data from server: '+str(data), 0)
-    if(ver.ver() != data['ver']):
+    if(update(ver.ver(), data['ver'])):
         logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
         input('\nPress any key to continue...\n')
     else:
         logger.log('Game Up-To-Date !', 0)
     
     return
+
+def update(n, n2):
+    original = n.split('.')
+    available = n2.split('.')
+    if(int(original[0]) < int(available[0])):
+        return True
+    if(int(original[1]) < int(available[1])):
+        return True
+    if(int(original[2]) < int(available[2])):
+        return True
+    return False
