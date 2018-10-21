@@ -1,5 +1,4 @@
 @echo off
-TITLE NodeLife: Will you survive ?
 cd /d %~dp0
 
 if exist start.py (

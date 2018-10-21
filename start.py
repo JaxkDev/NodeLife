@@ -22,6 +22,10 @@ init() #ENABLES COLOUR (WRAPS STDOUT & ERR)
 def pr(msg, lvl):
     logger.log(msg, lvl)
 
+import ctypes
+ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
+pr('Updated screen title',0)
+
 pr('Booted on '+time.asctime(), 0)
 pr('Checking deployment type...',0)
 if(not system.ver.release()):
