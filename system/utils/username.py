@@ -12,17 +12,9 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-def http():
-    return '002_dev' #002_rel when releasing
+import sys
+import os
+import getpass
 
-def ver():
-    return '0.0.2'
-
-def build():
-    return '0052'
-
-def codeName():
-    return 'Alpha'
-
-def release():
-    return False
+def Username():
+	return os.environ['SUDO_USER'] if 'SUDO_USER' in os.environ else getpass.getuser()

@@ -19,12 +19,10 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os
+import sys, time, random, os, system.utils.username
 
 def exec(pr, Travis):
-    user = os.getenv('USERNAME')
-    if(Travis):
-        user = "Travis-CI"
+    user = system.utils.username.Username() #Fix for linux and mac users.
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
         sys.stdout.write(i)
@@ -67,6 +65,3 @@ def exec(pr, Travis):
     time.sleep(0.5)
     pr('[Mike] : Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
     #3 options, what happened, whats the crystal, floating around ?
-    
-
-    
