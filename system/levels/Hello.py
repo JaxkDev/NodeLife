@@ -22,10 +22,10 @@
 import sys, time, random, os
 
 user = os.getenv('USERNAME')
-if(user == NoneType):
-    user = "You"
 
 def exec(pr, Travis):
+    if(Travis):
+        user = "Travis-CI"
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
         sys.stdout.write(i)
@@ -42,11 +42,7 @@ def exec(pr, Travis):
     while(True):
         pr('\nOption A:  Hello ?\nOption B:  Hi there !\n', 6)
         if(Travis):
-            response = random.randint(0,1)
-            if(response == 0):
-                response = "a"
-            else:
-                response = "b"
+            response = random.choice(['a','b'])
             break
         i = input('Type a option: ').lower()
         sys.stdout.write('\n')
