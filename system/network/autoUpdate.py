@@ -17,7 +17,7 @@ from system import ver
 from urllib import request, error
 import json
 
-def check():
+def check(travis):
     try:
         r = request.urlopen('https://fusioncraft.glitch.me/NodeLife?app='+ver.http())
     except error.HTTPError:
@@ -33,7 +33,8 @@ def check():
     logger.log('Recieved Data from server: '+str(data), 0)
     if(update(ver.ver(), data['ver'])):
         logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
-        input('\nPress any key to continue...\n')
+        if(not travis):
+            input('\nPress any key to continue...\n')
     else:
         logger.log('Game Up-To-Date !', 0)
     

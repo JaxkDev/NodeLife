@@ -55,7 +55,7 @@ elif(int(os.path.getsize('data/log.txt')/1024) >= 1024):
         time.sleep(0.5)
 pr('System Check Complete.',0)
 pr('Checking for updates...', 1)
-autoUpdate.check()
+autoUpdate.check(False)
 pr('Update Check Complete.',0)
 pr('Starting Game...', 1)
 time.sleep(3)
