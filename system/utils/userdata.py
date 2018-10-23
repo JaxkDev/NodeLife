@@ -12,7 +12,7 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-import os, sys
+import os, sys, json
 import system.utils.secure as sec
 
 def get():
@@ -26,11 +26,22 @@ def get():
     if(not os.path.isfile('data/user/data.secure')):
         return
     
-    data = open('data/user/data.secure', 'r')
-    #decode data
+    f = open('data/user/data.secure', 'r')
+    #decode data (f.read())
+    data = json.loads(f.read()) #do json after decode when implemented
+    f.close()
     print(data)
 
 def set(data):
     #Set user data
+    if(not os.path.exists('data/')):
+        os.mkdir('data')
+        return
+    if(not os.path.exists('data/user/')):
+        os.mkdir('data/user')
+        return
     #encode data
+    f = open('data/user/data.secure', 'w')
+    f.write(json.dumps(data)) #do json before encode when implemented
+    f.close()
     return

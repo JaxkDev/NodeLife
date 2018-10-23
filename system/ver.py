@@ -19,7 +19,7 @@ def ver():
     return '0.0.2'
 
 def build():
-    return '0059'
+    return '0060'
 
 def codeName():
     return 'Alpha'

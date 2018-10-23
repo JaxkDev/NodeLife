@@ -78,6 +78,9 @@ def log(msg, lvl = 5):
 def sav(msg, lvl):
     if not os.path.exists('data'):
         os.makedirs('data')
-    f = open('data/log.txt', 'a')
+        os.makedirs('data/logs')
+    elif not os.path.exists('data/logs'):
+        os.makedirs('data/logs')
+    f = open('data/logs/log.txt', 'a')
     f.write('['+getTime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n',' ')+'\n')
     f.close()

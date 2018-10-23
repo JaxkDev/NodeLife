@@ -39,18 +39,18 @@ if(system.system.lower() != 'windows'):
     pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
 if(system.machine.lower() != 'amd64' and system.machine.lower() != 'x64'):
     pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
-if(int(os.path.getsize('data/log.txt')/1024) >= 2024):
-    pr('Your Log.txt (data/log.txt) is extremely large >2mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 3)
+if(int(os.path.getsize('data/logs/log.txt')/1024) >= 2024):
+    pr('Your Log.txt (data/logs/log.txt) is extremely large >2mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 3)
     if(input('> ').lower() == 'd'):
         time.sleep(0.5) #let logger finish anything not finished
-        os.remove('data/log.txt')
+        os.remove('data/logs/log.txt')
         pr('Log Wiped',2) #Use this to re-create the file aswell
         time.sleep(0.5)
-elif(int(os.path.getsize('data/log.txt')/1024) >= 1024):
-    pr('Your Log.txt (data/log.txt) is very large >1mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 2)
+elif(int(os.path.getsize('data/logs/log.txt')/1024) >= 1024):
+    pr('Your Log.txt (data/logs/log.txt) is very large >1mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 2)
     if(input('> ').lower() == 'd'):
         time.sleep(0.5) #let logger finish anything not finished
-        os.remove('data/log.txt')
+        os.remove('data/logs/log.txt')
         pr('Log Wiped',2) #Use this to re-create the file aswell
         time.sleep(0.5)
 pr('System Check Complete.',0)

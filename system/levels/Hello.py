@@ -20,8 +20,9 @@
 #Stupid rule
 
 import sys, time, random, os, system.utils.username
+import system.utils.userdata as userdata
 
-def exec(pr, Travis):
+def exec(user, pr, Travis):
     user = system.utils.username.Username() #Fix for linux and mac users.
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
@@ -31,9 +32,9 @@ def exec(pr, Travis):
         sys.stdout.write('.')
         time.sleep(0.6)
     sys.stdout.write('.\n\n')
-    time.sleep(1.5)
+    time.sleep(1)
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
-    time.sleep(0.5)
+    time.sleep(1.5)
     pr('[??] : Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
     response = ''
     while(True):
@@ -60,6 +61,8 @@ def exec(pr, Travis):
         pr('[??] : Of course they sent someone, why wouldnt they !\n', 5)
         time.sleep(0.5)
         pr('['+user+'] : Erm, Hello ?\n', 8)
+    #save data
+
     time.sleep(0.5)
     pr('[Mike] : Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
     time.sleep(0.5)

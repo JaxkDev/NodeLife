@@ -14,6 +14,8 @@
 
 from system.utils import logger
 import time, os
+from system.levels import Hello
+
 
 def pr(msg, lvl):
     logger.log(msg, lvl)
@@ -21,14 +23,13 @@ def pr(msg, lvl):
 def run(Travis):
     if(Travis):
         pr('Travis Mode Enabled',2)
-        from system.levels import Hello
-        Hello.exec(pr, True)
+        Hello.exec({}, pr, True)
         return
     pr('Checking for saves',0)
     if(os.path.exists('data/saves')):
         print(os.listdir('data/saves'))
+        #go back to where he came from
     else:
         pr('No saves found.', 0)
         pr('Loading Chapter 1', 0)
-        from system.levels import Hello
-        Hello.exec(pr, False)
+        Hello.exec({}, pr, False)
