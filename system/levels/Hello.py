@@ -22,6 +22,8 @@
 import sys, time, random, os, system.utils.username, _thread
 import system.utils.userdata as userdata
 
+random.seed()
+
 def d(userData, pr, Travis):
     user = userData['username']
     time.sleep(0.5)
