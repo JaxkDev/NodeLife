@@ -19,29 +19,31 @@ def get():
     #Get user data
     if(not os.path.exists('data/')):
         os.mkdir('data')
-        return
+        return {}
     if(not os.path.exists('data/user/')):
         os.mkdir('data/user')
-        return
+        return {}
     if(not os.path.isfile('data/user/data.secure')):
-        return
+        return {}
     
     f = open('data/user/data.secure', 'r')
     #decode data (f.read())
     data = json.loads(f.read()) #do json after decode when implemented
     f.close()
     print(data)
+    return data
 
-def set(data):
+def set(data, pr):
     #Set user data
+    pr('Started save user data thread',0)
     if(not os.path.exists('data/')):
         os.mkdir('data')
-        return
     if(not os.path.exists('data/user/')):
         os.mkdir('data/user')
-        return
+        #why would it not write to data after dir is created ??? why did i add that lol
     #encode data
     f = open('data/user/data.secure', 'w')
     f.write(json.dumps(data)) #do json before encode when implemented
     f.close()
+    pr('Completed save user data thread',0)
     return

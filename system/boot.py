@@ -12,7 +12,7 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-from system.utils import logger
+from system.utils import logger, userdata
 import time, os
 from system.levels import Hello
 import importlib
@@ -31,10 +31,11 @@ def run(Travis):
         levels['1'].exec({}, pr, True)
         return
     pr('Checking for saves',0)
-    if(os.path.exists('data/saves')):
-        print(os.listdir('data/saves'))
+    userData = userdata.get()
+    if(userData != {}):
+        print('TBC - SAVES')
         #go back to where he came from, using levels var
     else:
         pr('No saves found.', 0)
         pr('Loading Chapter 1', 0)
-        levels['1'].exec({}, pr, False)
+        levels['1'].exec(userData, pr, False)

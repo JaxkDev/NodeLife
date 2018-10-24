@@ -19,4 +19,4 @@ def decode(data, key):
     return data
 
 def genKey():
-    return
+    return 123

@@ -19,7 +19,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, system.utils.username
+import sys, time, random, os, system.utils.username, _thread
 import system.utils.userdata as userdata
 
 def d(userData, pr, Travis):
@@ -54,11 +54,11 @@ def b(userData, pr, Travis):
         if(i == 'a' or i == 'b' or i == 'c'):
             response = i
             break
-    if(i == 'a'):
+    if(response == 'a'):
         c(userData, pr, Travis)
         #Whats the crystal ?
         d(userData, pr, Travis)
-    elif(i == 'b'):
+    elif(response == 'b'):
         d(userData, pr, Travis)
         #what happened ?
         c(userData, pr, Travis)
@@ -108,7 +108,7 @@ def a(userData, pr, Travis):
         if(i == 'a' or i == 'b'):
             response = i
             break
-    if(i == 'a'):
+    if(response == 'a'):
         pr(user+' : Hello ?\n', 8)
         time.sleep(0.5)
         pr('[??] : Hello !!????\nWas that someone ???\n',5)
@@ -124,9 +124,34 @@ def a(userData, pr, Travis):
         pr(user+' : Erm, Hello ?\n', 8)
     b(userData, pr, Travis)
 
+
+# This exec function is required in all levels.
+#
+# You then have different functions for different staged,
+# Making it much easier for restoring progress via a save
+# Working on the saves now hopefully for 0.0.2/3 release !
+#
+# Todo:
+#
+# [X] Save default user data
+# [] Save data after every question
+# [X] Use multi-threading to save 
+#    (to allow users to carry on the story without pauses)
+#
+
 def exec(userData, pr, Travis):
-    user = '['+system.utils.username.Username()+']' #Fix for linux and mac users. To be added to userData
-    userData['username'] = user
+    if(userData == {}):
+        pr('Setting default, user values.',0)
+        user = '['+system.utils.username.Username()+']' #Fix for linux and mac users. To be added to userData
+        userData['username'] = user
+        userData['lastBoot'] = int(round(time.time() * 1000))
+        userData['level'] = 1
+        userData['levelPart'] = 'a'
+        pr('Init save thread...',0)
+        _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    else:
+        #load data
+        pr('Loading Previous Stage from save...',0)
     a(userData, pr, Travis)
     pr('Cleared chapter 1, Cleared User Display',0)
     pr('Saving Data, do not exit the game',2)
