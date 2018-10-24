@@ -157,12 +157,13 @@ def exec(userData, pr, Travis):
     pr('Saving Data, do not exit the game',2)
     #save data
     time.sleep(3)
+    if(Travis):
+        return
     pr('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
     i = input('Quit ? (yes/no) > ').lower()
     if(i[0] == 'y'):
         sys.exit(0) #status code 0- normal.
     time.sleep('1')
     print('\x1b[2J')
-    print('Chapter 2')
-    input()
+    print('Chapter 2 - Coming Soon.')
     #save data and finish chapter
