@@ -5,5 +5,5 @@ notes/*
 issues/*
 dist/*
 
- *.pyc
- *.pyo
+*.pyo
+*.pyc

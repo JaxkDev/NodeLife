@@ -37,10 +37,10 @@ def log(msg, lvl = 5):
         sys.stdout.write(msg+'\n')
     elif(lvl == 2):
         #warning
-        sys.stdout.write('\033[33m[WARNING] : '+msg+'\033[39m\n')
+        sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 3):
         #error
-        sys.stdout.write('\033[91m[ERROR] : '+msg+'\033[39m\n')
+        sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
         sys.stdout.write('\033[97m')
