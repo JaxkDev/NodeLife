@@ -22,8 +22,6 @@
 import sys, time, random, os, system.utils.username, _thread
 import system.utils.userdata as userdata
 
-random.seed()
-
 def d(userData, pr, Travis):
     user = userData['username']
     time.sleep(0.5)
@@ -142,25 +140,33 @@ def a(userData, pr, Travis):
 #
 
 def exec(userData, pr, Travis):
-    if(userData == {}):
-        pr('Setting default, user values.',0)
-        user = '['+system.utils.username.Username()+']' #Fix for linux and mac users. To be added to userData
-        userData['username'] = user
-        userData['lastBoot'] = int(round(time.time() * 1000))
-        userData['level'] = 1
-        userData['levelPart'] = 'a'
-        pr('Init save thread...',0)
-        _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
-    else:
-        #load data
-        pr('Loading Previous Stage from save...',0)
-    a(userData, pr, Travis)
+    print(userData)
+    if(not userData):
+        pr('Corrupt Data...',3)
+        input('Press enter to continue')
+        sys.exit(1)
+
+
+    #load data
+    pr('Loading Previous Stage from save...',0)
+    if(userData['levelPart'] == 'a' or userData['levelPart'] == '-'):
+        a(userData, pr, Travis)
+    elif(userData['levelPart'] == 'b'):
+        b(userData, pr, Travis)
+    elif(userData['levelPart'] == 'c'):
+        c(userData, pr, Travis)
+    elif(userData['levelPart'] == 'd'):
+        d(userData, pr, Travis)
+    time.sleep(0.5)
     pr('Cleared chapter 1, Cleared User Display',0)
     pr('Saving Data, do not exit the game',2)
-    #save data
-    time.sleep(3)
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['level'] = 2
+    userData['levelPart'] = '-'
+    pr('Init save thread...',0)
+    t = _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     if(Travis):
-        return
+        return #only test 1 chapter for now
     pr('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
     i = input('Quit ? (yes/no) > ').lower()
     if(i[0] == 'y'):
@@ -168,4 +174,6 @@ def exec(userData, pr, Travis):
     time.sleep('1')
     print('\x1b[2J')
     print('Chapter 2 - Coming Soon.')
-    #save data and finish chapter
+    input('Press enter to continue..')
+    pr('Game ended',0)
+    #finish chapter
