@@ -45,7 +45,8 @@ def a(user, pr, Travis):
     slow('you begin talking to this person on the other end and guide them to safety, can you help him survive !?...',0.1)
     sys.stdout.write('\n\n')
     time.sleep(10)
-    input('Press enter to start the game !')
+    if(not Travis):
+        input('Press enter to start the game !')
 
 def exec(userData, pr, Travis):
     if(userData != {}):
