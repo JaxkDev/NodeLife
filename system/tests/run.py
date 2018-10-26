@@ -44,7 +44,7 @@ def exec():
         pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
     pr('System Check Complete.',0)
     pr('Checking for updates...', 1)
-    autoUpdate.check(False)
+    autoUpdate.check(True)
     pr('Update Check Complete.',0)
     pr('Starting Game...', 1)
     time.sleep(3)
