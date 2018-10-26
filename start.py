@@ -24,8 +24,11 @@ def pr(msg, lvl):
 
 pr('Booted on '+time.asctime(), 0)
 import ctypes
-ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
-pr('Updated screen title',0)
+try:
+    ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
+    pr('Updated screen title',0)
+except AttributeError:
+    pr('Unable to set title',0) #Linux & MacOS
 pr('Checking deployment type...',0)
 if(not system.ver.release()):
     pr('Your running a development build, instead of a release please be aware this build has issues and if you dont know why your seeing this get a release from\nhttps://github.com/Jackthehack21/NodeLife/releases\n', 2)
