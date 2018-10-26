@@ -17,7 +17,7 @@ import time, platform, system.ver, os, sys
 
 from system.utils.initialise import init
 from system.network import autoUpdate
-init() #ENABLES COLOUR (WRAPS STDOUT & ERR)
+init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for win.
 
 def pr(msg, lvl):
     logger.log(msg, lvl)
@@ -38,10 +38,10 @@ else:
 pr('Checking System...', 1)
 time.sleep(0.5)
 system = platform.uname()
-if(system.system.lower() != 'windows'):
-    pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
+if(system.system.lower() != 'windows' and system.system.lower() != 'linux'):
+    pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
 if(system.machine.lower() != 'amd64' and system.machine.lower() != 'x64'):
-    pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehaxk21/NodeLife)', 2)
+    pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
 if(int(os.path.getsize('data/logs/log.txt')/1024) >= 2024):
     pr('Your Log.txt (data/logs/log.txt) is extremely large >2mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 3)
     if(input('> ').lower() == 'd'):
