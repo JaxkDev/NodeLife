@@ -13,16 +13,16 @@
 # This project and all its content is distributed under the GPL-V3 license
 
 def http():
-    return '002_rel' #002_dev when development
+    return '003_dev' #_rel/_dev
 
 def ver():
-    return '0.0.2'
+    return '0.0.3'
 
 def build():
-    return '0070'
+    return '0071'
 
 def codeName():
     return 'Alpha'
 
 def release():
-    return True
+    return False

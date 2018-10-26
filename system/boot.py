@@ -14,7 +14,6 @@
 
 from system.utils import logger, userdata
 import time, os, importlib, system.ver, sys
-from system.levels import Hello
 
 def pr(msg, lvl):
     logger.log(msg, lvl)
