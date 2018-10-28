@@ -21,6 +21,7 @@ def exec():
     widget['image'] = widget.lenna_image_png
     widget.pack()
     def on_closing():
+        return #for now not allowed to close.
         if messagebox.askokcancel("Delete", "Do you want to delete the transmission?"):
             root.destroy()
 

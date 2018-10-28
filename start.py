@@ -17,7 +17,7 @@ import time, platform, system.ver, os, sys
 
 from system.utils.initialise import init
 from system.network import autoUpdate
-init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for win.
+init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows.
 
 def pr(msg, lvl):
     logger.log(msg, lvl)
@@ -25,7 +25,7 @@ def pr(msg, lvl):
 pr('Booted on '+time.asctime(), 0)
 import ctypes
 try:
-    ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
+    sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07")#ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
     pr('Updated screen title',0)
 except AttributeError:
     pr('Unable to set title',0) #Linux & MacOS

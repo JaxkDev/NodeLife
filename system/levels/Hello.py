@@ -23,6 +23,10 @@ import sys, time, random, os, system.utils.username, _thread
 import system.utils.userdata as userdata
 
 def d(userData, pr, Travis):
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['levelPart'] = 'd'
+    pr('Init save thread...',0)
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : Whats the \'Crystal\' ?\n',8)
@@ -30,6 +34,10 @@ def d(userData, pr, Travis):
     pr('[Mike] : Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
 
 def c(userData, pr, Travis):
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['levelPart'] = 'c'
+    pr('Init save thread...',0)
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : What Happened ?\n', 8)
@@ -37,6 +45,10 @@ def c(userData, pr, Travis):
     pr('[Mike] : Something happened in the lab and half of the Crystal is gone !\n', 5)
         
 def b(userData, pr, Travis):
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['levelPart'] = 'b'
+    pr('Init save thread...',0)
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     user = userData['username']
     time.sleep(0.5)
     pr('[Mike] : Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
@@ -84,6 +96,10 @@ def b(userData, pr, Travis):
             
 
 def a(userData, pr, Travis):
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['levelPart'] = 'a'
+    pr('Init save thread...',0)
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     user = userData['username']
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
@@ -164,16 +180,16 @@ def exec(userData, pr, Travis):
     userData['level'] = 2
     userData['levelPart'] = '-'
     pr('Init save thread...',0)
-    t = _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
     if(Travis):
         return #only test 1 chapter for now
     pr('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
     i = input('Quit ? (yes/no) > ').lower()
     if(i[0] == 'y'):
         sys.exit(0) #status code 0- normal.
-    time.sleep('1')
+    time.sleep(1)
     print('\x1b[2J')
     print('Chapter 2 - Coming Soon.')
-    input('Press enter to continue..')
+    input('Press enter to end the game..')
     pr('Game ended',0)
     #finish chapter
