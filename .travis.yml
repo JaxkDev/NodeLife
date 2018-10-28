@@ -8,8 +8,6 @@ before_script:
   
 script:
   - pyinstaller --onefile start.py
-  - ls
-  - ./dist/start
   - zip -r deploy.zip *
 
 deploy:
