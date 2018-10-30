@@ -34,6 +34,7 @@ def check(travis):
     if(update(ver.ver(), data['ver'])):
         logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
         if(not travis):
+            #Show UI here
             input('\nPress any key to continue...\n')
     else:
         logger.log('Game Up-To-Date !', 0)

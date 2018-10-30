@@ -22,6 +22,7 @@ data = {
     "4": "In-Game Notification",
     "5": "In-Game Message",
     "6": "In-Game Question",
+    #7 UI
     "8": "User Response",
     "9": "Other"
 }
