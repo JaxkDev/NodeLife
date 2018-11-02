@@ -7,7 +7,7 @@ before_script:
   - python travis.py
   
 script:
-  - pyinstaller --onefile start.py
+  - pyinstaller start.spec
   - zip -r deploy.zip *
 
 deploy:
