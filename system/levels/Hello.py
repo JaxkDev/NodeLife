@@ -156,7 +156,6 @@ def a(userData, pr, Travis):
 #
 
 def exec(userData, pr, Travis):
-    print(userData)
     if(not userData):
         pr('Corrupt Data...',3)
         input('Press enter to continue')

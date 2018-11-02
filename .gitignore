@@ -7,3 +7,5 @@ dist/*
 
 *.pyo
 *.pyc
+
+.DS_STORE

@@ -12,17 +12,27 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-def http():
-    return '003_dev' #_rel/_dev
+import ssl
 
-def ver():
-    return '0.0.3'
+def run(Travis, OS):
+    # This is to fis SSL error when checking for update on MacOSX.
 
-def build():
-    return '0079'
+    eval(OS+'()')
+    return
 
-def codeName():
-    return 'Bravo' #Phonetic Alphabet
+def windows():
+    return
 
-def release():
-    return False
+def linux():
+    return
+
+def darwin():
+    try:
+        _create_unverified_https_context = ssl._create_unverified_context
+    except AttributeError:
+        # Legacy Python that doesn't verify HTTPS certificates by default
+        pass
+    else:
+        # Handle target environment that doesn't support HTTPS verification
+        ssl._create_default_https_context = _create_unverified_https_context
+    return

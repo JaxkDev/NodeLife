@@ -30,7 +30,6 @@ def get():
     #decode data (f.read())
     data = json.loads(f.read()) #do json after decode when implemented
     f.close()
-    print(data)
     return data
 
 def set(data, pr):
