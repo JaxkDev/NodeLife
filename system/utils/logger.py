@@ -12,7 +12,9 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-import sys, os, time
+import sys, os, time, platform
+
+OS = platform.uname().system.lower()
 
 data = {
     "0": "Debug",
@@ -45,30 +47,42 @@ def log(msg, lvl = 5):
     elif(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
         sys.stdout.write('\033[97m')
-        for i in msg:
-            sys.stdout.write(i)
-            time.sleep(0.09)
+        if(OS != "windows"):
+            sys.stdout.write(msg)
+        else:
+            for i in msg:
+                sys.stdout.write(i)
+                time.sleep(0.09)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 5): 
         #In-Game message
         sys.stdout.write('\033[36m')
-        for i in msg:
-            sys.stdout.write(i)
-            time.sleep(0.09)
+        if(OS != "windows"):
+            sys.stdout.write(msg)
+        else:
+            for i in msg:
+                sys.stdout.write(i)
+                time.sleep(0.09)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 6): 
         #In-Game question
         sys.stdout.write('\033[32m[RESPOND] : ')
-        for i in msg:
-            sys.stdout.write(i)
-            time.sleep(0.09)
+        if(OS != "windows"):
+            sys.stdout.write(msg)
+        else:
+            for i in msg:
+                sys.stdout.write(i)
+                time.sleep(0.09)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 8):
         #USER RESPONSE
         sys.stdout.write('\033[91m')
-        for i in msg:
-            sys.stdout.write(i)
-            time.sleep(0.09)
+        if(OS != "windows"):
+            sys.stdout.write(msg)
+        else:
+            for i in msg:
+                sys.stdout.write(i)
+                time.sleep(0.09)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 9): 
         #Other

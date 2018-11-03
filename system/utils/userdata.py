@@ -12,8 +12,11 @@
 #
 # This project and all its content is distributed under the GPL-V3 license
 
-import os, sys, json
+import os, sys, json, getpass
 import system.utils.secure as sec
+
+def getLoginName():
+	return os.environ['SUDO_USER'] if 'SUDO_USER' in os.environ else getpass.getuser()
 
 def get():
     #Get user data

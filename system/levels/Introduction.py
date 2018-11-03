@@ -19,10 +19,14 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, system.utils.username, _thread
+import sys, time, random, os, system.utils.username, _thread, platform
 import system.utils.userdata as userdata
 
+# use this: instead of logger as this will increase the log size for un needed info.
 def slow(txt, delay):
+    if(platform.uname().system.lower() != "windows"):
+        sys.stdout.write(txt)
+        return
     for i in txt:
         sys.stdout.write(i)
         time.sleep(delay)
