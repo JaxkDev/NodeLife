@@ -19,7 +19,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, system.utils.username, _thread
+import sys, time, random, os, _thread
 import system.utils.userdata as userdata
 
 def d(userData, pr, Travis):

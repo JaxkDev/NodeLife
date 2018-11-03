@@ -19,7 +19,7 @@ def ver():
     return '0.0.3'
 
 def build():
-    return '0080'
+    return '0082'
 
 def codeName():
     return 'Bravo' #Phonetic Alphabet

@@ -19,7 +19,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, system.utils.username, _thread, platform
+import sys, time, random, os, _thread, platform
 import system.utils.userdata as userdata
 
 # use this: instead of logger as this will increase the log size for un needed info.
@@ -59,7 +59,7 @@ def exec(userData, pr, Travis):
         sys.exit(1)
     a(userData, pr, Travis)
     pr('Saving game...',1)
-    user = '['+system.utils.username.Username()+']' #Fix for linux and mac users. To be added to userData
+    user = '['+userdata.getLoginName()+']' #Fix for linux and mac users. To be added to userData
     userData['username'] = user
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 1
