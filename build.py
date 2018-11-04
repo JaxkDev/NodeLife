@@ -23,32 +23,9 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from distutils.core import setup
-import py2exe
-import sys
+import sys, os
 
-if len(sys.argv) == 1:
-    sys.argv.append("py2exe")
-    sys.argv.append("-q")
+os.system('pip3 install pyinstaller')
+os.system('pyinstaller start.spec')
 
-class Target:
-    def __init__(self, **kw):
-        self.__dict__.update(kw)
-        self.version = "0.0.2"
-        self.copyright = "Copyright (c) 2018 Jackthehack21"
-        self.name = "NodeLife"
-
-target = Target(
-    description = "NodeLife: Will you survive?",
-    script = "start.py",
-    dest_base = "NodeLife-win")
-
-includes = ["system","system.utils","system.tests","system.levels","system.network"]
-
-setup(
-    options = {'py2exe': {'bundle_files': 1,
-                          'packages': includes,
-                          'compressed': True}},
-    zipfile = None,
-    console = [target]
-)
+sys.exit(0)
