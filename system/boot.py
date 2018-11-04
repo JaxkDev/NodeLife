@@ -58,10 +58,11 @@ def run(Travis):
     if(userData):
         if(int(userData['level']) > len(levels)-1):
             pr('More coming soon !',1)
-            sys.exit(0);
-        level = importlib.import_module(prefix+levels[str(userData['level'])])
-        level.exec(userData, pr, False)
-        #go back to where he came from, using levels var
+            return
+        else:
+            level = importlib.import_module(prefix+levels[str(userData['level'])])
+            level.exec(userData, pr, False)
+            #go back to where he came from, using levels var
     else:
         pr('No saves found.', 0)
         pr('Loading Intro...', 0)
@@ -73,8 +74,8 @@ def run(Travis):
         if(len(levels)-1 > int(userData['level'])):
             pr('More coming soon !',1)
             input('Press enter to exit.')
-            sys.exit(0)
-        print('\x1b[2J')
-        level = importlib.import_module(prefix+levels[str(userData['level'])])
-        level.exec(userData, pr, False)
-    #go to next chapter.
+            return
+        else:
+            print('\x1b[2J')
+            level = importlib.import_module(prefix+levels[str(userData['level'])])
+            level.exec(userData, pr, False)
