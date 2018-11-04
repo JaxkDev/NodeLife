@@ -24,40 +24,23 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.utils import logger
-from system.network import http
-from system import ver
-from urllib import request, error
+from urllib import request, error, parse
 import json
 
-def check(travis):
-    r = http.get('https://fusioncraft.glitch.me/NodeLife?app='+ver.http())
-    if(r == False):
-        return
-    if(r.status != 200):
-        if(r.status >=400):
-            logger.log('Failed to retrieve update information, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
-        else:
-            logger.log('Failed to retrieve update information, error code: '+r.status+' Please check your Internet Connection.', 2)
-    logger.log('Successfully Got Update Information', 0)
-    data = json.loads(r.read().decode("utf-8"))
-    logger.log('Received Data from server: '+str(data), 0)
-    if(update(ver.ver(), data['ver'])):
-        logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
-        if(not travis):
-            #Show UI here
-            input('\nPress any key to continue...\n')
-    else:
-        logger.log('Game Up-To-Date !', 0)
+def get(url):
+    try:
+        resp = request.urlopen(url)
+    except error.HTTPError:
+        logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
+        resp = False
+    return resp
     
-    return
-
-def update(n, n2):
-    original = n.split('.')
-    available = n2.split('.')
-    if(int(original[0]) < int(available[0])):
-        return True
-    if(int(original[1]) < int(available[1])):
-        return True
-    if(int(original[2]) < int(available[2])):
-        return True
-    return False
+def post(url, data):
+    data = parse.urlencode(data).encode()
+    req =  request.Request(url, data=data)
+    try:
+        resp = request.urlopen(req)
+    except error.HTTPError:
+        logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
+        resp = False
+    return resp

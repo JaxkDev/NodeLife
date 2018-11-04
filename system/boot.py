@@ -56,6 +56,9 @@ def run(Travis):
     pr('Checking for saves',0)
     userData = userdata.get()
     if(userData):
+        if(int(userData['level']) > len(levels)-1):
+            pr('More coming soon !',1)
+            sys.exit(0);
         level = importlib.import_module(prefix+levels[str(userData['level'])])
         level.exec(userData, pr, False)
         #go back to where he came from, using levels var
@@ -67,7 +70,7 @@ def run(Travis):
 
     while(True):
         userData = userdata.get()
-        if(len(levels)-1 > userData['level']):
+        if(len(levels)-1 > int(userData['level'])):
             pr('More coming soon !',1)
             input('Press enter to exit.')
             sys.exit(0)
