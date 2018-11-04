@@ -32,11 +32,14 @@
 import sys, time, random, os, _thread
 import system.utils.userdata as userdata
 
-def d(userData, pr, Travis):
+def save(userData, levelPart):
     userData['lastPlayed'] = int(round(time.time() * 1000))
-    userData['levelPart'] = 'd'
+    userData['levelPart'] = levelPart
     pr('Init save thread...',0)
     _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+
+def d(userData, pr, Travis):
+    save(userData,"d")
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : Whats the \'Crystal\' ?\n',8)
@@ -44,10 +47,7 @@ def d(userData, pr, Travis):
     pr('[Mike] : Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
 
 def c(userData, pr, Travis):
-    userData['lastPlayed'] = int(round(time.time() * 1000))
-    userData['levelPart'] = 'c'
-    pr('Init save thread...',0)
-    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    save(userData, "c")
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : What Happened ?\n', 8)
@@ -55,10 +55,7 @@ def c(userData, pr, Travis):
     pr('[Mike] : Something happened in the lab and half of the Crystal is gone !\n', 5)
         
 def b(userData, pr, Travis):
-    userData['lastPlayed'] = int(round(time.time() * 1000))
-    userData['levelPart'] = 'b'
-    pr('Init save thread...',0)
-    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    save(userData,"b")
     user = userData['username']
     time.sleep(0.5)
     pr('[Mike] : Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
@@ -106,10 +103,7 @@ def b(userData, pr, Travis):
             
 
 def a(userData, pr, Travis):
-    userData['lastPlayed'] = int(round(time.time() * 1000))
-    userData['levelPart'] = 'a'
-    pr('Init save thread...',0)
-    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    save(userData,"a")
     user = userData['username']
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
@@ -149,21 +143,6 @@ def a(userData, pr, Travis):
         time.sleep(0.5)
         pr(user+' : Erm, Hello ?\n', 8)
     b(userData, pr, Travis)
-
-
-# This exec function is required in all levels.
-#
-# You then have different functions for different staged,
-# Making it much easier for restoring progress via a save
-# Working on the saves now hopefully for 0.0.2/3 release !
-#
-# Todo:
-#
-# [X] Save default user data
-# [] Save data after every question
-# [X] Use multi-threading to save 
-#    (to allow users to carry on the story without pauses)
-#
 
 def exec(userData, pr, Travis):
     if(not userData):

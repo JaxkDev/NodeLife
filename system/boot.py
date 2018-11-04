@@ -33,7 +33,8 @@ prefix = 'system.levels.'
 
 levels = {
     "0": "Introduction",
-    "1": "Hello"
+    "1": "Hello",
+    "2": "Exploring"
 }
 
 def run(Travis):

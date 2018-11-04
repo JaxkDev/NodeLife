@@ -23,8 +23,52 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-# CHAPTER 2A - What was that ? / Exploring
+# CHAPTER 2 - What was that ? / Exploring
 # THE USER WILL HELP MIKE, CHOOSE ESSENTIALS AND EXPLORE THE CRYSTAL.
 
 #pylint: disable=W0612
 #Stupid rule
+
+import sys, time, random, os, _thread
+import system.utils.userdata as userdata
+
+def slow(txt, delay):
+    if(platform.uname().system.lower() != "windows"):
+        sys.stdout.write(txt)
+        return
+    for i in txt:
+        sys.stdout.write(i)
+        time.sleep(delay)
+
+
+def save(userData, levelPart):
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['levelPart'] = levelPart
+    pr('Init save thread...',0)
+    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+
+
+def c(user, pr, Travis):
+    save(user,"c")
+    pr("c",0)
+
+def b(user, pr, Travis):
+    save(user,"b")
+    pr("b",0)
+
+def a(user, pr, Travis):
+    save(user,"a")
+    pr("a",0)
+
+def exec(userData, pr, Travis):
+    if(userData == {}):
+        pr('Corrupt Data found, please delete the data/user folder.',3)
+        input('Press enter to continue...')
+        sys.exit(1)
+    a(userData, pr, Travis)
+    pr('Saving game...',1)
+    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['level'] = 3
+    userData['levelPart'] = '-'
+    pr('Init save thread...',0)
+    userdata.set(userData, pr)

@@ -69,7 +69,7 @@ def exec(userData, pr, Travis):
         sys.exit(1)
     a(userData, pr, Travis)
     pr('Saving game...',1)
-    user = '['+userdata.getLoginName()+']' #Fix for linux and mac users. To be added to userData
+    user = '['+userdata.getLoginName()+']'
     userData['username'] = user
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 1
