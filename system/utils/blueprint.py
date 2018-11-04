@@ -1,5 +1,30 @@
+#
+#  /$$   /$$                 /$$           /$$       /$$  /$$$$$$          
+# | $$$ | $$                | $$          | $$      |__/ /$$__  $$         
+# | $$$$| $$  /$$$$$$   /$$$$$$$  /$$$$$$ | $$       /$$| $$  \__//$$$$$$  
+# | $$ $$ $$ /$$__  $$ /$$__  $$ /$$__  $$| $$      | $$| $$$$   /$$__  $$ 
+# | $$  $$$$| $$  \ $$| $$  | $$| $$$$$$$$| $$      | $$| $$_/  | $$$$$$$$ 
+# | $$\  $$$| $$  | $$| $$  | $$| $$_____/| $$      | $$| $$    | $$_____/ 
+# | $$ \  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$$$$$$$| $$| $$    |  $$$$$$$ 
+# |__/  \__/ \______/  \_______/ \_______/|________/|__/|__/     \_______/ 
+#
+# @author Jackthehack21 <gangnam253@gmail.com | Jackthehaxk21#8860>
+#
+# A small text based game helping a person in distress out in space...
+# Copyright (C) 2018 Jackthehack21
 
-def exec():
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+
+# See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  
+# If not, see https://www.gnu.org/licenses/
+
+def spawn():
+    #guess i could add 2.x support here...
     try:
         import tkinter as tk
     except ImportError:
@@ -14,7 +39,7 @@ def exec():
     root = tk.Tk()
     root.resizable(False, False)
     root.tk.call('wm', 'iconphoto', root._w, tk.PhotoImage(file=ico_path))
-    root.title('Transmission_'+str(random.randint(9999,99999)))
+    root.title('Transmission_ID:'+str(random.randint(9999,99999)))
     widget = tk.Label(root, compound='top')
     widget.lenna_image_png = tk.PhotoImage(file=img_path)
     widget['text'] = "Crystal Blueprints"

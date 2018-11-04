@@ -23,27 +23,8 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import ssl
+# CHAPTER 2A - What was that ? / Exploring
+# THE USER WILL HELP MIKE, CHOOSE ESSENTIALS AND EXPLORE THE CRYSTAL.
 
-def run(Travis, OS):
-    # This is to fis SSL error when checking for update on MacOSX.
-
-    eval(OS+'()')
-    return
-
-def windows():
-    return
-
-def linux():
-    return
-
-def darwin():
-    try:
-        _create_unverified_https_context = ssl._create_unverified_context
-    except AttributeError:
-        # Legacy Python that doesn't verify HTTPS certificates by default
-        pass
-    else:
-        # Handle target environment that doesn't support HTTPS verification
-        ssl._create_default_https_context = _create_unverified_https_context
-    return
+#pylint: disable=W0612
+#Stupid rule
