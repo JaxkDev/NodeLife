@@ -24,6 +24,7 @@
 # If not, see https://www.gnu.org/licenses/
 
 import sys, os, time, platform
+from system.network import postError
 
 OS = platform.uname().system.lower()
 
@@ -54,6 +55,7 @@ def log(msg, lvl = 5):
         sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 3):
         #error
+        postError.exec(msg)
         sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)

@@ -30,18 +30,19 @@ from urllib import request, error
 import json
 
 def check(travis):
-    r = http.get('https://fusioncraft.glitch.me/NodeLife?app='+ver.http())
+    if(not http.valid_connection()):
+        logger.log('Failed to retrieve update information, Please check your internet connection !',2)
+        return
+    r = http.get('https://fusioncraft.glitch.me/NodeLife/update?app='+ver.http())
     if(r == False):
         return
     if(r.status != 200):
-        if(r.status >=400):
-            logger.log('Failed to retrieve update information, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
-        else:
-            logger.log('Failed to retrieve update information, error code: '+r.status+' Please check your Internet Connection.', 2)
+        logger.log('Failed to retrieve update information, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
+        return
     logger.log('Successfully Got Update Information', 0)
     data = json.loads(r.read().decode("utf-8"))
     logger.log('Received Data from server: '+str(data), 0)
-    if(update(ver.ver(), data['ver'])):
+    if(canUpdate(ver.ver(), data['ver'])):
         logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
         if(not travis):
             #Show UI here
@@ -51,7 +52,7 @@ def check(travis):
     
     return
 
-def update(n, n2):
+def canUpdate(n, n2):
     original = n.split('.')
     available = n2.split('.')
     if(int(original[0]) < int(available[0])):

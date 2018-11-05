@@ -24,37 +24,24 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.utils import logger
-from urllib import request, error, parse
-import json
-try:
-    import httplib
-except:
-    import http.client as httplib
+from system.network import http
+from system import ver
+from urllib import request, error
+import json, time
 
-def valid_connection():
-    conn = httplib.HTTPConnection("www.google.com", timeout=5)
-    try:
-        conn.request("HEAD", "/")
-        conn.close()
-        return True
-    except:
-        conn.close()
-        return False
-
-def get(url):
-    try:
-        resp = request.urlopen(url)
-    except error.HTTPError:
-        logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
-        resp = False
-    return resp
-    
-def post(url, data):
-    data = parse.urlencode(data).encode()
-    req =  request.Request(url, data=data)
-    try:
-        resp = request.urlopen(req)
-    except error.HTTPError:
-        logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
-        resp = False
-    return resp
+def exec(data):
+    logger.log('postError Started !',0)
+    time.sleep(1) #Allow logger to close file
+    logFile = open('data/logs/log.txt','r')
+    log = logFile.read()
+    postData = {
+        "log": log,
+        "msg": data,
+        "ver": ver.build()
+    }
+    if(http.valid_connection()):
+        r = http.post('https://fusioncraft.glitch.me/NodeLife/postError',postData)
+    else:
+        logger.log('No connection unable to post error data',2)
+        
+    return r.status == '200'

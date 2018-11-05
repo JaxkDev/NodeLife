@@ -23,38 +23,3 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger
-from urllib import request, error, parse
-import json
-try:
-    import httplib
-except:
-    import http.client as httplib
-
-def valid_connection():
-    conn = httplib.HTTPConnection("www.google.com", timeout=5)
-    try:
-        conn.request("HEAD", "/")
-        conn.close()
-        return True
-    except:
-        conn.close()
-        return False
-
-def get(url):
-    try:
-        resp = request.urlopen(url)
-    except error.HTTPError:
-        logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
-        resp = False
-    return resp
-    
-def post(url, data):
-    data = parse.urlencode(data).encode()
-    req =  request.Request(url, data=data)
-    try:
-        resp = request.urlopen(req)
-    except error.HTTPError:
-        logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
-        resp = False
-    return resp

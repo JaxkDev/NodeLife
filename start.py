@@ -27,7 +27,7 @@ from system.utils import logger
 import time, platform, os, sys, system.ver
 from system import preboot
 from system.utils.initialise import init
-from system.network import autoUpdate
+from system.network import autoUpdate, postError
 init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows.
 
 tested_OS = ['darwin','linux','windows']
