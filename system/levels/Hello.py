@@ -32,14 +32,14 @@
 import sys, time, random, os, _thread
 import system.utils.userdata as userdata
 
-def save(userData, levelPart):
+def save(userData, levelPart, pr):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     pr('Init save thread...',0)
     _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
 
 def d(userData, pr, Travis):
-    save(userData,"d")
+    save(userData,"d",pr)
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : Whats the \'Crystal\' ?\n',8)
@@ -47,7 +47,7 @@ def d(userData, pr, Travis):
     pr('[Mike] : Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
 
 def c(userData, pr, Travis):
-    save(userData, "c")
+    save(userData, "c",pr)
     user = userData['username']
     time.sleep(0.5)
     pr(user+' : What Happened ?\n', 8)
@@ -55,7 +55,7 @@ def c(userData, pr, Travis):
     pr('[Mike] : Something happened in the lab and half of the Crystal is gone !\n', 5)
         
 def b(userData, pr, Travis):
-    save(userData,"b")
+    save(userData,"b",pr)
     user = userData['username']
     time.sleep(0.5)
     pr('[Mike] : Ah yes of course sorry where\'s my manners, My name is \"Mike\"\n', 5)
@@ -103,7 +103,7 @@ def b(userData, pr, Travis):
             
 
 def a(userData, pr, Travis):
-    save(userData,"a")
+    save(userData,"a",pr)
     user = userData['username']
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
@@ -176,8 +176,7 @@ def exec(userData, pr, Travis):
     if(i[0] == 'y'):
         sys.exit(0) #status code 0- normal.
     time.sleep(1)
+    input('Press enter to continue..')
     print('\x1b[2J')
-    print('Chapter 2 - Coming Soon.')
-    input('Press enter to end the game..')
-    pr('Game ended',0)
+    pr('Chapter 1 ended',0)
     #finish chapter

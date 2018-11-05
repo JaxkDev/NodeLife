@@ -41,7 +41,7 @@ def slow(txt, delay):
         time.sleep(delay)
 
 
-def save(userData, levelPart):
+def save(userData, levelPart, pr):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     pr('Init save thread...',0)
@@ -49,15 +49,15 @@ def save(userData, levelPart):
 
 
 def c(user, pr, Travis):
-    save(user,"c")
+    save(user,"c",pr)
     pr("c",0)
 
 def b(user, pr, Travis):
-    save(user,"b")
+    save(user,"b",pr)
     pr("b",0)
 
 def a(user, pr, Travis):
-    save(user,"a")
+    save(user,"a",pr)
     pr("a",0)
 
 def exec(userData, pr, Travis):
@@ -70,5 +70,5 @@ def exec(userData, pr, Travis):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 3
     userData['levelPart'] = '-'
-    pr('Init save thread...',0)
+    pr('Init save function...',0)
     userdata.set(userData, pr)

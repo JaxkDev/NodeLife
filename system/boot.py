@@ -47,7 +47,6 @@ def run(Travis):
     sys.stdout.write('Build   - '+system.ver.build()+'\n')
     sys.stdout.write('---------------\n')
     time.sleep(2)
-    print('\x1b[2J')
     if(Travis):
         pr('Skipped save check.',0)
         pr('Travis Mode Enabled',2)
@@ -55,15 +54,18 @@ def run(Travis):
         level.exec({}, pr, True)
         return
     pr('Checking for saves',0)
+    print('\x1b[2J')
     userData = userdata.get()
     if(userData):
-        if(int(userData['level']) > len(levels)-1):
-            pr('More coming soon !',1)
-            return
-        else:
+        pr('Save found !',0)
+        if(str(userData['level']) in levels):
             level = importlib.import_module(prefix+levels[str(userData['level'])])
             level.exec(userData, pr, False)
             #go back to where he came from, using levels var
+        else:
+            pr('More levels coming soon !',1)
+            input('Press enter to exit.')
+            return
     else:
         pr('No saves found.', 0)
         pr('Loading Intro...', 0)
@@ -72,11 +74,12 @@ def run(Travis):
 
     while(True):
         userData = userdata.get()
-        if(len(levels)-1 > int(userData['level'])):
-            pr('More coming soon !',1)
-            input('Press enter to exit.')
-            return
-        else:
+        if(str(userData['level']) in levels):
             print('\x1b[2J')
             level = importlib.import_module(prefix+levels[str(userData['level'])])
             level.exec(userData, pr, False)
+            #go back to where he came from, using levels var
+        else:
+            pr('More levels coming soon !',1)
+            input('Press enter to exit.')
+            return
