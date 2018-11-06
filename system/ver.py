@@ -36,4 +36,4 @@ def codeName():
     return 'Bravo' #Phonetic Alphabet
 
 def release():
-    return False
+    return True
