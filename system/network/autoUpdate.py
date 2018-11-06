@@ -23,7 +23,6 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger
 from system.network import http
 from system import ver
 from urllib import request, error

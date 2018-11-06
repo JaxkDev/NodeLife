@@ -23,7 +23,6 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger
 from urllib import request, error, parse
 import json
 try:
