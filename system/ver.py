@@ -24,13 +24,13 @@
 # If not, see https://www.gnu.org/licenses/
 
 def http():
-    return '003_dev' #_rel/_dev
+    return '003_rel' #_rel/_dev
 
 def ver():
     return '0.0.3'
 
 def build():
-    return '0092'
+    return '0093'
 
 def codeName():
     return 'Bravo' #Phonetic Alphabet
