@@ -38,10 +38,8 @@ def exec():
         logger.log(msg, lvl)
 
     pr('Booted on '+time.asctime(), 0)
-    import ctypes
     try:
         sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win
-        # windows only --> ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
         pr('Updated screen title',0)
     except AttributeError:
         pr('Unable to set title',0) #Please open issue if you get this !

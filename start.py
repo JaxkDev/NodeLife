@@ -28,7 +28,7 @@ import time, platform, os, sys, system.ver
 from system import preboot
 from system.utils.initialise import init
 from system.network import autoUpdate, postError
-init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows.
+init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows 10.
 
 tested_OS = ['darwin','linux','windows']
 tested_ARM = ['amd64', 'x64', 'x86_64']
@@ -37,10 +37,8 @@ def pr(msg, lvl):
     logger.log(msg, lvl)
 
 pr('Booted on '+time.asctime(), 0)
-import ctypes
 try:
-    sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win
-    # windows only --> ctypes.windll.kernel32.SetConsoleTitleW("NodeLife: Will you survive ?")
+    sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win except travis
     pr('Updated screen title',0)
 except AttributeError:
     pr('Unable to set title',0) #Please open issue if you get this !
@@ -57,14 +55,14 @@ if(not system.system.lower() in tested_OS):
     pr('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
 if(not system.machine.lower() in tested_ARM):
     pr('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)
-if(int(os.path.getsize('data/logs/log.txt')/1024) >= 2024):
-    pr('Your Log.txt (data/logs/log.txt) is extremely large >2mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 3)
+if(int(os.path.getsize('data/logs/log.txt')/1024/1024) >= 2):
+    pr('Your Log.txt (data/logs/log.txt) is extremely large '+str(int(os.path.getsize('data/logs/log.txt')/1024/1024))+'mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 3)
     if(input('> ').lower() == 'd'):
         time.sleep(0.5) #let logger finish anything not finished
         os.remove('data/logs/log.txt')
         pr('Log Wiped',2) #Use this to re-create the file aswell
         time.sleep(0.5)
-elif(int(os.path.getsize('data/logs/log.txt')/1024) >= 1024):
+elif(int(os.path.getsize('data/logs/log.txt')/1024/1024) >= 1):
     pr('Your Log.txt (data/logs/log.txt) is very large >1mb and should not be that large, if you have experienced no problems please type D and press enter, and we will delete it for you, otherwise just press enter.', 2)
     if(input('> ').lower() == 'd'):
         time.sleep(0.5) #let logger finish anything not finished

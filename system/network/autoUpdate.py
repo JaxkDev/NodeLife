@@ -33,7 +33,7 @@ def check(travis):
     if(not http.valid_connection()):
         logger.log('Failed to retrieve update information, Please check your internet connection !',2)
         return
-    r = http.get('https://fusioncraft.glitch.me/NodeLife/update?app='+ver.http())
+    r = http.get('https://fusioncraft.glitch.me/NodeLife/update?app='+ver.http()) #replace url with config url later on
     if(r == False):
         return
     if(r.status != 200):

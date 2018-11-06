@@ -26,7 +26,7 @@
 from system.network import http
 from system import ver
 from urllib import request, error
-import json, time
+import json, time, platform
 
 def exec(data,pr):
     pr('postError Started !',0)
@@ -36,10 +36,11 @@ def exec(data,pr):
     postData = {
         "log": log,
         "msg": data,
-        "ver": ver.build()
+        "ver": ver.build(),
+        "sys": platform.uname()
     }
     if(http.valid_connection()):
-        r = http.post('https://fusioncraft.glitch.me/NodeLife/postError',postData)
+        r = http.post('https://fusioncraft.glitch.me/NodeLife/postError',postData) #replace url with config url later on
     else:
         pr('No connection unable to post error data',2)
         
