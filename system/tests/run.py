@@ -82,5 +82,9 @@ def exec():
 
     from system import boot
     boot.run(True)
-    pr(' -- Tests ended -- ',1)
     pr('Game ended.',0)
+    pr('testing logger',1)
+    pr('Log Msg',1)
+    pr('Log Warning',2)
+    pr('Log Error',3)
+    pr('Tests ended',1)
