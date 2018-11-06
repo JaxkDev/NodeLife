@@ -23,35 +23,18 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-#pylint: disable=W0101
-# For now as i return and have code after it
+from configparser import ConfigParser
 
-def spawn():
-    #guess i could add 2.x support here...
+def get():
     try:
-        import tkinter as tk
-    except ImportError:
-        import Tkinter as tk
+        f = open('data/config.ini','r')
+        f.close()
+    except Exception:
+        from shutil import copy2
+        copy2('system/resources/config.ini', 'data/config.ini')
+    parser = ConfigParser()
+    parser.read('data/config.ini')
+    return parser
 
-    import random, sys, os
-    from tkinter import messagebox
-    script_dir = sys.path[0]
-    img_path = os.path.join(script_dir, '../resources/map.png')
-    ico_path = os.path.join(script_dir, '../resources/icon.png')
-
-    root = tk.Tk()
-    root.resizable(False, False)
-    root.tk.call('wm', 'iconphoto', root._w, tk.PhotoImage(file=ico_path))
-    root.title('Transmission_ID:'+str(random.randint(9999,99999)))
-    widget = tk.Label(root, compound='top')
-    widget.lenna_image_png = tk.PhotoImage(file=img_path)
-    widget['text'] = "Crystal Blueprints"
-    widget['image'] = widget.lenna_image_png
-    widget.pack()
-    def on_closing():
-        return #for now not allowed to close.
-        if(messagebox.askokcancel("Delete", "Do you want to delete the transmission?")):
-            root.destroy()
-
-    root.protocol("WM_DELETE_WINDOW", on_closing)
-    root.mainloop()
+def set(data):
+    data.write('data/config.ini')

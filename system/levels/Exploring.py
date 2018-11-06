@@ -29,7 +29,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, _thread
+import sys, time, random, os, _thread, platform
 import system.utils.userdata as userdata
 
 def slow(txt, delay):
