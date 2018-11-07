@@ -24,16 +24,16 @@
 # If not, see https://www.gnu.org/licenses/
 
 def http():
-    return '003_rel' #_rel/_dev
+    return '004_dev' #_rel/_dev
 
 def ver():
-    return '0.0.3'
+    return '0.0.4'
 
 def build():
-    return '0099'
+    return '0100'
 
 def codeName():
     return 'Bravo' #Phonetic Alphabet
 
 def release():
-    return True
+    return False

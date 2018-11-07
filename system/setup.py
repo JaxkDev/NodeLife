@@ -24,3 +24,6 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.utils import config
+
+def exec(pr, Travis):
+    cfg = config.get() #create config if not there.
