@@ -31,17 +31,17 @@ def pr(msg,lvl):
 
 def get():
     try:
-        f = open('data/config.ini','r')
+        f = open('data/config.txt','r')
         f.close()
         pr('Config found, loading',0)
     except Exception:
         pr('No config found, copying default',0)
         from shutil import copy2
-        copy2('system/resources/config.ini', 'data/config.ini')
+        copy2('system/resources/config.txt', 'data/config.txt')
     parser = ConfigParser()
-    parser.read('data/config.ini')
+    parser.read('data/config.txt')
     return parser
 
 def set(data):
     pr('Writing config to file',0)
-    data.write('data/config.ini')
+    data.write('data/config.txt')
