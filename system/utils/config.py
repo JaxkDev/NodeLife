@@ -24,11 +24,16 @@
 # If not, see https://www.gnu.org/licenses/
 
 from configparser import ConfigParser
+from system.utils import logger
+
+def pr(msg,lvl):
+    logger.log(msg,lvl)
 
 def get():
     try:
         f = open('data/config.ini','r')
         f.close()
+        pr('Config found, loading',0)
     except Exception:
         pr('No config found, copying default',0)
         from shutil import copy2
