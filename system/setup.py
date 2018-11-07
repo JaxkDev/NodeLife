@@ -23,7 +23,13 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import config
+from system.utils import config, logger
 
-def exec(pr, Travis):
-    cfg = config.get() #create config if not there.
+def pr(msg, lvl):
+    logger.log(msg,lvl)
+
+def exec(Travis):
+    pr('Started Setup',0)
+    pr('Loading Config',0)
+    config.get() #create config if not there.
+    pr('Finished Setup',0)

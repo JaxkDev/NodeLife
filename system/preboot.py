@@ -24,10 +24,11 @@
 # If not, see https://www.gnu.org/licenses/
 
 import ssl
+from system import setup
 
 def run(Travis, OS):
     # This is to fis SSL error when checking for update on MacOSX.
-
+    setup.exec(Travis)
     eval(OS+'()')
     return
 

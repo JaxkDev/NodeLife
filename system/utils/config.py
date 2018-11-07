@@ -30,6 +30,7 @@ def get():
         f = open('data/config.ini','r')
         f.close()
     except Exception:
+        pr('No config found, copying default',0)
         from shutil import copy2
         copy2('system/resources/config.ini', 'data/config.ini')
     parser = ConfigParser()
@@ -37,4 +38,5 @@ def get():
     return parser
 
 def set(data):
+    pr('Writing config to file',0)
     data.write('data/config.ini')
