@@ -26,7 +26,7 @@
 def exec():
     from system.utils import logger
     import time, platform, os, sys, system.ver
-    from system import preboot
+    from system import preboot, game
     from system.utils.initialise import init
     from system.network import autoUpdate
     init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows.
@@ -79,6 +79,9 @@ def exec():
     print('\x1b[2J')
 
     from system import boot
+    gameObject = game(True)
+    gameObject.logger.log('Test Object Log',1)
+    gameObject.logger.log(gameObject.ver.build()+' build',1)
     boot.run(True)
     pr('Game ended.',0)
     pr('testing logger',1)
