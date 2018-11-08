@@ -79,7 +79,7 @@ def exec():
     print('\x1b[2J')
 
     from system import boot
-    gameObject = game(True)
+    gameObject = game.game(True)
     gameObject.logger.log('Test Object Log',1)
     gameObject.logger.log(gameObject.ver.build()+' build',1)
     boot.run(True)
