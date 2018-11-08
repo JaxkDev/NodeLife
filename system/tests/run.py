@@ -81,7 +81,7 @@ def exec():
     from system import boot
     gameObject = game.game(True)
     gameObject.logger.log('Test Object Log',1)
-    gameObject.logger.log(gameObject.ver.build()+' build',1)
+    gameObject.logger.log(gameObject.build.build()+' build',1)
     boot.run(True)
     pr('Game ended.',0)
     pr('testing logger',1)
