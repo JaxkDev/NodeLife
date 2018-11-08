@@ -23,17 +23,32 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-def http():
-    return '004_dev' #_rel/_dev
+from system.utils import logger, config, userdata
+from system import ver
 
-def ver():
-    return '0.0.4'
+def addAtrib(game):
+    game.logger = logger
+    game.config = config
+    game.userdata = userdata
+    game.build = ver
+    #should i add http or leave it ?
+    #threading manager
+    #level manager
 
-def build():
-    return '0105'
+#
+# Right lets sort this out.
+# Instead of passing around a load of functions vars, etc
+# Were going to create a base ‘game’ class
+# it will hold all major factors eg
+# - Travis ?
+# - Logger
+# - UserData
+# - threading manager (coming soon)
+# - level managaer (coming soon)
 
-def codeName():
-    return 'Charlie' #Phonetic Alphabet
+class game:
 
-def release():
-    return False
+    # Initializer / Instance Attributes
+    def __init__(self, Travis):
+        self.travis = Travis
+        addAtrib(self)
