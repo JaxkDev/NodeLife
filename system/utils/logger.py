@@ -45,7 +45,7 @@ from time import gmtime, strftime
 def getTime():
     return strftime("%H:%M:%S", gmtime())
 
-def log(msg, lvl = 5):
+def logMsg(msg, game, lvl = 5):
     sav(msg, lvl)
     if(lvl == 1):
         #log/output
@@ -55,7 +55,7 @@ def log(msg, lvl = 5):
         sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 3):
         #error
-        postError.exec(msg,log)
+        postError.exec(msg,game)
         sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
     elif(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
@@ -112,3 +112,10 @@ def sav(msg, lvl):
     f = open('data/logs/log.txt', 'a')
     f.write('['+getTime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n',' ')+'\n')
     f.close()
+
+class logger:
+    def __init__(self, game):
+        self.game = game
+    
+    def log(self,msg,lvl):
+        logMsg(msg,self.game,lvl)

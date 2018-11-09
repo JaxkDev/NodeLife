@@ -24,24 +24,23 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.network import http
-from system import ver
 from urllib import request, error
 import json, time, platform
 
-def exec(data,pr):
-    pr('postError Started !',0)
+def exec(data,game):
+    game.logger.log('postError Started !',0)
     time.sleep(1) #Allow logger to close file
     logFile = open('data/logs/log.txt','r')
     log = logFile.read()
     postData = {
         "log": log,
         "msg": data,
-        "ver": ver.build(),
+        "ver": game.build.build(),
         "sys": platform.uname()
     }
     if(http.valid_connection()):
-        r = http.post('https://fusioncraft.glitch.me/NodeLife/postError',postData) #replace url with config url later on
+        r = http.post(game.config.get().get('Network','upload_error_url'),postData,game) #replace url with config url later on
     else:
-        pr('No connection unable to post error data',2)
+        game.logger.log('No connection unable to post error data',2)
         
     return r.status == '200'

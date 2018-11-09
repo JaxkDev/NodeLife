@@ -26,10 +26,10 @@
 import ssl
 from system import setup
 
-def run(Travis, OS):
+def run(game):
     # This is to fis SSL error when checking for update on MacOSX.
-    setup.exec(Travis)
-    eval(OS+'()')
+    setup.exec(game)
+    eval(game.os.system.lower()+'()')
     return
 
 def windows():

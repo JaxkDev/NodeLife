@@ -24,18 +24,12 @@
 # If not, see https://www.gnu.org/licenses/
 
 from configparser import ConfigParser
-from system.utils import logger
-
-def pr(msg,lvl):
-    logger.log(msg,lvl)
 
 def get():
     try:
         f = open('data/config.txt','r')
         f.close()
-        pr('Config found, loading',0)
     except Exception:
-        pr('No config found, copying default',0)
         from shutil import copy2
         copy2('system/resources/config.txt', 'data/config.txt')
     parser = ConfigParser()
@@ -43,5 +37,6 @@ def get():
     return parser
 
 def set(data):
-    pr('Writing config to file',0)
-    data.write('data/config.txt')
+    f = open('data/config.txt','w')
+    data.write(f)
+    f.close()

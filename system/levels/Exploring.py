@@ -30,7 +30,6 @@
 #Stupid rule
 
 import sys, time, random, os, _thread, platform
-import system.utils.userdata as userdata
 
 def slow(txt, delay):
     if(platform.uname().system.lower() != "windows"):
@@ -41,34 +40,35 @@ def slow(txt, delay):
         time.sleep(delay)
 
 
-def save(userData, levelPart, pr):
+def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
-    pr('Init save thread...',0)
-    _thread.start_new_thread( userdata.set, (userData, pr,) ) # multi-thread
+    game.logger.log('Init save thread...',0)
+    _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 
-def c(user, pr, Travis):
-    save(user,"c",pr)
-    pr("c",0)
+def c(user, game):
+    save(user,"c",game)
+    game.logger.log("c",0)
 
-def b(user, pr, Travis):
-    save(user,"b",pr)
-    pr("b",0)
+def b(user, game):
+    save(user,"b",game)
+    game.logger.log("b",0)
 
-def a(user, pr, Travis):
-    save(user,"a",pr)
-    pr("a",0)
+def a(user, game):
+    save(user,"a",game)
+    game.logger.log("a",0)
 
-def exec(userData, pr, Travis):
+def exec(game):
+    userData = game.userdata.get()
     if(userData == {}):
-        pr('Corrupt Data found, please delete the data/user folder.',3)
-        input('Press enter to continue...')
+        game.logger.log('Corrupt Data found, please delete the data/user folder.',3)
+        input('Press enter to exit.')
         sys.exit(1)
-    a(userData, pr, Travis)
-    pr('Saving game...',1)
+    a(userData, game)
+    game.logger.log('Saving game...',1)
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 3
     userData['levelPart'] = '-'
-    pr('Init save function...',0)
-    userdata.set(userData, pr)
+    game.logger.log('Init save function...',0)
+    game.userdata.set(userData, game)

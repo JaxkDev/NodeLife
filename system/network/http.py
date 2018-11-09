@@ -40,20 +40,20 @@ def valid_connection():
         conn.close()
         return False
 
-def get(url):
+def get(url, game):
     try:
         resp = request.urlopen(url)
     except error.HTTPError:
-        logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
+        game.logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
         resp = False
     return resp
     
-def post(url, data):
+def post(url, data, game):
     data = parse.urlencode(data).encode()
-    req =  request.Request(url, data=data)
+    req = request.Request(url, data=data)
     try:
         resp = request.urlopen(req)
     except error.HTTPError:
-        logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
+        game.logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
         resp = False
     return resp

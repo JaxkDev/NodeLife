@@ -23,11 +23,7 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger, userdata
-import time, os, importlib, system.ver, sys
-
-def pr(msg, lvl):
-    logger.log(msg, lvl)
+import time, os, importlib, sys
 
 prefix = 'system.levels.'
 
@@ -37,49 +33,49 @@ levels = {
     "2": "Exploring"
 }
 
-def run(Travis):
+def run(game):
     time.sleep(1)
-    pr('Game Details:',0)
-    pr('v'+system.ver.ver(),0)
-    pr('build-'+system.ver.build(),0)
+    game.logger.log('Game Details:',0)
+    game.logger.log('v'+game.build.ver(),0)
+    game.logger.log('build-'+game.build.build(),0)
     sys.stdout.write('---Game info---\n')
-    sys.stdout.write('Version - v'+system.ver.ver()+'\n')
-    sys.stdout.write('Build   - '+system.ver.build()+'\n')
+    sys.stdout.write('Version - v'+game.build.ver()+'\n')
+    sys.stdout.write('Build   - '+game.build.build()+'\n')
     sys.stdout.write('---------------\n')
     time.sleep(2)
-    if(Travis):
-        pr('Skipped save check.',0)
-        pr('Travis Mode Enabled',2)
+    if(game.travis):
+        game.logger.log('Skipped save check.',0)
+        game.logger.log('Travis Mode Enabled',2)
         level = importlib.import_module(prefix+levels['0'])
-        level.exec({}, pr, True)
+        level.exec(game)
         return
-    pr('Checking for saves',0)
+    game.logger.log('Checking for saves',0)
     print('\x1b[2J')
-    userData = userdata.get()
+    userData = game.userdata.get()
     if(userData):
-        pr('Save found !',0)
+        game.logger.log('Save found !',0)
         if(str(userData['level']) in levels):
             level = importlib.import_module(prefix+levels[str(userData['level'])])
-            level.exec(userData, pr, False)
-            #go back to where he came from, using levels var
+            level.exec(game)
+
         else:
-            pr('More levels coming soon !',1)
-            input('Press enter to exit.')
+            game.logger.log('More levels coming soon !',1)
+            input('press enter to exit.')
             return
     else:
-        pr('No saves found.', 0)
-        pr('Loading Intro...', 0)
+        game.logger.log('No saves found.', 0)
+        game.logger.log('Loading Intro...', 0)
         level = importlib.import_module(prefix+levels['0'])
-        level.exec(userData, pr, False)
+        level.exec(game)
 
     while(True):
-        userData = userdata.get()
+        userData = game.userdata.get()
         if(str(userData['level']) in levels):
             print('\x1b[2J')
             level = importlib.import_module(prefix+levels[str(userData['level'])])
-            level.exec(userData, pr, False)
+            level.exec(game)
             #go back to where he came from, using levels var
         else:
-            pr('More levels coming soon !',1)
-            input('Press enter to exit.')
+            game.logger.log('More levels coming soon !',1)
+            input('press enter to exit.')
             return

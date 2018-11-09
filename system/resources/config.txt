@@ -27,15 +27,16 @@
 name={USERNAME}
 
 [Network]
-checkUpdate=Yes
-installUpdate=Yes
-uploadError=Yes
-updateURL=https://fusioncraft.glitch.me/NodeLife/update
-uploadErrorURL=https://fusioncraft.glitch.me/NodeLife/postError
+check_update=Yes
+install_update=Yes
+upload_error=Yes
+update_url = https://nodelife.glitch.me/api/get/update
+upload_error_url = https://nodelife.glitch.me/api/post/error
+notice_url = https://nodelife.glitch.me/api/get/notice
 
 [Graphics]
-slowText=Yes
-slowTextSpeed=Normal ;Normal/Fast/Slow
+slow_text=Yes
+slow_text_speed=Normal ;Normal/Fast/Slow
 colour=Yes
 title=NodeLife: Will you survive?
 

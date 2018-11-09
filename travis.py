@@ -24,20 +24,3 @@
 # If not, see https://www.gnu.org/licenses/
 
 import system.tests.run as run
-#import sys, time
-
-#def hook(one, two, three):
-    #print(one)
-    #print(two)
-    #print(three)
-    #print('TEST EXCEPTHOOK')
-    #time.sleep(5)
-    #sys.exit(1)
-
-#sys.excepthook = hook   WORKS ON TRAV ?
-
-#time.sleep(2)
-
-#int('k')
-
-run.exec()

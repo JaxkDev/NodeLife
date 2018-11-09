@@ -23,13 +23,12 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import config, logger
-
-def pr(msg, lvl):
-    logger.log(msg,lvl)
-
-def exec(Travis):
-    pr('Started Setup',0)
-    pr('Loading Config',0)
-    config.get() #create config if not there.
-    pr('Finished Setup',0)
+def exec(game):
+    game.logger.log('Started Setup',0)
+    game.logger.log('Loading Config',0)
+    cfg = game.config.get() #create config if not there.
+    if(cfg.get('General','name').lower() == '{username}'):
+        cfg.set('General','name',game.userdata.getLoginName())
+        game.logger.log('Updating config username',0)
+        game.config.set(cfg)
+    game.logger.log('Finished Setup',0)

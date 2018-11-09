@@ -23,33 +23,30 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger
 from system.network import http
-from system import ver
 from urllib import request, error
 import json
 
-def check(travis):
+def check(game):
     if(not http.valid_connection()):
-        logger.log('Failed to retrieve update information, Please check your internet connection !',2)
+        game.logger.log('Failed to retrieve update information, Please check your internet connection !',2)
         return
-    r = http.get('https://fusioncraft.glitch.me/NodeLife/update?app='+ver.http()) #replace url with config url later on
+    r = http.get(game.config.get().get('Network','update_url')+'?app='+game.build.http(),game) #replace url with config url later on
     if(r == False):
         return
     if(r.status != 200):
-        logger.log('Failed to retrieve update information, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
+        game.logger.log('Failed to retrieve update information, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
         return
-    logger.log('Successfully Got Update Information', 0)
+    game.logger.log('Successfully Got Update Information', 0)
     data = json.loads(r.read().decode("utf-8"))
-    logger.log('Received Data from server: '+str(data), 0)
-    if(canUpdate(ver.ver(), data['ver'])):
-        logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
-        if(not travis):
+    game.logger.log('Received Data from server: '+str(data), 0)
+    if(canUpdate(game.build.ver(), data['ver'])):
+        game.logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
+        if(not game.travis):
             #Show UI here
             input('\nPress any key to continue...\n')
     else:
-        logger.log('Game Up-To-Date !', 0)
-    
+        game.logger.log('Game Up-To-Date !', 0)
     return
 
 def canUpdate(n, n2):

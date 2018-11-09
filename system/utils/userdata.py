@@ -46,9 +46,9 @@ def get():
     f.close()
     return data
 
-def set(data, pr):
+def set(data, game):
     #Set user data
-    pr('Started save user data thread',0)
+    game.logger.log('Started save user data thread',0)
     if(not os.path.exists('data/')):
         os.mkdir('data')
     if(not os.path.exists('data/user/')):
@@ -58,5 +58,5 @@ def set(data, pr):
     f = open('data/user/data.secure', 'w')
     f.write(json.dumps(data)) #do json before encode when implemented
     f.close()
-    pr('Completed save user data thread',0)
+    game.logger.log('Completed save user data thread',0)
     return

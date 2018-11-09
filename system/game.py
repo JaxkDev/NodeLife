@@ -25,15 +25,7 @@
 
 from system.utils import logger, config, userdata
 from system import ver
-
-def addAtrib(game):
-    game.logger = logger
-    game.config = config
-    game.userdata = userdata
-    game.build = ver
-    #should i add http or leave it ?
-    #threading manager
-    #level manager
+import platform
 
 #
 # Right lets sort this out.
@@ -51,4 +43,12 @@ class game:
     # Initializer / Instance Attributes
     def __init__(self, Travis):
         self.travis = Travis
-        addAtrib(self)
+        self.logger = logger.logger(self)
+        self.config = config
+        self.userdata = userdata
+        self.build = ver
+        self.os = platform.uname()
+        #should i add http or leave it ?
+        #threading manager
+        #level manager
+        #SFS (Simple File System)

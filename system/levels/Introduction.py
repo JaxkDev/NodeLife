@@ -30,9 +30,7 @@
 #Stupid rule
 
 import sys, time, random, os, _thread, platform
-import system.utils.userdata as userdata
 
-# use this: instead of logger as this will increase the log size for un needed info.
 def slow(txt, delay):
     if(platform.uname().system.lower() != "windows"):
         sys.stdout.write(txt)
@@ -41,7 +39,7 @@ def slow(txt, delay):
         sys.stdout.write(i)
         time.sleep(delay)
 
-def a(user, pr, Travis):
+def a(user, game):
     slow('Hi there !', 0.05)
     sys.stdout.write('\n\n')
     time.sleep(0.5)
@@ -59,20 +57,22 @@ def a(user, pr, Travis):
     slow('you begin talking to this person on the other end and guide them to safety, can you help him survive !?...',0.1)
     sys.stdout.write('\n\n')
     time.sleep(10)
-    if(not Travis):
+    if(not game.travis):
         input('Press enter to start the game !')
 
-def exec(userData, pr, Travis):
+def exec(game):
+    userData = game.userdata.get()
     if(userData != {}):
-        pr('Corrupt Data found, please delete the data/user folder.',3)
-        input('Press enter to continue...')
+        game.logger.log('Corrupt Data found, please delete the data/user folder.',3)
+        if(not game.travis):
+            input('Press enter to continue...')
         sys.exit(1)
-    a(userData, pr, Travis)
-    pr('Saving game...',1)
-    user = '['+userdata.getLoginName()+']'
+    a(userData, game)
+    game.logger.log('Saving game...',1)
+    user = '['+game.userdata.getLoginName()+']'
     userData['username'] = user
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 1
     userData['levelPart'] = '-'
-    pr('Init save thread...',0)
-    userdata.set(userData, pr)
+    game.logger.log('Init save thread...',0)
+    game.userdata.set(userData, game)
