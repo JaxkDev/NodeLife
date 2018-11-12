@@ -1,6 +1,7 @@
 Build  | Version | Release | Notes
 Number |         |         |      
 -----------------------------------
- 0111  | v0.0.3  |  False  | This is a major Update merging the game class into mainstream, 
+ 0111  | v0.0.4  |  False  | This is a major Update merging the game class into mainstream, 
        |         |         | has been tested big rewrite including api endpoints and config is in function !
 -----------------------------------
+ 0112  | v0.0.4  |  False  | Add LevelManager to be tested.

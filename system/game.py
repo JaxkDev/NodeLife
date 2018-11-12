@@ -25,6 +25,7 @@
 
 from system.utils import logger, config, userdata
 from system import ver
+from system import levelManager as lvl
 import platform
 
 #
@@ -49,6 +50,6 @@ class game:
         self.build = ver
         self.os = platform.uname()
         #should i add http or leave it ?
-        #threading manager
+        self.levelManager = lvl.manager(self)
         #level manager
         #SFS (Simple File System)

@@ -23,15 +23,35 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-def encode(data, key):
-    return data
+import os, sys, time, importlib
 
-def decode(data, key):
-    return data
+class manager:
+    def __init__(self, game):
+        self.game = game
+        self.ver = 100 #Must Match Level MetaData (plugins in future 0.2
 
-def genKey():
-    return 123
+        self._prefix = 'system.levels.'
+        self._levels = {
+            '0': 'Introduction',
+            '1': 'Hello',
+            '2': 'Exploring'
+        }
 
-#Please note that for a higher level of security 
-#but not secure for production this file will be 
-#kept in .pyc format !
+    def getLevel(self, path):
+        try:
+            return importlib.import_module(path)
+        except ImportError:
+            self.game.logger.log('[Level Manager] Failed to import path: '+path,3)
+        return None
+
+    def getLevelByCode(self, code):
+        if(len(self._levels) <= int(code)):
+            return self.getLevel(self._prefix+self._levels[code])
+        else:
+            return None
+
+    def getLevelByName(self, Name):
+        for i in range(len(self._levels)):
+            if(self._levels[i].lower() == Name.lower()):
+                return self.getLevel(self._prefix+self._levels[i])
+        return None

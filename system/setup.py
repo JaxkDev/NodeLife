@@ -27,8 +27,8 @@ def exec(game):
     game.logger.log('Started Setup',0)
     game.logger.log('Loading Config',0)
     cfg = game.config.get() #create config if not there.
-    if(cfg.get('General','name').lower() == '{username}'):
-        cfg.set('General','name',game.userdata.getLoginName())
+    if(cfg.get('General','userName').lower() == '{username}'):
+        cfg.set('General','userName',game.userdata.getLoginName())
         game.logger.log('Updating config username',0)
         game.config.set(cfg)
     game.logger.log('Finished Setup',0)
