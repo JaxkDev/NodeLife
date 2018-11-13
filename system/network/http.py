@@ -57,3 +57,10 @@ def post(url, data, game):
         game.logger.log('HTTP POST request to \''+url+'\' returned a error or crashed.', 3)
         resp = False
     return resp
+
+def download(url, path, game):
+    try:
+        request.urlretrieve(url, path)
+    except error.HTTPError:
+        game.logger.log('Failed to download update.',3)
+    return

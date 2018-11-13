@@ -34,7 +34,7 @@ otherName=Mike
 
 [Network]
 check_update=Yes
-install_update=Yes
+download_update=Yes
 upload_error=Yes
 update_url = https://nodelife.glitch.me/api/get/update
 upload_error_url = https://nodelife.glitch.me/api/post/error
@@ -42,9 +42,11 @@ notice_url = https://nodelife.glitch.me/api/get/notice
 
 [Graphics]
 slow_text=Yes
-slow_text_speed=Normal ;Normal/Fast/Slow
+slow_text_speed=Normal
+; ^^ Normal/Fast/Slow
 colour=Yes
 title=NodeLife: Will you survive?
+; ALL GRAPHICS OPTIONS COMING SOON
 
 ;[Audio]
 ;Coming soon !

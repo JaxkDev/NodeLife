@@ -28,8 +28,9 @@ import time, platform, os, sys, system.ver
 from system import preboot
 from system import game as gameObject
 from system.utils.initialise import init
-from system.network import autoUpdate, postError
+from system.network import autoUpdate, postError, checkNotices
 from traceback import format_exception
+
 init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows 10.
 
 tested_OS = ['darwin','linux','windows']
@@ -87,6 +88,9 @@ game.logger.log('preboot, complete.',0)
 game.logger.log('Checking for updates...', 1)
 autoUpdate.check(game)
 game.logger.log('Update Check Complete.',0)
+game.logger.log('Checking for notices...',1)
+checkNotices.check(game)
+game.logger.log('Notice Check Complete',0)
 game.logger.log('Starting Game...', 1)
 time.sleep(3)
 print('\x1b[2J')

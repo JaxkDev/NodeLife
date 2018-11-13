@@ -23,6 +23,8 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
+import sys,os
+
 def http():
     return '004_dev' #_rel/_dev
 
@@ -30,10 +32,15 @@ def ver():
     return '0.0.4'
 
 def build():
-    return '0114'
+    return '0115'
 
 def codeName():
     return 'Charlie' #Phonetic Alphabet
 
 def release():
+    return False
+
+def bundled():
+    if (getattr(sys, 'frozen', False) and (sys.argv[0] == sys.executable)):
+        return True
     return False

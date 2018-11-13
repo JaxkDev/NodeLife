@@ -24,14 +24,16 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.network import http
-from urllib import request, error
-import json
+import json, platform
 
 def check(game):
+    if(not game.config.get().getboolean('Network','check_update')):
+        game.logger.log('Check for updates disabled',1)
+        return
     if(not http.valid_connection()):
         game.logger.log('Failed to retrieve update information, Please check you have a internet connection and is working !',2)
         return
-    r = http.get(game.config.get().get('Network','update_url')+'?app='+game.build.http(),game) #replace url with config url later on
+    r = http.get(game.config.get().get('Network','update_url')+'?app='+game.build.http(),game)
     if(r == False):
         return
     if(r.status != 200):
@@ -43,8 +45,15 @@ def check(game):
     if(canUpdate(game.build.ver(), data['ver'])):
         game.logger.log('Update '+data['ver']+' is available at '+data['url'], 2)
         if(not game.travis):
-            #Show UI here
-            input('\nPress any key to continue...\n')
+            if(game.config.get().getboolean('Network','download_update')):
+                game.logger.log('Downloading Update Started [Please dont exit]...',2)
+                if(platform.system() == 'Windows'):
+                    http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-Windows.exe', data['ver']+'-UPDATE.exe',game)
+                else:
+                    http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-'+platform.system(), data['ver']+'-UPDATE.exe',game)
+            game.logger.log('Update downloaded to the same directory as current file !...\n')
+            time.sleep(5)
+            input('Press enter to exit !')
     else:
         game.logger.log('Game Up-To-Date !', 0)
     return

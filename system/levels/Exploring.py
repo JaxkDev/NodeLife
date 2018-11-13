@@ -52,11 +52,12 @@ def b(userData, game):
 def a(userData, game):
     save(userData,"a",game)
     user = userData['username']
+    other = game.config.get().get('General','otherName')
     game.logger.log("Chapter 2 - Exploring",1)
     time.sleep(2)
     sys.stdout.write('CONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
-    game.logger.log('[Mike] : Hello you back ?\n', 5)
+    game.logger.log('['+other+'] : Hello you back ?\n', 5)
     time.sleep(0.5)
     while(True):
         game.logger.log('\nOption A:  Yeah im here !\nOption B:  Yes, anything new ?\n', 6)

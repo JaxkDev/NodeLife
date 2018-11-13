@@ -28,6 +28,9 @@ from urllib import request, error
 import json, time, platform
 
 def exec(data,game):
+    if(not game.config.get().getboolean('Network','upload_error')):
+        game.logger.log('PostError disabled',1)
+        return
     game.logger.log('postError Started !',0)
     time.sleep(1) #Allow logger to close file
     logFile = open('data/logs/log.txt','r')
@@ -39,7 +42,7 @@ def exec(data,game):
         "sys": platform.uname()
     }
     if(http.valid_connection()):
-        r = http.post(game.config.get().get('Network','upload_error_url'),postData,game) #replace url with config url later on
+        r = http.post(game.config.get().get('Network','upload_error_url'),postData,game)
     else:
         game.logger.log('No connection unable to post error data',2)
         

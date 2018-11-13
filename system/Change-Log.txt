@@ -7,3 +7,7 @@ Number |         |         |
  0112  | v0.0.4  |  False  | Add LevelManager to be tested.
 -----------------------------------
  0113  | v0.0.4  |  False  | Adding content into chapter 3 !
+-----------------------------------
+ 0114  | v0.0.4  |  False  | Small addition (to test iOS git)
+-----------------------------------
+ 0115  | v0.0.4  |  False  | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
