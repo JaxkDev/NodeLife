@@ -29,7 +29,7 @@ import json
 
 def check(game):
     if(not http.valid_connection()):
-        game.logger.log('Failed to retrieve update information, Please check your internet connection !',2)
+        game.logger.log('Failed to retrieve update information, Please check you have a internet connection and is working !',2)
         return
     r = http.get(game.config.get().get('Network','update_url')+'?app='+game.build.http(),game) #replace url with config url later on
     if(r == False):
