@@ -5,3 +5,5 @@ Number |         |         |
        |         |         | has been tested big rewrite including api endpoints and config is in function !
 -----------------------------------
  0112  | v0.0.4  |  False  | Add LevelManager to be tested.
+-----------------------------------
+ 0113  | v0.0.4  |  False  | Adding content into chapter 3 !

@@ -104,6 +104,8 @@ def b(userData, game):
 def a(userData, game):
     save(userData,"a",game)
     user = userData['username']
+    game.logger.log('Chapter 1 - Hello ?',1)
+    time.sleep(2)
     sys.stdout.write('\033[35m')
     for i in 'INCOMING TRANSMISSION':
         sys.stdout.write(i)
@@ -150,7 +152,7 @@ def exec(game):
         input('Press enter to exit.')
         sys.exit(1)
 
-    game.logger.log('Loading Previous Stage from save...',0)
+    game.logger.log('Loading Stage...',0)
     if(userData['levelPart'] == 'a' or userData['levelPart'] == '-'):
         a(userData, game)
     elif(userData['levelPart'] == 'b'):

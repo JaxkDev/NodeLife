@@ -31,15 +31,6 @@
 
 import sys, time, random, os, _thread, platform
 
-def slow(txt, delay):
-    if(platform.uname().system.lower() != "windows"):
-        sys.stdout.write(txt)
-        return
-    for i in txt:
-        sys.stdout.write(i)
-        time.sleep(delay)
-
-
 def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
@@ -47,17 +38,42 @@ def save(userData, levelPart, game):
     _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 
-def c(user, game):
-    save(user,"c",game)
+def c(userData, game):
+    save(userData,"c",game)
+    user = userData['username']
     game.logger.log("c",0)
 
-def b(user, game):
-    save(user,"b",game)
+def b(userData, game):
+    save(userData,"b",game)
+    user = userData['username']
     game.logger.log("b",0)
+    c(userData, game)
 
-def a(user, game):
-    save(user,"a",game)
-    game.logger.log("a",0)
+def a(userData, game):
+    save(userData,"a",game)
+    user = userData['username']
+    game.logger.log("Chapter 2 - Exploring",1)
+    time.sleep(2)
+    sys.stdout.write('CONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
+    time.sleep(0.5)
+    game.logger.log('[Mike] : Hello you back ?\n', 5)
+    time.sleep(0.5)
+    while(True):
+        game.logger.log('\nOption A:  Yeah im here !\nOption B:  Yes, anything new ?\n', 6)
+        if(game.travis):
+            response = random.choice(['a','b'])
+            break
+        i = input('Type a option: ').lower()
+        sys.stdout.write('\n')
+        if(i == 'a' or i == 'b'):
+            response = i
+            break
+    if(response == 'a'):
+        game.logger.log(user+' : Yeah im here !\n',8)
+    else:
+        game.logger.log(user+' : Yes, anything new ?',8)
+
+    b(userData, game)
 
 def exec(game):
     userData = game.userdata.get()
