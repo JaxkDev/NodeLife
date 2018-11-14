@@ -13,3 +13,4 @@ Num.  |         |         |
  0115 | v0.0.4  |  False  | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
 -----------------------------------
  0116 | v0.0.4  |  False  | Implement levelManager into mainstream, update travis and update config
+ 0117 | v0.0.4  |  False  | Fix travis

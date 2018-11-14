@@ -64,5 +64,6 @@ def check(game):
     f = open('./data/notices.dat','w')
     f.write(json.dumps(new))
     f.close()
-    input('Press enter to continue...')
+    if(not game.travis):
+        input('Press enter to continue...')
     return
