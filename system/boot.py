@@ -46,36 +46,18 @@ def run(game):
     if(game.travis):
         game.logger.log('Skipped save check.',0)
         game.logger.log('Travis Mode Enabled',2)
-        level = importlib.import_module(prefix+levels['0'])
-        level.exec(game)
+        game.levelManager.runLevel('0')
         return
     game.logger.log('Checking for saves',0)
     print('\x1b[2J')
     userData = game.userdata.get()
     if(userData):
         game.logger.log('Save found !',0)
-        if(str(userData['level']) in levels):
-            level = importlib.import_module(prefix+levels[str(userData['level'])])
-            level.exec(game)
-
-        else:
-            game.logger.log('More levels coming soon !',1)
-            input('press enter to exit.')
-            return
+        if(int(userData['level']) < len(game.levelManager.levels)):
+            game.levelManager.runLevel(str(userData['level']))
     else:
         game.logger.log('No saves found.', 0)
-        game.logger.log('Loading Intro...', 0)
-        level = importlib.import_module(prefix+levels['0'])
-        level.exec(game)
-
-    while(True):
-        userData = game.userdata.get()
-        if(str(userData['level']) in levels):
-            print('\x1b[2J')
-            level = importlib.import_module(prefix+levels[str(userData['level'])])
-            level.exec(game)
-            #go back to where he came from, using levels var
-        else:
-            game.logger.log('More levels coming soon !',1)
-            input('press enter to exit.')
-            return
+        game.levelManager.runLevel('0')
+    game.logger.log('More chapters coming soon !',1)
+    input('Press enter to exit !')
+    return

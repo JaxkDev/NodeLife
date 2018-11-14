@@ -40,13 +40,12 @@ update_url = https://nodelife.glitch.me/api/get/update
 upload_error_url = https://nodelife.glitch.me/api/post/error
 notice_url = https://nodelife.glitch.me/api/get/notice
 
-[Graphics]
-slow_text=Yes
-slow_text_speed=Normal
-; ^^ Normal/Fast/Slow
-colour=Yes
-title=NodeLife: Will you survive?
-; ALL GRAPHICS OPTIONS COMING SOON
+;[Graphics]
+;slow_text=Yes
+;slow_text_speed=Normal
+;options_slow_text =^^Normal/Slow/Fast
+;colour=Yes
+;title=NodeLife: Will you survive?
 
 ;[Audio]
 ;Coming soon !

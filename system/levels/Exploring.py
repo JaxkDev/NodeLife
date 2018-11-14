@@ -55,7 +55,7 @@ def a(userData, game):
     other = game.config.get().get('General','otherName')
     game.logger.log("Chapter 2 - Exploring",1)
     time.sleep(2)
-    sys.stdout.write('CONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
+    sys.stdout.write('\033[35mCONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
     game.logger.log('['+other+'] : Hello you back ?\n', 5)
     time.sleep(0.5)
@@ -89,3 +89,4 @@ def exec(game):
     userData['levelPart'] = '-'
     game.logger.log('Init save function...',0)
     game.userdata.set(userData, game)
+    #game.levelManager.runLevel('3/4')

@@ -1,13 +1,15 @@
-Build  | Version | Release | Notes
-Number |         |         |      
+Build | Version | Release | Notes
+Num.  |         |         |      
 -----------------------------------
- 0111  | v0.0.4  |  False  | This is a major Update merging the game class into mainstream, 
-       |         |         | has been tested big rewrite including api endpoints and config is in function !
+ 0111 | v0.0.4  |  False  | This is a major Update merging the game class into mainstream, 
+      |         |         | has been tested big rewrite including api endpoints and config is in function !
 -----------------------------------
- 0112  | v0.0.4  |  False  | Add LevelManager to be tested.
+ 0112 | v0.0.4  |  False  | Add LevelManager to be tested.
 -----------------------------------
- 0113  | v0.0.4  |  False  | Adding content into chapter 3 !
+ 0113 | v0.0.4  |  False  | Adding content into chapter 3 !
 -----------------------------------
- 0114  | v0.0.4  |  False  | Small addition (to test iOS git)
+ 0114 | v0.0.4  |  False  | Small addition (to test iOS git)
 -----------------------------------
- 0115  | v0.0.4  |  False  | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
+ 0115 | v0.0.4  |  False  | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
+-----------------------------------
+ 0116 | v0.0.4  |  False  | Implement levelManager into mainstream, update travis and update config

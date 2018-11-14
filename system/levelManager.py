@@ -30,8 +30,8 @@ class manager:
         self.game = game
         self.ver = 100 #Must Match Level MetaData (plugins in future 0.2
 
-        self._prefix = 'system.levels.'
-        self._levels = {
+        self.prefix = 'system.levels.'
+        self.levels = {
             '0': 'Introduction',
             '1': 'Hello',
             '2': 'Exploring'
@@ -41,17 +41,28 @@ class manager:
         try:
             return importlib.import_module(path)
         except ImportError:
-            self.game.logger.log('[Level Manager] Failed to import path: '+path,3)
+            self.game.logger.log('[Level Manager] : Failed to import path: '+path,3)
         return None
 
     def getLevelByCode(self, code):
-        if(len(self._levels) <= int(code)):
-            return self.getLevel(self._prefix+self._levels[code])
+        if(len(self.levels) > int(code)):
+            return self.getLevel(self.prefix+self.levels[code])
         else:
             return None
 
     def getLevelByName(self, Name):
-        for i in range(len(self._levels)):
-            if(self._levels[i].lower() == Name.lower()):
-                return self.getLevel(self._prefix+self._levels[i])
+        for i in range(len(self.levels)):
+            if(self.levels[str(i)].lower() == Name.lower()):
+                return self.getLevel(self.prefix+self.levels[i])
         return None
+
+    def runLevel(self, lvl):
+        level = self.getLevelByName(lvl)
+        if(level == None):
+            level = self.getLevelByCode(lvl)
+        if(level == None):
+            self.game.logger.log('[Level Manager] : Failed to import and run level: '+lvl,3)
+            return False
+        #Check level metadata with self.ver and self.game.ver
+        level.exec(self.game)
+        return True

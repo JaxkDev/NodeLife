@@ -183,4 +183,4 @@ def exec(game):
     input('Press enter to continue..')
     print('\x1b[2J')
     game.logger.log('Chapter 1 ended',0)
-    #finish chapter
+    game.levelManager.runLevel('2')

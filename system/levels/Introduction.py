@@ -76,3 +76,4 @@ def exec(game):
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)
     game.userdata.set(userData, game)
+    game.levelManager.runLevel('1')

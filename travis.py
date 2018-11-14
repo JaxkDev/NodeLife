@@ -23,4 +23,4 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import system.tests.run as run
+import system.tests.run as runpython
