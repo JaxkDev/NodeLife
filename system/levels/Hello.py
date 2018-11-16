@@ -173,14 +173,13 @@ def exec(game):
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)
     _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
-    if(game.travis):
-        return #only test 1 chapter for now
-    game.logger.log('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
-    i = input('Quit ? (yes/no) > ').lower()
-    if(i[0] == 'y'):
-        sys.exit(0) #status code 0- normal.
-    time.sleep(1)
-    input('Press enter to continue..')
+    if(not game.travis):
+        game.logger.log('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
+        i = input('Quit ? (yes/no) > ').lower()
+        if(i[0] == 'y'):
+            sys.exit(0) #status code 0- normal.
+        time.sleep(1)
+        input('Press enter to continue..')
     print('\x1b[2J')
     game.logger.log('Chapter 1 ended',0)
     game.levelManager.runLevel('2')

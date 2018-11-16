@@ -14,3 +14,5 @@ Num.  |         |         |
 -----------------------------------
  0116 | v0.0.4  |  False  | Implement levelManager into mainstream, update travis and update config
  0117 | v0.0.4  |  False  | Fix travis
+-----------------------------------
+ 0118 | v0.0.4  |  False  | Update travis.
