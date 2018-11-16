@@ -40,24 +40,20 @@ def save(userData, levelPart, game):
 
 def c(userData, game):
     save(userData,"c",game)
-    user = userData['username']
     game.logger.log("c",0)
 
 def b(userData, game):
     save(userData,"b",game)
-    user = userData['username']
     game.logger.log("b",0)
     c(userData, game)
 
 def a(userData, game):
     save(userData,"a",game)
-    user = userData['username']
-    other = game.config.get().get('General','otherName')
     game.logger.log("Chapter 2 - Exploring",1)
     time.sleep(2)
     sys.stdout.write('\033[35mCONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
-    game.logger.log('['+other+'] : Hello you back ?\n', 5)
+    game.logger.log('Hello you back ?\n', 5)
     time.sleep(0.5)
     while(True):
         game.logger.log('\nOption A:  Yeah im here !\nOption B:  Yes, anything new ?\n', 6)
@@ -70,9 +66,9 @@ def a(userData, game):
             response = i
             break
     if(response == 'a'):
-        game.logger.log(user+' : Yeah im here !\n',8)
+        game.logger.log('Yeah im here !\n',8)
     else:
-        game.logger.log(user+' : Yes, anything new ?',8)
+        game.logger.log('Yes, anything new ?',8)
 
     b(userData, game)
 

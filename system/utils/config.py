@@ -23,9 +23,16 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
+import os
 from configparser import ConfigParser
 
+def checkDir():
+    if not os.path.exists('data'):
+        os.makedirs('data')
+        os.makedirs('data/logs')
+
 def get():
+    checkDir()
     try:
         f = open('data/config.txt','r')
         f.close()
@@ -37,6 +44,7 @@ def get():
     return parser
 
 def set(data):
+    checkDir()
     f = open('data/config.txt','w')
     data.write(f)
     f.close()

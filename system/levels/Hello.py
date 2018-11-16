@@ -39,30 +39,25 @@ def save(userData, levelPart, game):
 
 def d(userData, game):
     save(userData,"d",game)
-    user = userData['username']
-    other = game.config.get().get('General','otherName')
     time.sleep(0.5)
-    game.logger.log(user+' : Whats the \'Crystal\' ?\n',8)
+    game.logger.log('Whats the \'Crystal\' ?\n',8)
     time.sleep(0.5)
-    game.logger.log('['+other+'] : Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
+    game.logger.log('Oh right, sorry the \'Crystal\' is a space center, made to travel through space to planets and research them, we already gathered data from 3 of the 5 we were sent here to do but something happened in the lab...\n', 5)
 
 def c(userData, game):
     save(userData, "c",game)
-    user = userData['username']
-    other = game.config.get().get('General','otherName')
     time.sleep(0.5)
-    game.logger.log(user+' : What Happened ?\n', 8)
+    game.logger.log('What Happened ?\n', 8)
     time.sleep(0.5)
-    game.logger.log('['+other+'] : Something happened in the lab and half of the Crystal is gone !\n', 5)
+    game.logger.log('Something happened in the lab and half of the Crystal is gone !\n', 5)
         
 def b(userData, game):
     save(userData,"b",game)
-    user = userData['username']
     other = game.config.get().get('General','otherName')
     time.sleep(0.5)
-    game.logger.log('['+other+'] : Ah yes of course sorry where\'s my manners, My name is \"'+other+'\"\n', 5)
+    game.logger.log('Ah yes of course sorry where\'s my manners, My name is \"'+other+'\"\n', 5)
     time.sleep(0.5)
-    game.logger.log('['+other+'] : Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
+    game.logger.log(' Im currently floating around on the Crystal, lost contact with humans about a week ago and almost gone through all of my rations...\n', 5)
     time.sleep(0.5)
     response = ''
     while(True):
@@ -84,9 +79,9 @@ def b(userData, game):
         #what happened ?
         c(userData, game)
     else:
-        game.logger.log(user+' : \'Floating\' ?\n',8)
+        game.logger.log('\'Floating\' ?\n',8)
         time.sleep(0.5)
-        game.logger.log('['+other+'] : Oops forgot to mention im in outer space in the crystal...', 5)
+        game.logger.log('Oops forgot to mention im in outer space in the crystal...', 5)
         #whats the crystal ?, what happened ?
         while(True):
             game.logger.log('\nOption A:  Whats the crystal ?\nOption B:  What happened?\n', 6)
@@ -106,8 +101,6 @@ def b(userData, game):
 
 def a(userData, game):
     save(userData,"a",game)
-    user = userData['username']
-    other = game.config.get().get('General','otherName')
     game.logger.log('Chapter 1 - Hello ?',1)
     time.sleep(2)
     sys.stdout.write('\033[35m')
@@ -134,19 +127,19 @@ def a(userData, game):
             response = i
             break
     if(response == 'a'):
-        game.logger.log(user+' : Hello ?\n', 8)
+        game.logger.log('Hello ?\n', 8)
         time.sleep(0.5)
         game.logger.log('[??] : Hello !!????\nWas that someone ???\n',5)
         time.sleep(0.5)
-        game.logger.log(user+' : Yes, Hello ?\n', 8)
+        game.logger.log('Yes, Hello ?\n', 8)
     else:
-        game.logger.log(user+' : Hi there !\n',8)
+        game.logger.log('Hi there !\n',8)
         time.sleep(0.5)
         game.logger.log('[??] : Yes, Yes i knew i wasnt alone i knew someone would rescue me !\n', 5)
         time.sleep(0.5)
         game.logger.log('[??] : Of course they sent someone, why wouldnt they !\n', 5)
         time.sleep(0.5)
-        game.logger.log(user+' : Erm, Hello ?\n', 8)
+        game.logger.log('Erm, Hello ?\n', 8)
     b(userData, game)
 
 def exec(game):

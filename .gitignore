@@ -6,6 +6,9 @@ issues/*
 dist/*
 
 *.pyo
-*.pyc
+*.cpython-34.pyc
+*.cpython-36.pyc
 
 .DS_STORE
+
+system/utils/secure.py

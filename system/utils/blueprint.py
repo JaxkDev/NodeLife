@@ -49,8 +49,7 @@ def spawn():
     widget['image'] = widget.lenna_image_png
     widget.pack()
     def on_closing():
-        return #for now not allowed to close.
-        if(messagebox.askokcancel("Delete", "Do you want to delete the transmission?")):
+        if(messagebox.askokcancel("Exit", "Do you want to close this transmission?")):
             root.destroy()
 
     root.protocol("WM_DELETE_WINDOW", on_closing)

@@ -46,6 +46,9 @@ def getTime():
     return strftime("%H:%M:%S", gmtime())
 
 def logMsg(msg, game, lvl = 5):
+    cfg = game.config.get()
+    user_name = cfg.get('General','userName')
+    other_name = cfg.get('General','otherName')
     sav(msg, lvl)
     if(lvl == 1):
         #log/output
@@ -70,6 +73,8 @@ def logMsg(msg, game, lvl = 5):
     elif(lvl == 5): 
         #In-Game message
         sys.stdout.write('\033[36m')
+        if(msg[0] != '['): #hacky fix for starting of game where it is [??]
+            msg='['+other_name+'] : '+msg
         if(OS != "windows"):
             sys.stdout.write(msg)
         else:
@@ -90,6 +95,7 @@ def logMsg(msg, game, lvl = 5):
     elif(lvl == 8):
         #USER RESPONSE
         sys.stdout.write('\033[91m')
+        msg = '['+user_name+'] : '+msg
         if(OS != "windows"):
             sys.stdout.write(msg)
         else:
