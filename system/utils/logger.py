@@ -33,12 +33,12 @@ data = {
     "1": "Log",
     "2": "Warning",
     "3": "Error",
-    "4": "In-Game Notification",
-    "5": "In-Game Message",
-    "6": "In-Game Question",
-    #7 UI
-    "8": "User Response",
-    "9": "Other"
+    "4": "In-Game Notification", #dont log
+    "5": "In-Game Message", #dont log
+    "6": "In-Game Question", #dont log
+    #7 UI (dont log)
+    "8": "User Response", #dont log
+    "9": "Other" #dont log
 }
 
 from time import gmtime, strftime
@@ -49,7 +49,8 @@ def logMsg(msg, game, lvl = 5):
     cfg = game.config.get()
     user_name = cfg.get('General','userName')
     other_name = cfg.get('General','otherName')
-    sav(msg, lvl)
+    if(lvl < 4):
+        sav(msg, lvl)
     if(lvl == 1):
         #log/output
         sys.stdout.write(msg+'\n')

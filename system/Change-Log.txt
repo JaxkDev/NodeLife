@@ -19,3 +19,5 @@ Num.  |         |         |
  0118 | v0.0.4  |  False  | Update travis.
 -----------------------------------
  0119 | v0.0.4  |  False  | Back-end changes (logger)
+-----------------------------------
+ 0118 | v0.0.4  |  False  | change logger and levels.

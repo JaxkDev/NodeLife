@@ -53,10 +53,10 @@ def set(data, game):
         os.mkdir('data')
     if(not os.path.exists('data/user/')):
         os.mkdir('data/user')
-        #why would it not write to data after dir is created ??? why did i add that lol
     #encode data
     f = open('data/user/data.secure', 'w')
     f.write(json.dumps(data)) #do json before encode when implemented
     f.close()
+    #TODO: Add X backups (X in config)
     game.logger.log('Completed save user data thread',0)
     return

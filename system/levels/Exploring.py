@@ -53,10 +53,10 @@ def a(userData, game):
     time.sleep(2)
     sys.stdout.write('\033[35mCONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
-    game.logger.log('Hello you back ?\n', 5)
+    game.logger.log('Hello?...Hello anyone there ?\n', 5)
     time.sleep(0.5)
     while(True):
-        game.logger.log('\nOption A:  Yeah im here !\nOption B:  Yes, anything new ?\n', 6)
+        game.logger.log('\nOption A:  Yeah im here !\nOption B:  Im back, anything new ?\n', 6)
         if(game.travis):
             response = random.choice(['a','b'])
             break
@@ -67,9 +67,32 @@ def a(userData, game):
             break
     if(response == 'a'):
         game.logger.log('Yeah im here !\n',8)
+        time.sleep(1)
+        game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !',6)
     else:
-        game.logger.log('Yes, anything new ?',8)
-
+        game.logger.log('Im back, anything new ?',8)
+        time.sleep(1)
+        game.logger.log('Im glad your back, seriously i thought all the systems were toast !',6)
+    time.sleep(1)
+    while(True):
+        game.logger.log('\nOption A:  Wait, Systems were almost gone ?\nOption B:  What happened while i was gone ???\n', 6)
+        if(game.travis):
+            response = random.choice(['a','b'])
+            break
+        i = input('Type a option: ').lower()
+        sys.stdout.write('\n')
+        if(i == 'a' or i == 'b'):
+            response = i
+            break
+    if(response == 'a'):
+        game.logger.log('Wait, Systems were almost gone ?',8)
+        time.sleep(0.5)
+        game.logger.log('Yes, the whole system went dark for about 5minutes before the generator kicked in, BUT my power is down to 20% and my generator hasn\'t got alot of juice left...',6)
+    else:
+        game.logger.log('What happened while i was gone ???',8)
+        time.sleep(0.5)
+        game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.',6)
+    time.sleep(0.5)
     b(userData, game)
 
 def exec(game):
