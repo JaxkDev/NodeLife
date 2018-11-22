@@ -43,6 +43,7 @@ def c(userData, game):
     game.logger.log("c",0)
 
 def b(userData, game):
+    return #More to come !
     save(userData,"b",game)
     game.logger.log("b",0)
     c(userData, game)
@@ -68,11 +69,11 @@ def a(userData, game):
     if(response == 'a'):
         game.logger.log('Yeah im here !\n',8)
         time.sleep(1)
-        game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !',6)
+        game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !',5)
     else:
         game.logger.log('Im back, anything new ?',8)
         time.sleep(1)
-        game.logger.log('Im glad your back, seriously i thought all the systems were toast !',6)
+        game.logger.log('Im glad your back, seriously i thought all the systems were toast !',5)
     time.sleep(1)
     while(True):
         game.logger.log('\nOption A:  Wait, Systems were almost gone ?\nOption B:  What happened while i was gone ???\n', 6)
@@ -87,11 +88,11 @@ def a(userData, game):
     if(response == 'a'):
         game.logger.log('Wait, Systems were almost gone ?',8)
         time.sleep(0.5)
-        game.logger.log('Yes, the whole system went dark for about 5minutes before the generator kicked in, BUT my power is down to 20% and my generator hasn\'t got alot of juice left...',6)
+        game.logger.log('Yes, the whole system went dark for about 5minutes before the generator kicked in, BUT my power is down to 20% and my generator hasn\'t got alot of juice left...',5)
     else:
         game.logger.log('What happened while i was gone ???',8)
         time.sleep(0.5)
-        game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.',6)
+        game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.',5)
     time.sleep(0.5)
     b(userData, game)
 
