@@ -23,3 +23,5 @@ Num.  |         |
  0120 | v0.0.4  | Change logger and levels.
 -----------------------------------
  0121 | v0.0.4  | Small fixes for 0.0.4 release !
+-----------------------------------
+ 0122 | v0.0.4  | Released ! & Travis fixes

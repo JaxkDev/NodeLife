@@ -73,7 +73,8 @@ def exec(game):
     userData['level'] = 1
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)
-    game.userdata.set(userData, game)
+    if(game.travis == False):
+        game.userdata.set(userData, game)
     print('')
     time.sleep(2)
     game.levelManager.runLevel('1')

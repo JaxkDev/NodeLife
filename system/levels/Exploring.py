@@ -35,7 +35,8 @@ def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
-    _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+    if(game.travis == False):
+        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 
 def c(userData, game):
@@ -108,5 +109,6 @@ def exec(game):
     userData['level'] = 3
     userData['levelPart'] = '-'
     game.logger.log('Init save function...',0)
-    game.userdata.set(userData, game)
+    if(game.travis == False):
+        game.userdata.set(userData, game)
     #game.levelManager.runLevel('3/4')

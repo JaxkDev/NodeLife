@@ -35,7 +35,8 @@ def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
-    _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+    if(game.travis == False):
+        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 def d(userData, game):
     save(userData,"d",game)
@@ -165,7 +166,8 @@ def exec(game):
     userData['level'] = 2
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)
-    _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+    if(game.travis == False):
+        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
     if(not game.travis):
         game.logger.log('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
         i = input('Quit ? (yes/no) > ').lower()
