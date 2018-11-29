@@ -23,28 +23,9 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import os
-from configparser import ConfigParser
+from system.network import http
 
-def checkDir():
-    if not os.path.exists('data'):
-        os.makedirs('data')
-        os.makedirs('data/resources')
-
-def get():
-    checkDir()
-    try:
-        f = open('data/config.txt','r')
-        f.close()
-    except Exception:
-        from shutil import copy2
-        copy2('data/resources/config.txt', 'data/config.txt')
-    parser = ConfigParser()
-    parser.read('data/config.txt')
-    return parser
-
-def set(data):
-    checkDir()
-    f = open('data/config.txt','w')
-    data.write(f)
-    f.close()
+def get(fileName, game):
+    game.logger.log('Getting resource \''+fileName+'\', please don\'t exit...',2)
+    http.download('https://nodelife.glitch.me/api/get/resources/'+fileName, 'data/resources/'+fileName, game)
+    game.logger.log('Success !',1)

@@ -32,7 +32,7 @@ def ver():
     return '0.0.5'
 
 def build():
-    return '0125'
+    return '0126'
 
 def codeName():
     return 'Echo' #Phonetic Alphabet

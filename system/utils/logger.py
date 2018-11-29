@@ -46,22 +46,27 @@ def getTime():
     return strftime("%H:%M:%S", gmtime())
 
 def logMsg(msg, game, lvl = 5):
-    cfg = game.config.get()
-    user_name = cfg.get('General','userName')
-    other_name = cfg.get('General','otherName')
     if(lvl < 4):
         sav(msg, lvl)
-    if(lvl == 1):
+    if(lvl == 0):
+        return
+    elif(lvl == 1):
         #log/output
         sys.stdout.write(msg+'\n')
+        return
     elif(lvl == 2):
         #warning
         sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
+        return
     elif(lvl == 3):
         #error
         postError.exec(msg,game)
         sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
-    elif(lvl == 4): 
+        return
+    cfg = game.config.get()
+    user_name = cfg.get('General','userName')
+    other_name = cfg.get('General','otherName')
+    if(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
         sys.stdout.write('\033[97m')
         if(OS != "windows"):

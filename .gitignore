@@ -1,9 +1,11 @@
 NodeLife.code-workspace
+
 data/*
 bin/*
 notes/*
 issues/*
 dist/*
+build/*
 
 *.pyo
 *.cpython-34.pyc
