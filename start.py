@@ -39,7 +39,10 @@ tested_ARM = ['amd64', 'x64', 'x86_64']
 def excepthook(type_, value, traceback):
     game.logger.log(''.join(format_exception(type_, value, traceback)),2)
     error = format_exception(type_, value, traceback)
-    contact = input('The following error occured, and has been sent to me, please type a way of contacting you so i can get in touch ! :')
+    if(not game.travis):
+        contact = input('The following error occured, and has been sent to me, please type a way of contacting you so i can get in touch ! :')
+    else:
+        contact = 'Travis'
     postError.exec([error,contact], game)
 
 game = gameObject.game(False)

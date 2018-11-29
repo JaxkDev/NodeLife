@@ -49,7 +49,8 @@ class game:
         self.userdata = userdata
         self.build = ver
         self.os = platform.uname()
-        #should i add http or leave it ?
         self.levelManager = lvl.manager(self)
-        #level manager
+        #self.resourceManager
+        #self.soundManager
+        #self.threadManager
         #SFS (Simple File System)
