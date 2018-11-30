@@ -32,3 +32,5 @@ Num.  |         |
  0125 | v0.0.5  | Add notes and travis optimise
 -----------------------------------
  0126 | v0.0.5  | Resources move to server, it now downloads them.
+-----------------------------------
+ 0127 | v0.0.5  | Fix travis, add more notes

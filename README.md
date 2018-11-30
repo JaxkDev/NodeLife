@@ -1,7 +1,10 @@
 [![Build Status](https://travis-ci.com/jackthehack21/NodeLife.svg?branch=master)](https://travis-ci.com/jackthehack21/NodeLife)
 
-# Important Notices:
-- Any version lower then 0.0.3 or build 88 wil faill at checking for updates, please update asap to get the new api endpoint !
+# Latest Features:
+- Download resources (one time)
+- Check and download updates automatically (configurable)
+- Advanced Logging
+- Custom Config
 
 # NodeLife
 A small text based game made in pure python,

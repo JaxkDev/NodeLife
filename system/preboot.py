@@ -59,8 +59,12 @@ def resources(game):
         try:
             os.makedirs('data/resources')
         except Exception:
-            game.logger.log('Resource folder found, but no data.',0)
-        if(input('The game needs to download the file \'Config.txt\' size: 1.87kb, Download now ? (yes/no)').lower() != 'yes'):
+            game.logger.log('Resource folder found, but no data.',0) #aborted download.
+        if(game.travis):
+            choice = 'yes'
+        else:
+            choice = input('The game needs to download the file \'Config.txt\' size: 1.87kb, Download now ? (yes/no): ').lower() 
+        if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
             time.sleep(2)
             sys.exit(0)

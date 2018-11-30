@@ -50,7 +50,7 @@ class game:
         self.build = ver
         self.os = platform.uname()
         self.levelManager = lvl.manager(self)
-        #self.resourceManager
+        #self.resourceManager (overwrite current preboot)
         #self.soundManager
         #self.threadManager
-        #SFS (Simple File System)
+        #SFS (Simple File System) (after 1.0)
