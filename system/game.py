@@ -26,6 +26,7 @@
 from system.utils import logger, config, userdata
 from system import ver
 from system import levelManager as lvl
+from system import threadingManager as thrd
 import platform
 
 #
@@ -52,5 +53,5 @@ class game:
         self.levelManager = lvl.manager(self)
         #self.resourceManager (overwrite current preboot)
         #self.soundManager
-        #self.threadManager
+        self.threadManager = thrd.manager(self)
         #SFS (Simple File System) (after 1.0)

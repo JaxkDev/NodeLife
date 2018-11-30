@@ -23,24 +23,19 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import sys,os
+import os, sys, time, importlib
 
-def http():
-    return '006_dev' #_rel/_dev
+class manager:
+    def __init__(self, game):
+        self.game = game
+        self._idCount = 1000
+        self._threadCount = 0
+        self._threadList = []
+        self._limit = 2 #Todo: config here
 
-def ver():
-    return '0.0.6'
+        #start self spawn (thread this)
 
-def build():
-    return '0129'
-
-def codeName():
-    return 'Delta' #Phonetic Alphabet
-
-def release():
-    return False
-
-def bundled():
-    if (getattr(sys, 'frozen', False) and (sys.argv[0] == sys.executable)):
-        return True
-    return False
+    def spawn(self, thread):
+        self._idCount += 1
+        ID = str(self._idCount)
+        game.logger.log('Thread spawned ID: '+ID,0)
