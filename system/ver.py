@@ -26,19 +26,19 @@
 import sys,os
 
 def http():
-    return '005_dev' #_rel/_dev
+    return '005_rel' #_rel/_dev
 
 def ver():
     return '0.0.5'
 
 def build():
-    return '0127'
+    return '0128'
 
 def codeName():
     return 'Echo' #Phonetic Alphabet
 
 def release():
-    return False
+    return True
 
 def bundled():
     if (getattr(sys, 'frozen', False) and (sys.argv[0] == sys.executable)):
