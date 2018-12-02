@@ -38,3 +38,5 @@ Num.  |         |
  0128 | v0.0.5  | Release 0.0.5 With builds and resources.
 -----------------------------------
  0129 | v0.0.6  | Start threading manager...
+-----------------------------------
+ 0130 | v0.0.6  | Continue on threads.

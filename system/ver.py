@@ -32,7 +32,7 @@ def ver():
     return '0.0.6'
 
 def build():
-    return '0129'
+    return '0130'
 
 def codeName():
     return 'Delta' #Phonetic Alphabet
