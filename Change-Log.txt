@@ -42,3 +42,5 @@ Num.  |         |
  0130 | v0.0.6  | Continue on threads.
 -----------------------------------
  0131 | v0.0.6  | ThreadManager Complete !! (and tested *alot*)
+-----------------------------------
+ 0132 | v0.0.6  | Fixed bug where threads and manager would stay alive when main dies

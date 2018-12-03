@@ -43,7 +43,8 @@ class manager:
         self.game.logger.log('[ThreadMgr] : Handler Spawning... ('+str(threading.active_count())+' threads running)',0)
         threading.Thread(
             name="ThreadingManager",
-            target=self.handler
+            target=self.handler,
+            daemon=True
         ).start()
         self.game.logger.log('[ThreadMgr] : Handler Spawned. ('+str(threading.active_count())+' threads running)',0)
 
@@ -55,6 +56,7 @@ class manager:
             name='Thread #'+ID,
             target=thread,
             args=(),
+            daemon=True
         )
         self._threads[ID].started = False
 
