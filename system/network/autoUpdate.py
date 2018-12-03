@@ -24,7 +24,7 @@
 # If not, see https://www.gnu.org/licenses/
 
 from system.network import http
-import json, platform
+import json, platform, time
 
 def check(game):
     if(not game.config.get().getboolean('Network','check_update')):
@@ -51,7 +51,7 @@ def check(game):
                     http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-Windows.exe', data['ver']+'-UPDATE.exe',game)
                 else:
                     http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-'+platform.system(), data['ver']+'-UPDATE.exe',game)
-            game.logger.log('Update downloaded to the same directory as current file !...\n')
+            game.logger.log('Update downloaded to the same directory as current file !...\n',1)
             time.sleep(5)
             input('Press enter to exit !')
     else:

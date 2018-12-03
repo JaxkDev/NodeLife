@@ -23,30 +23,87 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import os, sys, time, importlib, threading
+import os, sys, time, importlib, threading, random
+
+def test():
+    id = str(random.randint(1000,5000))
+    print('start - '+id)
+    time.sleep(random.randint(0,5))
+    print('end - '+id)
+    return
 
 class manager:
     def __init__(self, game):
         self.game = game
         self._idCount = 1000
-        self._threads = []
-        self._active = 1 #always one as itself is a thread.
-        self._limit = 5 #Todo: config here
+        self._threads = {}
+        self._active = threading.active_count()
+        self._limit = 5 #Todo: config here (2 is from system, 1 is thread handler, leaves 2 spaces for others.)
 
-        #start self spawn (thread this)
+        self.game.logger.log('[ThreadMgr] : Handler Spawning... ('+str(threading.active_count())+' threads running)',0)
+        threading.Thread(
+            name="ThreadingManager",
+            target=self.handler
+        ).start()
+        self.game.logger.log('[ThreadMgr] : Handler Spawned. ('+str(threading.active_count())+' threads running)',0)
 
     def add(self, thread):
         self._idCount += 1
         ID = str(self._idCount)
-        game.logger.log('Thread added to list with ID: '+ID,0)
-        self._threads.append(thread) #threading object class
+        self.game.logger.log('[ThreadMgr] : Thread added to list with ID: '+ID,0)
+        self._threads[ID] = threading.Thread(
+            name='Thread #'+ID,
+            target=thread,
+            args=(),
+        )
+        self._threads[ID].started = False
 
-    def spawn(self, thread):
-        self._idCount += 1
-        ID = str(self._idCount)
-        game.logger.log('Thread spawned with ID: '+ID,0)
+    def run(self, ID):
+        self._threads[ID].start()
+        self._threads[ID].started = True
+        #print(self._threads[ID].started)
+        self.game.logger.log('[ThreadMgr] : Thread started = #'+ID,0)
 
     def handler(self):
+        #for i in range(50):
+        #    self.add(test)  #test successful !
         while(True):
-            time.sleep(0.1) #10ticks per second
-            #check if threads are running...
+            #print(self._threads)
+            time.sleep(0.25) # 4 ticks per second
+            self._active = threading.active_count()
+            threads = []
+            for thread in threading.enumerate(): 
+                if(thread.name != 'MainThread' and thread.name != 'ThreadingManager'):
+                    threads.append(thread.name)
+            keys = list()
+            for i in self._threads.keys():
+                keys.append(i)
+            i = 0
+            while(i < len(keys)):
+                obj = self._threads[keys[i]]
+                if(obj.started == True and obj.isAlive() == False):
+                    del self._threads[keys[i]]
+                i +=1
+            self._active = threading.active_count()
+            #print(self._active)
+            keys = list()
+            for i in self._threads.keys():
+                keys.append(i)
+            if(self._active > self._limit):
+                #Should never happen...
+                self.game.logger.log('[ThreadMgr] : THREAD LIMIT EXCEEDED ! ('+str(threading.active_count())+')',3)
+            else:
+                i = 0
+                i2 = 0
+                while(i < self._limit-self._active and len(keys) > i2):
+                    try:
+                        if(self._threads[keys[i2]].started == True):
+                            i2 += 1
+                            continue
+                        else:
+                            #print('test')
+                            self.run(keys[i2])
+                            i2 += 1
+                            i += 1
+                    except IndexError:
+                        self.game.logger.log('[ThreadMgr] : Error Occured (Index error L100 in threadmgr)',3)
