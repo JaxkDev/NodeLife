@@ -46,3 +46,5 @@ Num.  | (r & d) |
  0132 | v0.0.6d | Fixed bug where threads and manager would stay alive when main dies
 -----------------------------------
  0133 | v0.0.6d | Use threading manager now.
+-----------------------------------
+ 0134 | v0.0.6d | Almost release, just adding a suprise... (and better notes)

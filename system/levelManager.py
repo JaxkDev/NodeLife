@@ -28,7 +28,7 @@ import os, sys, time, importlib
 class manager:
     def __init__(self, game):
         self.game = game
-        self.ver = 100 #Must Match Level MetaData (plugins in future 0.2
+        self.ver = 100 #Must Match Level MetaData (plugins in future 0.2)
 
         self.prefix = 'system.levels.'
         self.levels = {

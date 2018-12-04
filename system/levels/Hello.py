@@ -37,7 +37,6 @@ def save(userData, levelPart, game):
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
         game.threadManager.add(game.userdata.set, (userData, game,))
-        #_thread.start_new_thread( game.userdata.set, (userData, game,) )
 
 def d(userData, game):
     save(userData,"d",game)
@@ -169,7 +168,6 @@ def exec(game):
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
         game.threadManager.add(game.userdata.set, (userData, game,))
-        #_thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
     if(not game.travis):
         game.logger.log('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
         i = input('Quit ? (yes/no) > ').lower()

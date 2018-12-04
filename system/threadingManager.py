@@ -53,7 +53,7 @@ class manager:
         ID = str(self._idCount)
         self.game.logger.log('[ThreadMgr] : Thread added to list with ID: '+ID,0)
         self._threads[ID] = threading.Thread(
-            name='Thread #'+ID,
+            name='Child Thread #'+ID,
             target=thread,
             args=args,
             daemon=True

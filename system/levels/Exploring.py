@@ -37,7 +37,6 @@ def save(userData, levelPart, game):
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
         game.threadManager.add(game.userdata.set, (userData, game,))
-        #_thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 
 def c(userData, game):

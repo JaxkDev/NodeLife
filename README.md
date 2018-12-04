@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/jackthehack21/NodeLife.svg?branch=master)](https://travis-ci.com/jackthehack21/NodeLife)
 
 # Latest Features:
+- Multi-Threading (Faster game time !)
 - Download resources (one time)
 - Check and download updates automatically (configurable)
 - Advanced Logging
@@ -21,15 +22,24 @@ please not that if you do run the source on other O.S’s we hold no responsibil
 The game should never be run in sudo/admin mode as no operations are made to any protected folders/files.
 
 A internet connection is recommended to check for updates and install them, but it is not required to have a connection.
+This may change without notice.
 
 The game does attempt to set console title, use colour on output and log everything
 Logs can be found in the directory(/data/logs) created wherever the executable/source code is held.
+All data created stored and downloaded are stored in (/data)
 
 The game does use multi-threading for smoother experience this may cause a bit of lagg, soon a option will be available to disable multi-threading.
-Also note that we do use ‘slow text’ to provide a realistic experience this means that instead of writing the whole sentance in half a second each character is written to the screen one at a time, this can cause lagg in when you recieve the text (linux users may get the whole sentance at once but after a delay)
+Also note that we do use ‘slow text’ to provide a realistic experience this means that instead of writing the whole sentance in half a second each character is written to the screen one at a time, this can cause lagg in when you recieve the text (Linux and Mac users have this disabled for now)
 this too is planned to have a disable/enable option.
 
 The game uses your logged in username as a default and this may be changable in the future but not currently, no other personnal information is stored
+In the future the game will get and use you Device UUID for securing resuests to our servers we do not give out any information given to any 3rd party org’s
+You may request to see a list of all details our servers hold by emailing me at gangnam253@gmail.com and you may also request for us to wipe your data.
+
+For any other queries you should contact me at
+gangnam253@gmail.com = Mail
+Jackthehaxk21#8860   = Discord
++44 7967844058       = Mobile
 
 # LICENSE
 

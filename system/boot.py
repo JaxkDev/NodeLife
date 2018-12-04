@@ -23,15 +23,7 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import time, os, importlib, sys
-
-prefix = 'system.levels.'
-
-levels = {
-    "0": "Introduction",
-    "1": "Hello",
-    "2": "Exploring"
-}
+import time, sys
 
 def run(game):
     time.sleep(1)

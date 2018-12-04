@@ -68,13 +68,11 @@ def exec(game):
             input('Press enter to continue...')
         sys.exit(1)
     a(userData, game)
-    game.logger.log('Saving game...',1)
+    game.logger.log('Saving game...\n',1)
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 1
     userData['levelPart'] = '-'
     game.logger.log('Init save...',0)
     game.threadManager.add(game.userdata.set, (userData, game,))
-    #game.userdata.set(userData, game)
-    print('')
     time.sleep(2)
     game.levelManager.runLevel('1')

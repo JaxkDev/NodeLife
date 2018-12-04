@@ -63,6 +63,7 @@ def resources(game):
         if(game.travis):
             choice = 'yes'
         else:
+            #todo add get URL for file sizes.
             choice = input('The game needs to download the file \'Config.txt\' size: 1.87kb, Download now ? (yes/no): ').lower() 
         if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
