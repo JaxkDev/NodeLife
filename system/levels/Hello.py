@@ -32,7 +32,7 @@
 import sys, time, random, os
 
 def save(userData, levelPart, game):
-    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['lastPlayed'] = int(round(time.time()))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
@@ -115,7 +115,7 @@ def a(userData, game):
     time.sleep(1)
     sys.stdout.write('CONNECTION ESTABLISHED.\033[39m\n\n\n')
     time.sleep(1.5)
-    game.logger.log('[??] : Ugh, Maybe one day they\'ll send someone to fetch my body...\n',5)
+    game.logger.log('[??] : Ugh, Is this damn thing even on...\n',5)
     response = ''
     while(True):
         game.logger.log('\nOption A:  Hello ?\nOption B:  Hi there !\n', 6)
@@ -162,7 +162,7 @@ def exec(game):
     time.sleep(0.5)
     game.logger.log('Cleared chapter 1, Cleared User Display',0)
     game.logger.log('Saving Data, do not exit the game',2)
-    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['lastPlayed'] = int(round(time.time()))
     userData['level'] = 2
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)

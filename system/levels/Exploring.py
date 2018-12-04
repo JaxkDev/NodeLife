@@ -32,7 +32,7 @@
 import sys, time, random, os, platform
 
 def save(userData, levelPart, game):
-    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['lastPlayed'] = int(round(time.time()))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
@@ -41,19 +41,27 @@ def save(userData, levelPart, game):
 
 def c(userData, game):
     save(userData,"c",game)
-    game.logger.log("c",0)
+    game.logger.log("Im back !",5)
+    time.sleep(0.5)
+    game.logger.log('You would not believe the dreams i had !',5)
+    time.sleep(0.5)
+    return
 
 def b(userData, game):
-    return #More to come !
-    save(userData,"b",game)
-    game.logger.log("b",0)
+    #Need to find a better way of doing this, this is not effective.
+    return
+    game.logger.log("Check time...",0)
+    if(int(round(time.time()))-43200 <= userData['lastPlayed']):
+        game.logger.log(' [SLEEPING...]',5)
+        time.sleep(5)
+        sys.exit(0)
     c(userData, game)
 
 def a(userData, game):
     save(userData,"a",game)
     game.logger.log("Chapter 2 - Exploring",1)
     time.sleep(2)
-    sys.stdout.write('\033[35mCONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
+    sys.stdout.write('\n\033[35mCONNECTION RE-ESTABLISHED.\033[39m\n\n\n')
     time.sleep(0.5)
     game.logger.log('Hello?...Hello anyone there ?\n', 5)
     time.sleep(0.5)
@@ -70,7 +78,7 @@ def a(userData, game):
     if(response == 'a'):
         game.logger.log('Yeah im here !\n',8)
         time.sleep(1)
-        game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !',5)
+        game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !\n',5)
     else:
         game.logger.log('Im back, anything new ?',8)
         time.sleep(1)
@@ -94,7 +102,11 @@ def a(userData, game):
         game.logger.log('What happened while i was gone ???',8)
         time.sleep(0.5)
         game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.',5)
+    time.sleep(1)
+    game.logger.log('FYI ive been awake for 30hours straight now and need to get some rest, i\'ll see you soon !',5)
+    #WAIT 12 HOURS
     time.sleep(0.5)
+    save(userData,"b",game)
     b(userData, game)
 
 def exec(game):
@@ -105,7 +117,7 @@ def exec(game):
         sys.exit(1)
     a(userData, game)
     game.logger.log('Saving game...',1)
-    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['lastPlayed'] = int(round(time.time()))
     userData['level'] = 3
     userData['levelPart'] = '-'
     game.logger.log('Init save function...',0)

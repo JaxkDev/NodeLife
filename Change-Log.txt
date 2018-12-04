@@ -48,3 +48,5 @@ Num.  | (r & d) |
  0133 | v0.0.6d | Use threading manager now.
 -----------------------------------
  0134 | v0.0.6d | Almost release, just adding a suprise... (and better notes)
+-----------------------------------
+ 0135 | v0.0.6d | Test sleeping (failed) remove time bug not sure why i added it :/

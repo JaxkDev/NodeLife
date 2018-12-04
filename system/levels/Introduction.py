@@ -69,7 +69,7 @@ def exec(game):
         sys.exit(1)
     a(userData, game)
     game.logger.log('Saving game...\n',1)
-    userData['lastPlayed'] = int(round(time.time() * 1000))
+    userData['lastPlayed'] = int(round(time.time()))
     userData['level'] = 1
     userData['levelPart'] = '-'
     game.logger.log('Init save...',0)
