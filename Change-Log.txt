@@ -1,46 +1,48 @@
 Build | Version | Notes
-Num.  |         |
+Num.  | (r & d) |
 -----------------------------------
- 0111 | v0.0.4  | This is a major Update merging the game class into mainstream, 
+ 0111 | v0.0.4d | This is a major Update merging the game class into mainstream, 
       |         | has been tested big rewrite including api endpoints and config is in function !
 -----------------------------------
- 0112 | v0.0.4  | Add LevelManager to be tested.
+ 0112 | v0.0.4d | Add LevelManager to be tested.
 -----------------------------------
- 0113 | v0.0.4  | Adding content into chapter 3 !
+ 0113 | v0.0.4d | Adding content into chapter 3 !
 -----------------------------------
- 0114 | v0.0.4  | Small addition (to test iOS git)
+ 0114 | v0.0.4d | Small addition (to test iOS git)
 -----------------------------------
- 0115 | v0.0.4  | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
+ 0115 | v0.0.4d | Add notices, Add bundled in ver.py, added more config, added auto download, added even more !
 -----------------------------------
- 0116 | v0.0.4  | Implement levelManager into mainstream, update travis and update config
+ 0116 | v0.0.4d | Implement levelManager into mainstream, update travis and update config
  ----------------------------------
- 0117 | v0.0.4  | Fix travis
+ 0117 | v0.0.4d | Fix travis
 -----------------------------------
- 0118 | v0.0.4  | Update travis.
+ 0118 | v0.0.4d | Update travis.
 -----------------------------------
- 0119 | v0.0.4  | Back-end changes (logger)
+ 0119 | v0.0.4d | Back-end changes (logger)
 -----------------------------------
- 0120 | v0.0.4  | Change logger and levels.
+ 0120 | v0.0.4d | Change logger and levels.
 -----------------------------------
- 0121 | v0.0.4  | Small fixes for 0.0.4 release !
+ 0121 | v0.0.4d | Small fixes for 0.0.4 release !
 -----------------------------------
- 0122 | v0.0.4  | Released ! & Travis fixes
+ 0122 | v0.0.4r | Released ! & Travis fixes
 -----------------------------------
- 0123 | v0.0.4  | Travis tests.
+ 0123 | v0.0.4r | Travis tests.
  0124 |
 -----------------------------------
- 0125 | v0.0.5  | Add notes and travis optimise
+ 0125 | v0.0.5d | Add notes and travis optimise
 -----------------------------------
- 0126 | v0.0.5  | Resources move to server, it now downloads them.
+ 0126 | v0.0.5d | Resources move to server, it now downloads them.
 -----------------------------------
- 0127 | v0.0.5  | Fix travis, add more notes
+ 0127 | v0.0.5d | Fix travis, add more notes
 -----------------------------------
- 0128 | v0.0.5  | Release 0.0.5 With builds and resources.
+ 0128 | v0.0.5r | Release 0.0.5 With builds and resources.
 -----------------------------------
- 0129 | v0.0.6  | Start threading manager...
+ 0129 | v0.0.6d | Start threading manager...
 -----------------------------------
- 0130 | v0.0.6  | Continue on threads.
+ 0130 | v0.0.6d | Continue on threads.
 -----------------------------------
- 0131 | v0.0.6  | ThreadManager Complete !! (and tested *alot*)
+ 0131 | v0.0.6d | ThreadManager Complete !! (and tested *alot*)
 -----------------------------------
- 0132 | v0.0.6  | Fixed bug where threads and manager would stay alive when main dies
+ 0132 | v0.0.6d | Fixed bug where threads and manager would stay alive when main dies
+-----------------------------------
+ 0133 | v0.0.6d | Use threading manager now.

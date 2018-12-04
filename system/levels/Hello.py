@@ -29,14 +29,15 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, _thread
+import sys, time, random, os
 
 def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
-        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+        game.threadManager.add(game.userdata.set, (userData, game,))
+        #_thread.start_new_thread( game.userdata.set, (userData, game,) )
 
 def d(userData, game):
     save(userData,"d",game)
@@ -167,7 +168,8 @@ def exec(game):
     userData['levelPart'] = '-'
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
-        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+        game.threadManager.add(game.userdata.set, (userData, game,))
+        #_thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
     if(not game.travis):
         game.logger.log('Save complete, would you like to end the game for today or move onto chapter 2 ?',1)
         i = input('Quit ? (yes/no) > ').lower()

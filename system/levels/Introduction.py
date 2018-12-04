@@ -29,7 +29,7 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, _thread, platform
+import sys, time, random, os, platform
 
 def slow(txt, delay):
     if(platform.uname().system.lower() != "windows"):
@@ -72,8 +72,9 @@ def exec(game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['level'] = 1
     userData['levelPart'] = '-'
-    game.logger.log('Init save thread...',0)
-    game.userdata.set(userData, game)
+    game.logger.log('Init save...',0)
+    game.threadManager.add(game.userdata.set, (userData, game,))
+    #game.userdata.set(userData, game)
     print('')
     time.sleep(2)
     game.levelManager.runLevel('1')

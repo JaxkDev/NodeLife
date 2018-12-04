@@ -48,14 +48,14 @@ class manager:
         ).start()
         self.game.logger.log('[ThreadMgr] : Handler Spawned. ('+str(threading.active_count())+' threads running)',0)
 
-    def add(self, thread):
+    def add(self, thread, args=()):
         self._idCount += 1
         ID = str(self._idCount)
         self.game.logger.log('[ThreadMgr] : Thread added to list with ID: '+ID,0)
         self._threads[ID] = threading.Thread(
             name='Thread #'+ID,
             target=thread,
-            args=(),
+            args=args,
             daemon=True
         )
         self._threads[ID].started = False

@@ -29,14 +29,15 @@
 #pylint: disable=W0612
 #Stupid rule
 
-import sys, time, random, os, _thread, platform
+import sys, time, random, os, platform
 
 def save(userData, levelPart, game):
     userData['lastPlayed'] = int(round(time.time() * 1000))
     userData['levelPart'] = levelPart
     game.logger.log('Init save thread...',0)
     if(game.travis == False):
-        _thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
+        game.threadManager.add(game.userdata.set, (userData, game,))
+        #_thread.start_new_thread( game.userdata.set, (userData, game,) ) # multi-thread
 
 
 def c(userData, game):
@@ -110,5 +111,5 @@ def exec(game):
     userData['levelPart'] = '-'
     game.logger.log('Init save function...',0)
     if(game.travis == False):
-        game.userdata.set(userData, game)
+        game.threadManager.add(game.userdata.set, (userData, game,))
     #game.levelManager.runLevel('3/4')
