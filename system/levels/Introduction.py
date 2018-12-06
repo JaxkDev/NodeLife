@@ -75,4 +75,5 @@ def exec(game):
     game.logger.log('Init save...',0)
     game.threadManager.add(game.userdata.set, (userData, game,))
     time.sleep(2)
+    print('\x1b[2J')
     game.levelManager.runLevel('1')

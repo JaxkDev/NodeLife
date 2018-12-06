@@ -52,7 +52,7 @@ game.logger.log('Booted on '+time.asctime(), 0)
 try:
     sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win except travis
     game.logger.log('Updated screen title',0)
-except AttributeError:
+except Exception:
     game.logger.log('Unable to set title',0) #Please open issue if you get this !
 game.logger.log('Checking deployment type...',0)
 if(not game.build.release()):
@@ -65,6 +65,7 @@ game.logger.log('Setting sys vars',0)
 sys.excepthook = excepthook
 game.logger.log('Set sys vars !',0)
 game.logger.log('Checking System...', 1)
+
 system = game.os
 if(not system.system.lower() in tested_OS):
     game.logger.log('Your system \''+system.system+'\' has not been tested, if you find issues please report them to our github page <https://github.com/Jackthehack21/NodeLife)', 2)

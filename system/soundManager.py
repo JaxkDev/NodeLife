@@ -23,24 +23,29 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import sys,os
+import time
 
-def http():
-    return '006_dev' #_rel/_dev
+from system.utils import sound
 
-def ver():
-    return '0.0.6'
+class manager:
+    def __init__(self, game):
+        self.game = game
+        
+        self._list = list()
+        
+        self._active = list()
 
-def build():
-    return '0136'
+        self.game.logger.log('[SoundMgr] : Handler Starting...',0)
+        self.game.threadManager.add(self.handler, (), "SoundManager")
 
-def codeName():
-    return 'Delta' #Phonetic Alphabet
-
-def release():
-    return False
-
-def bundled():
-    if (getattr(sys, 'frozen', False) and (sys.argv[0] == sys.executable)):
-        return True
-    return False
+    def add(self, soundName, loop=1): #SoundName to be exact in data/resource and loop is default 1
+        self._list.append({
+            'file': 'data/resources/'+soundName+'.mp3',
+            'loop': loop
+        })
+        
+    def handler(self):
+        self.game.logger.log('[SoundMgr] : Handler Started.',0)
+        while(True):
+            time.sleep(0.2) #Todo config
+            

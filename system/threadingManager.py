@@ -38,8 +38,9 @@ class manager:
         self._idCount = 1000
         self._threads = {}
         self._active = threading.active_count()
-        self._limit = 5 #Todo: config here (2 is from system, 1 is thread handler, leaves 2 spaces for others.)
-
+        self._limit = 5 #Todo: config here (2 is from system, 1 is thread handler, 1 is sound manager, leaves 1 spaces for others.)
+                        #Note: SockThread is found when running from IDE
+        
         self.game.logger.log('[ThreadMgr] : Handler Spawning... ('+str(threading.active_count())+' threads running)',0)
         threading.Thread(
             name="ThreadingManager",
@@ -47,13 +48,16 @@ class manager:
             daemon=True
         ).start()
         self.game.logger.log('[ThreadMgr] : Handler Spawned. ('+str(threading.active_count())+' threads running)',0)
-
-    def add(self, thread, args=()):
+        running = list()
+        for thread in threading.enumerate():
+            running.append(thread.name)
+        self.game.logger.log('[ThreadMgr] : Threads running = '+','.join(running),0)
+    def add(self, thread, args=(), name="Child Thread #{ID}"):
         self._idCount += 1
         ID = str(self._idCount)
         self.game.logger.log('[ThreadMgr] : Thread added to list with ID: '+ID,0)
         self._threads[ID] = threading.Thread(
-            name='Child Thread #'+ID,
+            name=name.replace('{ID}',ID),
             target=thread,
             args=args,
             daemon=True
@@ -70,12 +74,11 @@ class manager:
         #for i in range(50):
         #    self.add(test)  #test successful !
         while(True):
-            #print(self._threads)
-            time.sleep(0.25) # 4 ticks per second
+            time.sleep(0.2) # 5 ticks per second (TODO: CONFIG)
             self._active = threading.active_count()
             threads = []
             for thread in threading.enumerate(): 
-                if(thread.name != 'MainThread' and thread.name != 'ThreadingManager'):
+                if(thread.name != 'MainThread' and thread.name != 'ThreadingManager' and thread.name != 'SoundManager'):
                     threads.append(thread.name)
             keys = list()
             for i in self._threads.keys():
@@ -84,10 +87,10 @@ class manager:
             while(i < len(keys)):
                 obj = self._threads[keys[i]]
                 if(obj.started == True and obj.isAlive() == False):
+                    self.game.logger.log('[ThreadMgr] : Thread removed = #'+keys[i],0)
                     del self._threads[keys[i]]
                 i +=1
             self._active = threading.active_count()
-            #print(self._active)
             keys = list()
             for i in self._threads.keys():
                 keys.append(i)
@@ -103,7 +106,6 @@ class manager:
                             i2 += 1
                             continue
                         else:
-                            #print('test')
                             self.run(keys[i2])
                             i2 += 1
                             i += 1

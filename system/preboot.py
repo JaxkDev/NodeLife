@@ -25,7 +25,7 @@
 
 import ssl, os, time, sys
 from system import setup
-from system.network import getResources
+from system.network import getResources, http
 
 def run(game):
     # This is to fis SSL error when checking for update on MacOSX.
@@ -63,11 +63,47 @@ def resources(game):
         if(game.travis):
             choice = 'yes'
         else:
-            #todo add get URL for file sizes.
-            choice = input('The game needs to download the file \'Config.txt\' size: 1.87kb, Download now ? (yes/no): ').lower() 
+            data = getResources.info(game,'config.txt').read().decode('utf-8')
+            size = data.split('#')[1]
+            data = data.split('#')[0]
+            choice = input('The game needs to download the file \'Config.txt\' size: '+size+', Download now ? (yes/no): ').lower() 
         if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
             time.sleep(2)
             sys.exit(0)
-        getResources.get('config.txt', game)
+        if(not http.valid_connection()):
+            game.logger.log('A valid internet connection is required.',3)
+            sys.exit(0)
+        url = data.split('/')
+        file = url[-1]
+        del url[-1]
+        url = '/'.join(url)
+        game.logger.log('Getting resource at '+url+'/'+file,0)
+        getResources.get(game,file,url)
+
+    try:
+        f = open('data/resources/MainLoop.mp3','r')
+        f.close()
+    except Exception:
+        try:
+            os.makedirs('data/resources')
+        except Exception:
+            game.logger.log('Resource folder found, but no data.',0) #aborted download.
+        if(game.travis):
+            choice = 'yes'
+        else:
+            data = getResources.info(game,'loopsound.txt').read().decode('utf-8')
+            size = data.split('#')[1]
+            data = data.split('#')[0]
+            choice = input('The game needs to download the file \'LoopSound.mp3\' size: '+size+', Download now ? (yes/no): ').lower() 
+        if(choice != 'yes'):
+            game.logger.log('Game resources download aborted.',2)
+            time.sleep(2)
+            sys.exit(0)
+        url = data.split('/')
+        file = url[-1]
+        del url[-1]
+        url = '/'.join(url)
+        game.logger.log('Getting resource at '+url+'/'+file,0)
+        getResources.get(game,file,url,'MainLoop.mp3')
     return

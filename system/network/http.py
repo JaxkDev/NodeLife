@@ -62,5 +62,5 @@ def download(url, path, game):
     try:
         request.urlretrieve(url, path)
     except error.HTTPError:
-        game.logger.log('Failed to download update.',3)
+        game.logger.log('Failed to download.',3)
     return
