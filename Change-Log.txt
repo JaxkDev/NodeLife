@@ -52,3 +52,5 @@ Num.  | (r & d) |
  0135 | v0.0.6d | Test sleeping (failed) remove time bug not sure why i added it :/
 -----------------------------------
  0136 | v0.0.6d | Resources update ready for soundManager ! (URL's have changed, size is accurate and files now downloaded only when accepted by user)
+-----------------------------------
+ 0137 | v0.0.6d | Specific travis fix.

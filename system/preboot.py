@@ -60,12 +60,12 @@ def resources(game):
             os.makedirs('data/resources')
         except Exception:
             game.logger.log('Resource folder found, but no data.',0) #aborted download.
+        data = getResources.info(game,'config.txt').read().decode('utf-8')
+        size = data.split('#')[1]
+        data = data.split('#')[0]
         if(game.travis):
             choice = 'yes'
         else:
-            data = getResources.info(game,'config.txt').read().decode('utf-8')
-            size = data.split('#')[1]
-            data = data.split('#')[0]
             choice = input('The game needs to download the file \'Config.txt\' size: '+size+', Download now ? (yes/no): ').lower() 
         if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
@@ -89,12 +89,12 @@ def resources(game):
             os.makedirs('data/resources')
         except Exception:
             game.logger.log('Resource folder found, but no data.',0) #aborted download.
+        data = getResources.info(game,'loopsound.txt').read().decode('utf-8')
+        size = data.split('#')[1]
+        data = data.split('#')[0]
         if(game.travis):
             choice = 'yes'
         else:
-            data = getResources.info(game,'loopsound.txt').read().decode('utf-8')
-            size = data.split('#')[1]
-            data = data.split('#')[0]
             choice = input('The game needs to download the file \'LoopSound.mp3\' size: '+size+', Download now ? (yes/no): ').lower() 
         if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
