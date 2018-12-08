@@ -54,3 +54,5 @@ Num.  | (r & d) |
  0136 | v0.0.6d | Resources update ready for soundManager ! (URL's have changed, size is accurate and files now downloaded only when accepted by user)
 -----------------------------------
  0137 | v0.0.6d | Specific travis fix.
+-----------------------------------
+ 0138 | v0.0.6d | Travis OS changed to MacOSX
