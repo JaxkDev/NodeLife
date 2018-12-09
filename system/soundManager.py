@@ -43,6 +43,12 @@ class manager:
             'file': 'data/resources/'+soundName+'.mp3',
             'loop': loop
         })
+
+
+        #
+        # Note:
+        #
+        # Possibly may have to add amount of seconds/milliseconds it runs for for the loop to work...
         
     def handler(self):
         self.game.logger.log('[SoundMgr] : Handler Started.',0)

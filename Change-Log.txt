@@ -56,3 +56,5 @@ Num.  | (r & d) |
  0137 | v0.0.6d | Specific travis fix.
 -----------------------------------
  0138 | v0.0.6d | Travis OS changed to MacOSX
+-----------------------------------
+ 0139 | v0.0.6d | Travis python now 3.5, look into sound loops
