@@ -25,6 +25,7 @@
 
 import ssl, os, time, sys
 from system import setup
+from system.resources import list
 from system.network import getResources, http
 
 def run(game):
@@ -52,6 +53,12 @@ def darwin():
     return
 
 def resources(game):
+
+
+    #use resources list here. ( list.get() )
+
+
+
     try:
         f = open('data/resources/config.txt','r')
         f.close()
