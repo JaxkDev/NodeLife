@@ -23,7 +23,7 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
-import time, sys
+import time, sys, datetime
 
 def run(game):
     time.sleep(1)
@@ -45,6 +45,25 @@ def run(game):
     userData = game.userdata.get()
     if(userData):
         game.logger.log('Save found !',0)
+        #Check for time delay (Sleeping, walking etc)
+        if 'timeCheck' in userData:
+            game.logger.log("Found TimeCheck active: "+str(userData['timeCheck']),0)
+            if(userData['timeCheck'] > time.time()):
+                #Still away.
+                cfg = game.config.get()
+                other_name = cfg.get('General','otherName')
+                del cfg #no conflicts.
+                tmp = datetime.timedelta(seconds=userData['timeCheck']-int(time.time()))
+                #datetime.timedelta(0, 65)
+                timeLeft = str(tmp)
+                del tmp #no conflicts
+                #'0:01:05'
+                game.logger.log(other_name+" is still away, please come back in "+timeLeft+" (HH:MM:SS)",1)
+                input('Press enter to exit !')
+                return
+            else:
+                del userData['timeCheck']
+                game.logger.log("Deleted timeCheck, time is valid.",0)
         if(int(userData['level']) < len(game.levelManager.levels)):
             game.levelManager.runLevel(str(userData['level']))
     else:

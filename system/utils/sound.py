@@ -2,6 +2,9 @@
 This is part of playsound (module), see the licenses folder for its license.
 '''
 
+#pylint: disable=E0401
+# Imoport probs because of different OS's
+
 
 class PlaysoundException(Exception):
     pass

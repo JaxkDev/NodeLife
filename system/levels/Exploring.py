@@ -27,6 +27,7 @@
 # THE USER WILL HELP MIKE, CHOOSE ESSENTIALS AND EXPLORE THE CRYSTAL.
 
 #pylint: disable=W0612
+#pylint: disable=W0101
 #Stupid rule
 
 import sys, time, random, os, platform
@@ -49,12 +50,8 @@ def c(userData, game):
 
 def b(userData, game):
     #Need to find a better way of doing this, this is not effective.
-    return
-    game.logger.log("Check time...",0)
-    if(int(round(time.time()))-43200 <= userData['lastPlayed']):
-        game.logger.log(' [SLEEPING...]',5)
-        time.sleep(5)
-        sys.exit(0)
+    game.logger.log("TIME CHECK HERE",2)
+    input('Press enter to exit.')
     c(userData, game)
 
 def a(userData, game):
@@ -95,19 +92,25 @@ def a(userData, game):
             response = i
             break
     if(response == 'a'):
-        game.logger.log('Wait, Systems were almost gone ?',8)
+        game.logger.log('Wait, Systems were almost gone ?\n',8)
         time.sleep(0.5)
-        game.logger.log('Yes, the whole system went dark for about 5minutes before the generator kicked in, BUT my power is down to 20% and my generator hasn\'t got alot of juice left...',5)
+        game.logger.log('Yes, the whole system went dark for about 5minutes before the generator kicked in, BUT my power is down to 20% and my generator hasn\'t got alot of juice left...\n',5)
     else:
-        game.logger.log('What happened while i was gone ???',8)
+        game.logger.log('What happened while i was gone ???\n',8)
         time.sleep(0.5)
-        game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.',5)
+        game.logger.log('Not alot just lost all power for 5minutes and sat in the freezing cold because i have barely any energy left for the heaters, You would think that they would add better heating incase of these types of emergency\'s but No, they spent as little as possible on this rust bucket.\n',5)
     time.sleep(1)
-    game.logger.log('FYI ive been awake for 30hours straight now and need to get some rest, i\'ll see you soon !',5)
+    game.logger.log('FYI ive been awake for 30hours straight now and need to get some rest, i\'ll see you soon !\n',5)
     #WAIT 12 HOURS
     time.sleep(0.5)
+    #12 hours sleep. (60secs*60min*12hours)
+    userData['timeCheck'] = int(round(time.time()))+60#(60*(60*12)) #used to check time difference for sleeping.
     save(userData,"b",game)
-    b(userData, game)
+    time.sleep(2)
+    input("Press enter to exit")
+    time.sleep(2)
+    sys.exit(0)
+    #game.kill(false) args: true/false force close threads.
 
 def exec(game):
     userData = game.userdata.get()

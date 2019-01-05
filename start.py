@@ -99,6 +99,14 @@ game.logger.log('Starting Game...', 1)
 time.sleep(3)
 print('\x1b[2J')
 
-from system import boot
-boot.run(game)
+#############################
+                            #
+from system import boot     # START LEVELS.
+boot.run(game)              #
+                            # RETURNS WHEN FINISHED.
+#############################
+
 game.logger.log('Game ended.',0)
+
+
+#TODO: Wait for threading tasks to complete instead of killing them with spawn.

@@ -41,6 +41,7 @@ class manager:
     def add(self, soundName, loop=1): #SoundName to be exact in data/resource and loop is default 1
         self._list.append({
             'file': 'data/resources/'+soundName+'.mp3',
+            'meta': 'data/resources/'+soundName+'.meta',
             'loop': loop
         })
 
@@ -49,6 +50,7 @@ class manager:
         # Note:
         #
         # Possibly may have to add amount of seconds/milliseconds it runs for for the loop to work...
+        # EDIT: Added .meta files to hold length time.
         
     def handler(self):
         self.game.logger.log('[SoundMgr] : Handler Started.',0)

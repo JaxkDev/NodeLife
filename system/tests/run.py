@@ -94,6 +94,8 @@ print('\x1b[2J')
 
 from system import boot
 boot.run(game)
+
+
 game.logger.log('Game ended.',0)
 game.logger.log('-- testing logger --',1)
 game.logger.log('Log Msg',1)

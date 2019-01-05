@@ -28,8 +28,11 @@ from urllib import request, error
 import json, time, platform
 
 def exec(data,game):
-    if(not game.config.get().getboolean('Network','upload_error')):
-        game.logger.log('PostError disabled',1)
+    try:
+        if(not game.config.get().getboolean('Network','upload_error')):
+            game.logger.log('PostError disabled',1)
+            return
+    except FileNotFoundError:
         return
     game.logger.log('postError Started !',0)
     time.sleep(1) #Allow logger to close file

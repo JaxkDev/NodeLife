@@ -67,6 +67,9 @@ def resources(game):
             os.makedirs('data/resources')
         except Exception:
             game.logger.log('Resource folder found, but no data.',0) #aborted download.
+        if(not http.valid_connection()):
+            game.logger.log('A valid internet connection is required for first time boot.',3)
+            sys.exit(0)
         data = getResources.info(game,'config.txt').read().decode('utf-8')
         size = data.split('#')[1]
         data = data.split('#')[0]
@@ -77,9 +80,6 @@ def resources(game):
         if(choice != 'yes'):
             game.logger.log('Game resources download aborted.',2)
             time.sleep(2)
-            sys.exit(0)
-        if(not http.valid_connection()):
-            game.logger.log('A valid internet connection is required.',3)
             sys.exit(0)
         url = data.split('/')
         file = url[-1]
@@ -95,7 +95,7 @@ def resources(game):
         try:
             os.makedirs('data/resources')
         except Exception:
-            game.logger.log('Resource folder found, but no data.',0) #aborted download.
+            game.logger.log('Resource folder found, but no data, possibly aborted download.',0) #aborted download.
         data = getResources.info(game,'loopsound.txt').read().decode('utf-8')
         size = data.split('#')[1]
         data = data.split('#')[0]
@@ -112,5 +112,7 @@ def resources(game):
         del url[-1]
         url = '/'.join(url)
         game.logger.log('Getting resource at '+url+'/'+file,0)
+        game.logger.log('Getting resource meta file as well.',0)
         getResources.get(game,file,url,'MainLoop.mp3')
+        getResources.get(game,"MainLoop.meta",customName='MainLoop.meta')
     return

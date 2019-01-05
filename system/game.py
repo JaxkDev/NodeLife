@@ -54,5 +54,6 @@ class game:
         self.levelManager = lvl.manager(self)
         #self.resourceManager (overwrite current preboot)
         self.threadManager = thrd.manager(self)
-        # to stop threads being used up for now -> self.soundManager = snd.manager(self)
+        # to stop threads being used up for now:
+        # self.soundManager = snd.manager(self)
         #SFS (Simple File System) (after 1.0)

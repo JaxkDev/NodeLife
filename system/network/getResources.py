@@ -25,7 +25,7 @@
 
 from system.network import http
 
-def get(game, fileName, url='https://nodelife.glitch.me/api/get/resources/', customName=None):
+def get(game, fileName, url='https://nodelife.glitch.me/api/get/resources', customName=None):
     game.logger.log('Getting resource \''+fileName+'\', please don\'t exit...',2)
     if(customName == None):
         http.download(url+'/'+fileName, 'data/resources/'+fileName, game)
@@ -36,5 +36,5 @@ def get(game, fileName, url='https://nodelife.glitch.me/api/get/resources/', cus
 def info(game, fileName):
     game.logger.log('Getting resource info (HTTP-get)\''+fileName+'\'.',0)
     data = http.get('https://nodelife.glitch.me/api/get/info/'+fileName, game)
-    game.logger.log('Got info.',0)
+    game.logger.log('Success !',0)
     return data
