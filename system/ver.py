@@ -32,7 +32,7 @@ def ver():
     return '0.0.6'
 
 def build():
-    return '0141'
+    return '0142'
 
 def codeName():
     return 'AQUA'

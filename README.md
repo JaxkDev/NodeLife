@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.com/jackthehack21/NodeLife.svg?branch=master)](https://travis-ci.com/jackthehack21/NodeLife)
 
+# Latest Notice:
+(18/01/19) : Had a long break starting to look back into this, possibly finishing chapter 2, then looking into better UI (More to come...)
+
 # Latest Features:
 - Multi-Threading (Faster game time !)
 - Download resources (one time)
