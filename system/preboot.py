@@ -69,10 +69,16 @@ def resources(game):
             game.logger.log('Resource folder found, but no data.',0) #aborted download.
         if(not http.valid_connection()):
             game.logger.log('A valid internet connection is required for first time boot.',3)
-            sys.exit(0)
-        data = getResources.info(game,'config.txt').read().decode('utf-8')
-        size = data.split('#')[1]
-        data = data.split('#')[0]
+            sys.exit(1)
+        data = getResources.info(game,'config.txt').read().decode('utf-8').split("\n")
+        size = 0
+        for i in range(len(data)):
+            if(data[i].split('#')[0] == game.build.cfgVer()):
+                size = data[i].split('#')[2]
+                data = data[i].split('#')[1]
+        if(size == 0):
+            game.logger.log("[Preboot] : Failed to get valid data from server.",3)
+            sys.exit(1)
         if(game.travis):
             choice = 'yes'
         else:
@@ -86,7 +92,7 @@ def resources(game):
         del url[-1]
         url = '/'.join(url)
         game.logger.log('Getting resource at '+url+'/'+file,0)
-        getResources.get(game,file,url)
+        getResources.get(game,file,url,'config.txt')
 
     try:
         f = open('data/resources/MainLoop.mp3','r')

@@ -31,8 +31,11 @@ def http():
 def ver():
     return '0.0.6'
 
+def cfgVer():
+    return '2'
+
 def build():
-    return '0142'
+    return '0144'
 
 def codeName():
     return 'AQUA'
