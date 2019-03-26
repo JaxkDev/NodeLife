@@ -51,7 +51,8 @@ def c(userData, game):
 def b(userData, game):
     #Need to find a better way of doing this, this is not effective.
     game.logger.log("TIME CHECK HERE",2)
-    input('Press enter to exit.')
+    if(not game.travis):
+        input("Press enter to exit")
     c(userData, game)
 
 def a(userData, game):
@@ -107,7 +108,8 @@ def a(userData, game):
     userData['timeCheck'] = int(round(time.time()))+60#(60*(60*12)) #used to check time difference for sleeping.
     save(userData,"b",game)
     time.sleep(2)
-    input("Press enter to exit")
+    if(not game.travis):
+        input("Press enter to exit")
     time.sleep(2)
     sys.exit(0)
     #game.kill(false) args: true/false force close threads.

@@ -40,6 +40,8 @@ class manager:
         self._active = threading.active_count()
         self._limit = 5 #Todo: config here (2 is from system, 1 is thread handler, 1 is sound manager, leaves 1 spaces for others.)
                         #Note: SockThread is found when running from IDE
+
+        self.game.logger.log('[ThreadMgr] : System starting...',0)
         
         self.game.logger.log('[ThreadMgr] : Handler Spawning... ('+str(threading.active_count())+' threads running)',0)
         threading.Thread(
