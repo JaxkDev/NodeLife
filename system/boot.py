@@ -57,7 +57,6 @@ def run(game):
                 #datetime.timedelta(0, 65)
                 timeLeft = str(tmp)
                 del tmp #no conflicts
-                #'0:01:05'
                 game.logger.log(other_name+" is still away, please come back in "+timeLeft+" (HH:MM:SS)",1)
                 input('Press enter to exit !')
                 return

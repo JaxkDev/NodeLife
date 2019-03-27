@@ -36,7 +36,7 @@ def slow(txt, delay):
         sys.stdout.write(txt)
         return
     for i in txt:
-        sys.stdout.write(i)
+        sys.stdout.write(i) #todo config
         time.sleep(delay)
 
 def a(user, game):

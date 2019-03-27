@@ -53,13 +53,14 @@ def check(game):
     else:
         old = json.loads(old)
     if(old['latest'] == new['latest']):
-        game.logger.log('No new notices !',1)
+        game.logger.log('No new notices.',0)
         return
     else:
         while(int(old['latest']) < int(new['latest'])):
             old['latest'] = int(old['latest'])+1
             print('')
             print('Notice '+str(old['latest'])+': '+str(new[str(old['latest'])]))
+            print('')
         time.sleep(3)
     f = open('./data/notices.dat','w')
     f.write(json.dumps(new))

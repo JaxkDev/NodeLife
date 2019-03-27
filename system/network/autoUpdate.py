@@ -50,7 +50,7 @@ def check(game):
                 if(platform.system() == 'Windows'):
                     http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-Windows.exe', data['ver']+'-UPDATE.exe',game)
                 else:
-                    http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-'+platform.system(), data['ver']+'-UPDATE.exe',game)
+                    http.download('https://github.com/jackthehack21/NodeLife/releases/download/'+data['ver']+'/NodeLife-'+platform.system(), data['ver']+'-UPDATE',game)
             game.logger.log('Update downloaded to the same directory as current file !...\n',1)
             time.sleep(5)
             input('Press enter to exit !')

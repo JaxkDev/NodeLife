@@ -61,6 +61,7 @@ def post(url, data, game):
 def download(url, path, game):
     try:
         request.urlretrieve(url, path)
+        return 0
     except error.HTTPError:
         game.logger.log('Failed to download.',3)
-    return
+        return 1

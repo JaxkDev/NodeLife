@@ -41,19 +41,15 @@ def save(userData, levelPart, game):
 
 
 def c(userData, game):
-    save(userData,"c",game)
+    return
+
+def b(userData, game):
+    save(userData,"b",game)
     game.logger.log("Im back !",5)
     time.sleep(0.5)
     game.logger.log('You would not believe the dreams i had !',5)
     time.sleep(0.5)
     return
-
-def b(userData, game):
-    #Need to find a better way of doing this, this is not effective.
-    game.logger.log("TIME CHECK HERE",2)
-    if(not game.travis):
-        input("Press enter to exit")
-    c(userData, game)
 
 def a(userData, game):
     save(userData,"a",game)
@@ -78,9 +74,9 @@ def a(userData, game):
         time.sleep(1)
         game.logger.log('Oh thank god, I wasnt sure if the communication system survived, thought the whole system was fried !\n',5)
     else:
-        game.logger.log('Im back, anything new ?',8)
+        game.logger.log('Im back, anything new ?\n',8)
         time.sleep(1)
-        game.logger.log('Im glad your back, seriously i thought all the systems were toast !',5)
+        game.logger.log('Im glad your back, seriously i thought all the systems were toast !\n',5)
     time.sleep(1)
     while(True):
         game.logger.log('\nOption A:  Wait, Systems were almost gone ?\nOption B:  What happened while i was gone ???\n', 6)
@@ -120,7 +116,13 @@ def exec(game):
         game.logger.log('Corrupt Data found, please delete the data/user folder.',3)
         input('Press enter to exit.')
         sys.exit(1)
-    a(userData, game)
+    game.logger.log('Loading Stage...',0)
+    if(userData['levelPart'] == 'a'):
+        a(userData, game)
+    elif(userData['levelPart'] == 'b'):
+        b(userData, game)
+    elif(userData['levelPart'] == 'c'):
+        c(userData, game)
     game.logger.log('Saving game...',1)
     userData['lastPlayed'] = int(round(time.time()))
     userData['level'] = 3

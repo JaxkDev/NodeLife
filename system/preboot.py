@@ -92,7 +92,8 @@ def resources(game):
         del url[-1]
         url = '/'.join(url)
         game.logger.log('Getting resource at '+url+'/'+file,0)
-        getResources.get(game,file,url,'config.txt')
+        if(getResources.get(game,file,url,'config.txt') != 0):
+            game.logger.log("Failed to get resources, please check your connection or try again later",3)
 
     try:
         f = open('data/resources/MainLoop.mp3','r')
@@ -119,6 +120,8 @@ def resources(game):
         url = '/'.join(url)
         game.logger.log('Getting resource at '+url+'/'+file,0)
         game.logger.log('Getting resource meta file as well.',0)
-        getResources.get(game,file,url,'MainLoop.mp3')
-        getResources.get(game,"MainLoop.meta",customName='MainLoop.meta')
+        if(getResources.get(game,file,url,'MainLoop.mp3') == 1):
+            game.logger.log("Failed to get resources, please check your connection or try again later",3)
+        if(getResources.get(game,"MainLoop.meta",customName='MainLoop.meta') == 1):
+            game.logger.log("Failed to get resources, please check your connection or try again later",3)
     return

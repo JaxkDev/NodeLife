@@ -40,7 +40,8 @@ def exec(data,game):
     log = logFile.read()
     postData = {
         "log": log,
-        "msg": data,
+        "msg": data[0],
+        "contact": data[1],
         "ver": game.build.build(),
         "sys": platform.uname()
     }

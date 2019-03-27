@@ -82,7 +82,7 @@ def b(userData, game):
     else:
         game.logger.log('\'Floating\' ?\n',8)
         time.sleep(0.5)
-        game.logger.log('Oops forgot to mention im in outer space in the crystal...', 5)
+        game.logger.log('Oops forgot to mention im in outer space in the crystal...\n', 5)
         #whats the crystal ?, what happened ?
         while(True):
             game.logger.log('\nOption A:  Whats the crystal ?\nOption B:  What happened?\n', 6)

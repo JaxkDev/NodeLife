@@ -41,6 +41,14 @@ data = {
     "9": "Other" #dont log
 }
 
+speeds = {
+    "veryslow": 0.2,
+    "slow": 0.14,
+    "normal": 0.09,
+    "fast": 0.05,
+    "insane": 0.01
+}
+
 from time import gmtime, strftime
 def getTime():
     return strftime("%H:%M:%S", gmtime())
@@ -69,45 +77,45 @@ def logMsg(msg, game, lvl = 5):
     if(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
         sys.stdout.write('\033[97m')
-        if(OS != "windows"):
-            sys.stdout.write(msg)
-        else:
+        if(cfg.get("Graphics","slow_text").lower() == "yes"):
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(0.09)
+                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+        else:
+            sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 5): 
         #In-Game message
         sys.stdout.write('\033[36m')
         if(msg[0] != '['): #hacky fix for starting of game where it is [??]
             msg='['+other_name+'] : '+msg
-        if(OS != "windows"):
-            sys.stdout.write(msg)
-        else:
+        if(cfg.get("Graphics","slow_text").lower() == "yes"):
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(0.09)
+                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+        else:
+            sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 6): 
         #In-Game question
         sys.stdout.write('\033[32m[RESPOND] : ')
-        if(OS != "windows"):
-            sys.stdout.write(msg)
-        else:
+        if(cfg.get("Graphics","slow_text").lower() == "yes"):
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(0.09)
+                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+        else:
+            sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 8):
         #USER RESPONSE
         sys.stdout.write('\033[91m')
         msg = '['+user_name+'] : '+msg
-        if(OS != "windows"):
-            sys.stdout.write(msg)
-        else:
+        if(cfg.get("Graphics","slow_text").lower() == "yes"):
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(0.09)
+                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+        else:
+            sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
     elif(lvl == 9): 
         #Other
