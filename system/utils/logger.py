@@ -76,6 +76,7 @@ def logMsg(msg, game, lvl = 5):
     other_name = cfg.get('General','otherName')
     if(lvl == 4): 
         #In-Game Notification (e.g. system, asleep etc)
+        msg = msg.replace("{NAME}",other_name)
         sys.stdout.write('\033[97m')
         if(cfg.get("Graphics","slow_text").lower() == "yes"):
             for i in msg:

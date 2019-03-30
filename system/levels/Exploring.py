@@ -100,6 +100,9 @@ def a(userData, game):
     game.logger.log('FYI ive been awake for 30hours straight now and need to get some rest, i\'ll see you soon !\n',5)
     #WAIT 12 HOURS
     time.sleep(0.5)
+
+    game.logger.log("-- {NAME} Is now resting, please come back in 12H --\n",4)
+        
     #12 hours sleep. (60secs*60min*12hours)
     userData['timeCheck'] = int(round(time.time()))+60#(60*(60*12)) #used to check time difference for sleeping.
     save(userData,"b",game)
@@ -117,7 +120,7 @@ def exec(game):
         input('Press enter to exit.')
         sys.exit(1)
     game.logger.log('Loading Stage...',0)
-    if(userData['levelPart'] == 'a'):
+    if(userData['levelPart'] == 'a' or userData['levelPart'] == '-'):
         a(userData, game)
     elif(userData['levelPart'] == 'b'):
         b(userData, game)

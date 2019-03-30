@@ -112,4 +112,4 @@ class manager:
                             i2 += 1
                             i += 1
                     except IndexError:
-                        self.game.logger.log('[ThreadMgr] : Error Occured (Index error L100 in threadmgr)',3)
+                        self.game.logger.log('[ThreadMgr] : Error Occured (Index error L107 in threadmgr)',3)
