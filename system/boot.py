@@ -11,7 +11,7 @@
 # @author Jackthehack21 <gangnam253@gmail.com | Jackthehaxk21#8860>
 #
 # A small text based game helping a person in distress out in space...
-# Copyright (C) 2018 Jackthehack21
+# Copyright (C) 2019 Jackthehack21
 
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 

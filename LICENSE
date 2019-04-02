@@ -633,7 +633,7 @@ the "copyright" line and a pointer to where the full notice is found.
 
     NodeLife: Will you survive ?
     A small text based game helping a person in distress out in space...
-    Copyright (C) 2018 Jackthehack21
+    Copyright (C) 2019 Jackthehack21
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -653,7 +653,7 @@ Also add information on how to contact you by electronic and paper mail.
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    NodeLife: Will you survive ?  Copyright (C) 2018  Jackthehack21
+    NodeLife: Will you survive ?  Copyright (C) 2019  Jackthehack21
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.

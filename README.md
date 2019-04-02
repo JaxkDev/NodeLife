@@ -42,7 +42,7 @@ You may request to see a list of all details our servers hold by emailing me at 
 For any other queries you should contact me at
 gangnam253@gmail.com = Mail
 Jackthehaxk21#8860   = Discord
-+44 7967844058       = Mobile
+JaxkDev              = Twitter
 
 # LICENSE
 
@@ -50,9 +50,10 @@ Jackthehaxk21#8860   = Discord
 Contact Details:
   Jackthehack21 <gangnam253@gmail.com - Email>
   <Jackthehaxk21#8860 - Discord>
+  <@JaxkDev - Twitter>
 
 A small text based game helping a person in distress out in space...
-Copyright (C) 2018 Jackthehack21
+Copyright (C) 2019 Jackthehack21
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 
