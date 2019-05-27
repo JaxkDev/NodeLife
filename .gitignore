@@ -6,7 +6,9 @@ notes/*
 issues/*
 dist/*
 build/*
+.vscode/*
 
+*.pyc
 *.pyo
 *.cpython-34.pyc
 *.cpython-36.pyc

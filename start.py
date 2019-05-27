@@ -34,9 +34,12 @@ from traceback import format_exception
 init() #ENABLES COLOUR (WRAPS STDOUT & ERR) for windows 10.
 
 tested_OS = ['darwin','linux','windows']
-tested_ARM = ['amd64', 'x64', 'x86_64']
+tested_ARM = ['amd64', 'x64', 'x86_64','armv7l']
 
 def excepthook(type_, value, traceback):
+    if(type_.__name__ == "KeyboardInterrupt"):
+        game.logger.log("KeyboardInterrupt caught, exiting with status code 1",2)
+        sys.exit(1)
     game.logger.log(''.join(format_exception(type_, value, traceback)),2)
     error = format_exception(type_, value, traceback)
     if(not game.travis):
@@ -49,11 +52,7 @@ game = gameObject.game(False)
 
 game.logger.log('Booted on '+time.asctime(), 0)
 
-try:
-    sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win except travis
-    game.logger.log('Updated screen title',0)
-except Exception:
-    game.logger.log('Unable to set title',0) #Please open issue if you get this !
+sys.stdout.write("\x1b]2;NodeLife: Will you survive ?\x07") # <-- works on all 3 osx,linux,win except travis
 game.logger.log('Checking deployment type...',0)
 if(not game.build.release()):
     game.logger.log('Your running a development build, instead of a release please be aware this build has issues and if you dont know why your seeing this get a release from\nhttps://github.com/Jackthehack21/NodeLife/releases\n', 2)
