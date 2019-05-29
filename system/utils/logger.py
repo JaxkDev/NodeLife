@@ -26,7 +26,12 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-import sys, os, time, platform
+import os
+import platform
+import sys
+import time
+from time import gmtime, strftime
+
 from system.network import postError
 
 OS = platform.uname().system.lower()
@@ -36,12 +41,12 @@ data = {
     "1": "Log",
     "2": "Warning",
     "3": "Error",
-    "4": "In-Game Notification", #dont log
-    "5": "In-Game Message", #dont log
-    "6": "In-Game Question", #dont log
-    #7 UI (dont log)
-    "8": "User Response", #dont log
-    "9": "Other" #dont log
+    "4": "In-Game Notification",  # dont log
+    "5": "In-Game Message",  # dont log
+    "6": "In-Game Question",  # dont log
+    # 7 UI (dont log)
+    "8": "User Response",  # dont log
+    "9": "Other"  # dont log
 }
 
 speeds = {
@@ -52,80 +57,82 @@ speeds = {
     "insane": 0.01
 }
 
-from time import gmtime, strftime
-def getTime():
+
+def gettime():
     return strftime("%H:%M:%S", gmtime())
 
-def logMsg(msg, game, lvl = 5):
-    if(lvl < 4):
+
+def logmsg(msg, game, lvl=5):
+    if lvl < 4:
         sav(msg, lvl)
-    if(lvl == 0):
+    if lvl == 0:
         return
-    elif(lvl == 1):
-        #log/output
+    elif lvl == 1:
+        # log/output
         sys.stdout.write(msg+'\n')
         return
-    elif(lvl == 2):
-        #warning
+    elif lvl == 2:
+        # warning
         sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
         return
-    elif(lvl == 3):
-        #error
-        postError.exec(msg,game)
+    elif lvl == 3:
+        # error
+        postError.exec(msg, game)
         sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
         return
     cfg = game.config.get()
-    user_name = cfg.get('General','userName')
-    other_name = cfg.get('General','otherName')
-    if(lvl == 4): 
-        #In-Game Notification (e.g. system, asleep etc)
-        msg = msg.replace("{NAME}",other_name)
+    user_name = cfg.get('General', 'userName')
+    other_name = cfg.get('General', 'otherName')
+    if lvl == 4:
+        # In-Game Notification (e.g. system, asleep etc)
+        msg = msg.replace("{NAME}", other_name)
         sys.stdout.write('\033[97m')
-        if(cfg.get("Graphics","slow_text").lower() == "yes"):
+        if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+                time.sleep(speeds[cfg.get("Graphics", "slow_text_speed").lower()])
         else:
             sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
-    elif(lvl == 5): 
-        #In-Game message
+    elif lvl == 5:
+        # In-Game message
         sys.stdout.write('\033[36m')
-        if(msg[0] != '['): #hacky fix for starting of game where it is [??]
-            msg='['+other_name+'] : '+msg
-        if(cfg.get("Graphics","slow_text").lower() == "yes"):
+        if msg[0] != '[':  # hacky fix for starting of game where it is [??]
+            msg = '['+other_name+'] : '+msg
+        if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+                time.sleep(speeds[cfg.get("Graphics", "slow_text_speed").lower()])
         else:
             sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
-    elif(lvl == 6): 
-        #In-Game question
+    elif lvl == 6:
+        # In-Game question
         sys.stdout.write('\033[32m[RESPOND] : ')
-        if(cfg.get("Graphics","slow_text").lower() == "yes"):
+        if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+                time.sleep(speeds[cfg.get("Graphics", "slow_text_speed").lower()])
         else:
             sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
-    elif(lvl == 8):
-        #USER RESPONSE
+    elif lvl == 8:
+        # USER RESPONSE
         sys.stdout.write('\033[91m')
         msg = '['+user_name+'] : '+msg
-        if(cfg.get("Graphics","slow_text").lower() == "yes"):
+        if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
-                time.sleep(speeds[cfg.get("Graphics","slow_text_speed").lower()])
+                time.sleep(speeds[cfg.get("Graphics", "slow_text_speed").lower()])
         else:
             sys.stdout.write(msg)
         sys.stdout.write('\033[39m\n')
-    elif(lvl == 9): 
-        #Other
+    elif lvl == 9:
+        # Other
         sys.stdout.write(msg+'\n')
 
     return
+
 
 def sav(msg, lvl):
     if not os.path.exists('data'):
@@ -134,12 +141,13 @@ def sav(msg, lvl):
     elif not os.path.exists('data/logs'):
         os.makedirs('data/logs')
     f = open('data/logs/log.txt', 'a')
-    f.write('['+getTime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n',' ')+'\n')
+    f.write('['+gettime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n', ' ')+'\n')
     f.close()
 
-class logger:
+
+class Logger:
     def __init__(self, game):
         self.game = game
     
-    def log(self,msg,lvl):
-        logMsg(msg,self.game,lvl)
+    def log(self, msg, lvl):
+        logmsg(msg, self.game, lvl)

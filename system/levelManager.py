@@ -26,12 +26,13 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-import os, sys, time, importlib
+import importlib
 
-class manager:
+
+class Manager:
     def __init__(self, game):
         self.game = game
-        self.ver = 100 #Must Match Level MetaData (plugins in future 0.2)
+        self.ver = 100  # Must Match Level MetaData (plugins in future 0.2)
 
         self.prefix = 'system.levels.'
         self.levels = {
@@ -40,32 +41,32 @@ class manager:
             '2': 'Exploring'
         }
 
-    def getLevel(self, path):
+    def getlevel(self, path):
         try:
             return importlib.import_module(path)
         except ImportError:
-            self.game.logger.log('[Level Manager] : Failed to import path: '+path,3)
+            self.game.logger.log('[Level Manager] : Failed to import path: '+path, 3)
         return None
 
-    def getLevelByCode(self, code):
-        if(len(self.levels) > int(code)):
-            return self.getLevel(self.prefix+self.levels[code])
+    def getlevelbycode(self, code):
+        if len(self.levels) > int(code):
+            return self.getlevel(self.prefix+self.levels[code])
         else:
             return None
 
-    def getLevelByName(self, Name):
+    def getlevelbyname(self, name):
         for i in range(len(self.levels)):
-            if(self.levels[str(i)].lower() == Name.lower()):
-                return self.getLevel(self.prefix+self.levels[i])
+            if self.levels[str(i)].lower() == name.lower():
+                return self.getlevel(self.prefix+self.levels[str(i)])
         return None
 
-    def runLevel(self, lvl):
-        level = self.getLevelByName(lvl)
-        if(level == None):
-            level = self.getLevelByCode(lvl)
-        if(level == None):
-            self.game.logger.log('[Level Manager] : Failed to import and run level: '+lvl,3)
+    def runlevel(self, lvl):
+        level = self.getlevelbyname(lvl)
+        if level is None:
+            level = self.getlevelbycode(lvl)
+        if level is None:
+            self.game.logger.log('[Level Manager] : Failed to import and run level: '+lvl, 3)
             return False
-        #Check level metadata with self.ver and self.game.ver
+        # Check level metadata with self.ver and self.game.ver
         level.exec(self.game)
         return True

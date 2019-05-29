@@ -29,15 +29,18 @@
 import os
 from configparser import ConfigParser
 
-def checkDir():
+
+def checkdir():
     if not os.path.exists('data'):
         os.makedirs('data')
         os.makedirs('data/resources')
 
+
 def get():
-    checkDir()
+    checkdir()
+    # noinspection PyBroadException
     try:
-        f = open('data/config.txt','r')
+        f = open('data/config.txt', 'r')
         f.close()
     except Exception:
         from shutil import copy2
@@ -46,8 +49,9 @@ def get():
     parser.read('data/config.txt')
     return parser
 
+
 def set(data):
-    checkDir()
-    f = open('data/config.txt','w')
+    checkdir()
+    f = open('data/config.txt', 'w')
     data.write(f)
     f.close()

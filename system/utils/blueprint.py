@@ -26,17 +26,20 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-#pylint: disable=W0101
+# pylint: disable=W0101
 # For now as i return and have code after it
 
+
 def spawn():
-    #guess i could add 2.x support here...
+    # guess i could add 2.x support here...
     try:
         import tkinter as tk
     except ImportError:
         import Tkinter as tk
 
-    import random, sys, os
+    import random
+    import sys
+    import os
     from tkinter import messagebox
     script_dir = sys.path[0]
     img_path = os.path.join(script_dir, '../resources/map.png')
@@ -44,15 +47,17 @@ def spawn():
 
     root = tk.Tk()
     root.resizable(False, False)
+    # noinspection PyProtectedMember
     root.tk.call('wm', 'iconphoto', root._w, tk.PhotoImage(file=ico_path))
-    root.title('Transmission_ID:'+str(random.randint(9999,99999)))
+    root.title('Transmission_ID:'+str(random.randint(9999, 99999)))
     widget = tk.Label(root, compound='top')
     widget.lenna_image_png = tk.PhotoImage(file=img_path)
     widget['text'] = "Crystal Blueprints"
     widget['image'] = widget.lenna_image_png
     widget.pack()
+
     def on_closing():
-        if(messagebox.askokcancel("Exit", "Do you want to close this transmission?")):
+        if messagebox.askokcancel("Exit", "Do you want to close this transmission?"):
             root.destroy()
 
     root.protocol("WM_DELETE_WINDOW", on_closing)

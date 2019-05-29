@@ -26,51 +26,53 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-import time, sys, datetime
+import datetime
+import sys
+import time
+
 
 def run(game):
     time.sleep(1)
-    game.logger.log('Game Details:',0)
-    game.logger.log('v'+game.build.ver(),0)
-    game.logger.log('build-'+game.build.build(),0)
+    game.logger.log('Game Details:', 0)
+    game.logger.log('v'+game.build.ver(), 0)
+    game.logger.log('build-'+game.build.build(), 0)
     sys.stdout.write('---Game info---\n')
     sys.stdout.write('Version - v'+game.build.ver()+'\n')
     sys.stdout.write('Build   - '+game.build.build()+'\n')
     sys.stdout.write('---------------\n')
     time.sleep(2)
-    if(game.travis):
-        game.logger.log('Skipped save check.',0)
-        game.logger.log('Travis Mode Enabled',2)
-        game.levelManager.runLevel('0')
+    if game.travis:
+        game.logger.log('Skipped save check.', 0)
+        game.logger.log('Travis Mode Enabled', 2)
+        game.levelManager.runlevel('0')
         return
-    game.logger.log('Checking for saves',0)
+    game.logger.log('Checking for saves', 0)
     print('\x1b[2J')
-    userData = game.userdata.get()
-    if(userData):
-        game.logger.log('Save found !',0)
-        #Check for time delay (Sleeping, walking etc)
-        if 'timeCheck' in userData:
-            game.logger.log("Found TimeCheck active: "+str(userData['timeCheck']),0)
-            if(userData['timeCheck'] > time.time()):
-                #Still away.
+    userdata = game.userdata.get()
+    if userdata:
+        game.logger.log('Save found !', 0)
+        # Check for time delay (Sleeping, walking etc)
+        if 'timeCheck' in userdata:
+            game.logger.log("Found TimeCheck active: "+str(userdata['timeCheck']), 0)
+            if userdata['timeCheck'] > time.time():
+                # Still away.
                 cfg = game.config.get()
-                other_name = cfg.get('General','otherName')
-                del cfg #no conflicts.
-                tmp = datetime.timedelta(seconds=userData['timeCheck']-int(time.time()))
-                #datetime.timedelta(0, 65)
-                timeLeft = str(tmp)
-                del tmp #no conflicts
-                game.logger.log(other_name+" is still away, please come back in "+timeLeft+" (HH:MM:SS)",1)
+                other_name = cfg.get('General', 'otherName')
+                del cfg  # no conflicts.
+                tmp = datetime.timedelta(seconds=userdata['timeCheck']-int(time.time()))
+                # datetime.timedelta(0, 65)
+                timeleft = str(tmp)
+                del tmp  # no conflicts
+                game.logger.log(other_name+" is still away, please come back in "+timeleft+" (HH:MM:SS)", 1)
                 input('Press enter to exit !')
                 return
             else:
-                del userData['timeCheck']
-                game.logger.log("Deleted timeCheck, time is valid.",0)
-        if(int(userData['level']) < len(game.levelManager.levels)):
-            game.levelManager.runLevel(str(userData['level']))
+                del userdata['timeCheck']
+                game.logger.log("Deleted timeCheck, time is valid.", 0)
+        if int(userdata['level']) < len(game.levelManager.levels):
+            game.levelManager.runlevel(str(userdata['level']))
     else:
         game.logger.log('No saves found.', 0)
-        game.levelManager.runLevel('0')
-    game.logger.log('More chapters coming soon !',1)
+        game.levelManager.runlevel('0')
+    game.logger.log('More chapters coming soon !', 1)
     input('Press enter to exit !')
-    return

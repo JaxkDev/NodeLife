@@ -64,3 +64,5 @@ Num.  | (r & d) |
  0141 | v0.0.6d | Added time check (User is now forced to wait) updated resources ready for sounds, fixed many bugs.
 -----------------------------------
  0148 | v0.0.6d | Pylint fixes, HTTP Download bar !!, ctrl+C exit cleaner.
+-----------------------------------
+ 0149 | v0.0.6d | Housecleaning, v0.0.6 release soon.

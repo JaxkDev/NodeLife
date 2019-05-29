@@ -26,31 +26,34 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-from system.network import http
-from urllib import request, error
-import json, time, platform
+import platform
+import time
 
-def exec(data,game):
+from system.network import http
+
+
+def exec(data, game):
     try:
-        if(not game.config.get().getboolean('Network','upload_error')):
-            game.logger.log('PostError disabled',1)
+        if not game.config.get().getboolean('Network', 'upload_error'):
+            game.logger.log('PostError disabled', 1)
             return
     except FileNotFoundError:
         return
-    game.logger.log('postError Started !',0)
-    time.sleep(1) #Allow logger to close file
-    logFile = open('data/logs/log.txt','r')
-    log = logFile.read()
-    postData = {
+    game.logger.log('postError Started !', 0)
+    time.sleep(1)  # Allow logger to close file
+    logfile = open('data/logs/log.txt', 'r')
+    log = logfile.read()
+    postdata = {
         "log": log,
         "msg": data[0],
         "contact": data[1],
         "ver": game.build.build(),
         "sys": platform.uname()
     }
-    if(http.valid_connection()):
-        r = http.post(game.config.get().get('Network','upload_error_url'),postData,game)
+    if http.valid_connection():
+        r = http.post(game.config.get().get('Network', 'upload_error_url'), postdata, game)
     else:
-        game.logger.log('No connection unable to post error data',2)
+        game.logger.log('No connection unable to post error data', 2)
+        return False
         
     return r.status == '200'

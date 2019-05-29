@@ -26,44 +26,46 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-import os, sys, json, getpass
-import system.utils.secure as sec
+import getpass
+import json
+import os
 
-def getLoginName():
-	return os.environ['SUDO_USER'] if 'SUDO_USER' in os.environ else getpass.getuser()
+
+def getloginname():
+    return os.environ['SUDO_USER'] if 'SUDO_USER' in os.environ else getpass.getuser()
+
 
 def get():
-    #Get user data
-    if(not os.path.exists('data/')):
+    # Get user data
+    if not os.path.exists('data/'):
         os.mkdir('data')
         return {}
-    if(not os.path.exists('data/user/')):
+    if not os.path.exists('data/user/'):
         os.mkdir('data/user')
         return {}
-    if(not os.path.isfile('data/user/data.secure')):
+    if not os.path.isfile('data/user/data.secure'):
         return {}
     
     f = open('data/user/data.secure', 'r')
-
-    #print("")
-    #print(sec.getKey())
-    #print("")
-    #decode data (f.read())
-    data = json.loads(f.read()) #do json after decode when implemented
+    # print("")
+    # print(sec.getKey())
+    # print("")
+    # decode data (f.read())
+    data = json.loads(f.read())  # do json after decode when implemented
     f.close()
     return data
 
+
 def set(data, game):
-    #Set user data
-    game.logger.log('Started save user data thread',0)
-    if(not os.path.exists('data/')):
+    # Set user data
+    game.logger.log('Started save user data thread', 0)
+    if not os.path.exists('data/'):
         os.mkdir('data')
-    if(not os.path.exists('data/user/')):
+    if not os.path.exists('data/user/'):
         os.mkdir('data/user')
-    #encode data
+    # encode data
     f = open('data/user/data.secure', 'w')
-    f.write(json.dumps(data)) #do json before encode when implemented
+    f.write(json.dumps(data))  # do json before encode when implemented
     f.close()
-    #TODO: Add X backups (X in config)
-    game.logger.log('Completed save user data thread',0)
-    return
+    # TODO: Add X backups (X in config)
+    game.logger.log('Completed save user data thread', 0)

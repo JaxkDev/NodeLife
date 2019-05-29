@@ -23,4 +23,5 @@
 # along with this program.  
 # If not, see https://www.gnu.org/licenses/
 
+# noinspection PyUnresolvedReferences
 import system.tests.run as runpython

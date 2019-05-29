@@ -28,25 +28,32 @@
 
 import sys
 
+
 def http():
-    return '006_dev' #_rel/_dev
+    return '006_dev'
+
 
 def ver():
     return '0.0.6'
 
-def cfgVer():
+
+def cfgver():
     return '2'
 
-def build():
-    return '0148'
 
-def codeName():
+def build():
+    return '0149'
+
+
+def codename():
     return 'AQUA'
+
 
 def release():
     return False
 
+
 def bundled():
-    if (getattr(sys, 'frozen', False) and (sys.argv[0] == sys.executable)):
+    if getattr(sys, 'frozen', False) and sys.argv[0] == sys.executable:
         return True
     return False

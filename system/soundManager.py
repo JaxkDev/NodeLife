@@ -28,9 +28,8 @@
 
 import time
 
-from system.utils import sound
 
-class manager:
+class Manager:
     def __init__(self, game):
         self.game = game
         
@@ -38,25 +37,23 @@ class manager:
         
         self._active = list()
 
-        self.game.logger.log('[SoundMgr] : Handler Starting...',0)
+        self.game.logger.log('[SoundMgr] : Handler Starting...', 0)
         self.game.threadManager.add(self.handler, (), "SoundManager")
 
-    def add(self, soundName, loop=1): #SoundName to be exact in data/resource and loop is default 1
+    def add(self, soundname, loop=1):  # SoundName to be exact in data/resource and loop is default 1
         self._list.append({
-            'file': 'data/resources/'+soundName+'.mp3',
-            'meta': 'data/resources/'+soundName+'.meta',
+            'file': 'data/resources/'+soundname+'.mp3',
+            'meta': 'data/resources/'+soundname+'.meta',
             'loop': loop
         })
-
 
         #
         # Note:
         #
         # Possibly may have to add amount of seconds/milliseconds it runs for for the loop to work...
         # EDIT: Added .meta files to hold length time.
-        
+
     def handler(self):
-        self.game.logger.log('[SoundMgr] : Handler Started.',0)
-        while(True):
-            time.sleep(0.2) #Todo config
-            
+        self.game.logger.log('[SoundMgr] : Handler Started.', 0)
+        while True:
+            time.sleep(0.2)  # Todo config

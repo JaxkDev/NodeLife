@@ -26,24 +26,31 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
+import math
+import sys
 from urllib import request, error, parse
-import sys, math
+
+# noinspection PyBroadException
 try:
+    # noinspection PyUnresolvedReferences
     import httplib
 except:
     import http.client as httplib
 
-def progressBar(chunk, chunk_size, total_size):
-    percent = math.floor((100/total_size)*(chunk_size*chunk)) # note it may go above 100 for last chunk.
-    if(percent > 100):
+
+def progressbar(chunk, chunk_size, total_size):
+    percent = math.floor((100/total_size)*(chunk_size*chunk))  # note it may go above 100 for last chunk.
+    if percent > 100:
         percent = 100
     bars = ("█"*math.floor(percent/5))+(" "*(20-math.floor(percent/5)))
     sys.stdout.write("\r")
-    sys.stdout.write("[%s] %d/100 Downloading..." % (bars,percent))
-    #sys.stdout.flush()
+    sys.stdout.write("[%s] %d/100 Downloading..." % (bars, percent))
+    # sys.stdout.flush()
+
 
 def valid_connection():
     conn = httplib.HTTPConnection("www.google.com", timeout=5)
+    # noinspection PyBroadException
     try:
         conn.request("HEAD", "/")
         conn.close()
@@ -52,6 +59,7 @@ def valid_connection():
         conn.close()
         return False
 
+
 def get(url, game):
     try:
         resp = request.urlopen(url)
@@ -59,7 +67,8 @@ def get(url, game):
         game.logger.log('HTTP GET request to \''+url+'\' returned a error or crashed.', 3)
         resp = False
     return resp
-    
+
+
 def post(url, data, game):
     data = parse.urlencode(data).encode()
     req = request.Request(url, data=data)
@@ -70,14 +79,15 @@ def post(url, data, game):
         resp = False
     return resp
 
-def download(url, path, game, progress = True):
+
+def download(url, path, game, progress=True):
     try:
-        if(progress):
-            request.urlretrieve(url, path, progressBar)
+        if progress:
+            request.urlretrieve(url, path, progressbar)
             print("Done")
         else:
             request.urlretrieve(url, path)
         return 0
     except error.HTTPError:
-        game.logger.log('Failed to download.',3)
+        game.logger.log('Failed to download.', 3)
         return 1

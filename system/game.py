@@ -26,12 +26,13 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-from system.utils import logger, config, userdata
-from system import ver
-from system import levelManager as lvl
-from system import threadingManager as thrd
-from system import soundManager as snd
 import platform
+
+from system import levelManager as lvlMgr
+from system import threadingManager as thrdMgr
+from system import ver
+from system.utils import logger, config, userdata
+
 
 #
 # Right lets sort this out.
@@ -42,21 +43,22 @@ import platform
 # - Logger
 # - UserData
 # - threading manager (coming soon)
-# - level managaer (coming soon)
+# - level manager (coming soon)
 
-class game:
+
+class Game:
 
     # Initializer / Instance Attributes
-    def __init__(self, Travis):
-        self.travis = Travis
-        self.logger = logger.logger(self)
+    def __init__(self, travis):
+        self.travis = travis
+        self.logger = logger.Logger(self)
         self.config = config
         self.userdata = userdata
         self.build = ver
         self.os = platform.uname()
-        self.levelManager = lvl.manager(self)
-        #self.resourceManager (overwrite current preboot)
-        self.threadManager = thrd.manager(self)
+        self.levelManager = lvlMgr.Manager(self)
+        # self.resourceManager (overwrite current preboot)
+        self.threadManager = thrdMgr.Manager(self)
         # to stop threads being used up for now:
         # self.soundManager = snd.manager(self)
-        #SFS (Simple File System) (after 1.0)
+        # SFS (Simple File System) (after 1.0)

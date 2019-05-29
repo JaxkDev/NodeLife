@@ -26,48 +26,52 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
+import json
+import time
+
 from system.network import http
-import json, time
+
 
 def check(game):
-    if(not http.valid_connection()):
-        game.logger.log('Failed to retrieve notices, Please check you have a internet connection and is working !',2)
+    if not http.valid_connection():
+        game.logger.log('Failed to retrieve notices, Please check you have a internet connection and is working !', 2)
         return
-    r = http.get(game.config.get().get('Network','notice_url')+'?app='+game.build.http(),game)
-    if(r == False):
+    r = http.get(game.config.get().get('Network', 'notice_url')+'?app='+game.build.http(), game)
+    if not r:
         return
-    if(r.status != 200):
-        game.logger.log('Failed to retrieve notices, error code: '+r.status+' Please create a issue on our github <https://github.com/Jackthehack21/NodeLife/issues>', 2)
+    if r.status != 200:
+        game.logger.log('Failed to retrieve notices, error code: '+r.status+'Please create a issue on our github '
+                        '<https://github.com/Jackthehack21/NodeLife/issues>', 2)
         return
     game.logger.log('Successfully Got Latest Notices !', 0)
     new = json.loads(r.read().decode("utf-8"))
-    f = open('./data/notices.dat','a')
+    f = open('./data/notices.dat', 'a')
     f.close()
-    f = open('./data/notices.dat','r')
+    f = open('./data/notices.dat', 'r')
     old = f.read()
     f.close()
-    if(old == ''):
+    if old == '':
         old = {
             "latest": "0000"
         }
-        f = open('./data/notices.dat','w')
+        f = open('./data/notices.dat', 'w')
         f.write(json.dumps(old))
         f.close()
     else:
         old = json.loads(old)
-    if(old['latest'] == new['latest']):
-        game.logger.log('No new notices.',0)
+    if old['latest'] == new['latest']:
+        game.logger.log('No new notices.', 0)
         return
     else:
-        while(int(old['latest']) < int(new['latest'])):
+        while int(old['latest']) < int(new['latest']):
             old['latest'] = int(old['latest'])+1
             print('')
             print('Notice '+str(old['latest'])+': '+str(new[str(old['latest'])]))
             print('')
         time.sleep(3)
-    f = open('./data/notices.dat','w')
+    f = open('./data/notices.dat', 'w')
     f.write(json.dumps(new))
     f.close()
-    if(not game.travis):
+    if not game.travis:
         input('Press enter to continue...')
     return

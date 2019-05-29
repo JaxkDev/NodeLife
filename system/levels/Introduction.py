@@ -29,54 +29,63 @@
 # CHAPTER 0 - Introduction
 # THE USER WILL LEARN WHAT THIS GAME IS.
 
-#pylint: disable=W0612
-#Stupid rule
+# pylint: disable=W0612
+# Stupid rule
 
-import sys, time, random, os, platform
+import platform
+import sys
+import time
+
 
 def slow(txt, delay):
-    if(platform.uname().system.lower() != "windows"):
+    if platform.uname().system.lower() != "windows":
         sys.stdout.write(txt)
         return
     for i in txt:
-        sys.stdout.write(i) #todo config
+        sys.stdout.write(i)  # todo config
         time.sleep(delay)
 
-def a(user, game):
+
+def a(game):
     slow('Hi there !', 0.05)
     sys.stdout.write('\n\n')
     time.sleep(0.5)
     slow('This game was made possible by me Jack Honour (aka Jackthehack)', 0.1)
     sys.stdout.write('\n')
-    slow('this was originally made for educational purposes but was soon developed further and is now a on going project, Originally started in JavaScript it is now all in pure python', 0.1)
+    slow('this was originally made for educational purposes but was soon developed further and is now a on going '
+         'project, Originally started in JavaScript it is now all in pure python', 0.1)
     sys.stdout.write('\n')
-    slow('it is fully open-source (github.com/Jackthehack21/NodeLife) and does accept PR\'s and feature requests',0.1)
+    slow('it is fully open-source (github.com/Jackthehack21/NodeLife) and does accept PR\'s and feature requests', 0.1)
     sys.stdout.write('\n')
-    slow('If you want to see something in the game create a issue and choose feature request template, or if your not on github im on Discord ! (Jackthehaxk21#8860)',0.1)
+    slow('If you want to see something in the game create a issue and choose feature request template, or if your not '
+         'on github im on Discord ! (Jackthehaxk21#8860)', 0.1)
     sys.stdout.write('\n')
     sys.stdout.write('\n\n\n\033[32mAbout the Game:\033[39m\n')
-    slow('You are a communication expert working in NASA\'s HQ, one day while eating doughnuts you recieve a transmission from coordinates not located on earth, but somewhere out there in space.',0.1)
+    slow('You are a communication expert working in NASA\'s HQ, one day while eating doughnuts you receive a '
+         'transmission from coordinates not located on earth, but somewhere out there in space.', 0.1)
     sys.stdout.write('\n')
-    slow('you begin talking to this person on the other end and guide them to safety, can you help him survive !?...',0.1)
+    slow('you begin talking to this person on the other end and guide them to safety, '
+         'can you help him survive !?...', 0.1)
     sys.stdout.write('\n\n')
     time.sleep(10)
-    if(not game.travis):
+    if not game.travis:
         input('Press enter to start the game !')
 
+
 def exec(game):
-    userData = game.userdata.get()
-    if(userData != {}):
-        game.logger.log('Corrupt Data found, please delete the data/user folder.',3)
-        if(not game.travis):
+    userdata = game.userdata.get()
+    if userdata != {}:
+        game.logger.log('Corrupt Data found, please delete the data/user folder.', 3)
+        if not game.travis:
             input('Press enter to continue...')
         sys.exit(1)
-    a(userData, game)
-    game.logger.log('Saving game...\n',1)
-    userData['lastPlayed'] = int(round(time.time()))
-    userData['level'] = 1
-    userData['levelPart'] = '-'
-    game.logger.log('Init save...',0)
-    game.threadManager.add(game.userdata.set, (userData, game,))
+    a(game)
+    game.logger.log('Saving game...\n', 1)
+    userdata['lastPlayed'] = int(round(time.time()))
+    userdata['level'] = 1
+    userdata['levelPart'] = '-'
+    game.logger.log('Init save...', 0)
+    game.threadManager.add(game.userdata.set, (userdata, game,))
     time.sleep(2)
     print('\x1b[2J')
-    game.levelManager.runLevel('1')
+    game.levelManager.runlevel('1')

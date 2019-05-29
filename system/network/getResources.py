@@ -28,18 +28,20 @@
 
 from system.network import http
 
-def get(game, fileName, url='https://nodelife.glitch.me/api/get/resources', customName=None):
-    game.logger.log('Getting resource \''+fileName+'\', please don\'t exit...',2)
-    if(customName == None):
-        resp = http.download(url+'/'+fileName, 'data/resources/'+fileName, game)
+
+def get(game, filename, url='https://nodelife.glitch.me/api/get/resources', customname=None):
+    game.logger.log('Getting resource \''+filename+'\', please don\'t exit...', 2)
+    if customname is None:
+        resp = http.download(url+'/'+filename, 'data/resources/'+filename, game)
     else:
-        resp = http.download(url+'/'+fileName, 'data/resources/'+customName, game)
-    if(resp == 0):
-        game.logger.log('Success !',1)
+        resp = http.download(url+'/'+filename, 'data/resources/'+customname, game)
+    if resp == 0:
+        game.logger.log('Success !', 1)
     return resp
 
-def info(game, fileName):
-    game.logger.log('Getting resource info (HTTP-get)\''+fileName+'\'.',0)
-    data = http.get('https://nodelife.glitch.me/api/get/info/'+fileName+'?app='+game.build.http(), game)
-    game.logger.log('Success !',0)
+
+def info(game, filename):
+    game.logger.log('Getting resource info (HTTP-get)\''+filename+'\'.', 0)
+    data = http.get('https://nodelife.glitch.me/api/get/info/'+filename+'?app='+game.build.http(), game)
+    game.logger.log('Success !', 0)
     return data
