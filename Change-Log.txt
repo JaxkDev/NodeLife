@@ -68,3 +68,5 @@ Num.  | (r & d) |
  0149 | v0.0.6d | Housecleaning, v0.0.6 release soon.
 -----------------------------------
  0150 | v0.0.6d | Error traceback added, Threading optional, config text delay used in intro level, logs named according to date.
+-----------------------------------
+ 0151 | v0.0.6d | More fancy UI changes :) (not for poor travis)
