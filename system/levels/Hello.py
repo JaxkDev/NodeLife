@@ -40,7 +40,7 @@ import time
 def save(userdata, levelpart, game):
     userdata['lastPlayed'] = int(round(time.time()))
     userdata['levelPart'] = levelpart
-    game.logger.log('Init save thread...', 0)
+    game.logger.log('Init save...', 0)
     if not game.travis:
         game.threadManager.add(game.userdata.set, (userdata, game,))
 

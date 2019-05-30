@@ -25,7 +25,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
-
+import datetime
+import inspect
 import os
 import platform
 import sys
@@ -69,17 +70,32 @@ def logmsg(msg, game, lvl=5):
         return
     elif lvl == 1:
         # log/output
-        sys.stdout.write(msg+'\n')
+        sys.stdout.write(msg + '\n')
         return
     elif lvl == 2:
         # warning
-        sys.stdout.write('\x1b[1m\033[33m[WARNING] : '+msg+'\033[39m\x1b[21m\n')
+        sys.stdout.write('\x1b[1m\033[33m[WARNING] : ' + msg + '\033[39m\x1b[21m\n')
         return
     elif lvl == 3:
         # error
-        postError.exec(msg, game)
-        sys.stdout.write('\x1b[1m\033[91m[ERROR] : '+msg+'\033[39m\x1b[21m\n')
-        return
+        curframe = inspect.currentframe()
+        calframe = inspect.getouterframes(curframe, 0)
+        for i in range(len(calframe)):  # Possibly use format_exception
+            trace = "File: \"" + str(calframe[(len(calframe) - 1) - i][1]) \
+                    + "\", Line: " + str(calframe[(len(calframe) - 1) - i][2]) + ", in function: " \
+                    + str(calframe[(len(calframe) - 1) - i][3]) + "\n"  # Line too long :/
+            sys.stdout.write('\x1b[1m\033[91m'+trace+'\033[39m\x1b[21m')
+            sav(trace, 3)
+        sys.stdout.write('\x1b[1m\033[91m[ERROR] : ' + msg + '\033[39m\x1b[21m\n')
+        if not game.travis:
+            contact = input(
+                'The following error occurred, and will be sent to me, please type a way of contacting you so '
+                'i can get in touch if needed to :')
+        else:
+            contact = 'Travis'
+        postError.exec([msg, contact], game)
+        time.sleep(3)
+        sys.exit(1)
     cfg = game.config.get()
     user_name = cfg.get('General', 'userName')
     other_name = cfg.get('General', 'otherName')
@@ -98,7 +114,7 @@ def logmsg(msg, game, lvl=5):
         # In-Game message
         sys.stdout.write('\033[36m')
         if msg[0] != '[':  # hacky fix for starting of game where it is [??]
-            msg = '['+other_name+'] : '+msg
+            msg = '[' + other_name + '] : ' + msg
         if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
@@ -119,7 +135,7 @@ def logmsg(msg, game, lvl=5):
     elif lvl == 8:
         # USER RESPONSE
         sys.stdout.write('\033[91m')
-        msg = '['+user_name+'] : '+msg
+        msg = '[' + user_name + '] : ' + msg
         if cfg.get("Graphics", "slow_text").lower() == "yes":
             for i in msg:
                 sys.stdout.write(i)
@@ -129,7 +145,7 @@ def logmsg(msg, game, lvl=5):
         sys.stdout.write('\033[39m\n')
     elif lvl == 9:
         # Other
-        sys.stdout.write(msg+'\n')
+        sys.stdout.write(msg + '\n')
 
     return
 
@@ -140,14 +156,15 @@ def sav(msg, lvl):
         os.makedirs('data/logs')
     elif not os.path.exists('data/logs'):
         os.makedirs('data/logs')
-    f = open('data/logs/log.txt', 'a')
-    f.write('['+gettime()+'] ['+data[str(lvl)]+'] '+msg.replace('\n', ' ')+'\n')
+    date = datetime.datetime.now().strftime("%d.%m.%Y")
+    f = open('data/logs/' + date + '.log', 'a')
+    f.write('[' + gettime() + '] [' + data[str(lvl)] + '] ' + msg.replace('\n', ' ') + '\n')
     f.close()
 
 
 class Logger:
     def __init__(self, game):
         self.game = game
-    
+
     def log(self, msg, lvl):
         logmsg(msg, self.game, lvl)

@@ -66,3 +66,5 @@ Num.  | (r & d) |
  0148 | v0.0.6d | Pylint fixes, HTTP Download bar !!, ctrl+C exit cleaner.
 -----------------------------------
  0149 | v0.0.6d | Housecleaning, v0.0.6 release soon.
+-----------------------------------
+ 0150 | v0.0.6d | Error traceback added, Threading optional, config text delay used in intro level, logs named according to date.

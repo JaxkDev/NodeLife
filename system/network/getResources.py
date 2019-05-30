@@ -35,13 +35,10 @@ def get(game, filename, url='https://nodelife.glitch.me/api/get/resources', cust
         resp = http.download(url+'/'+filename, 'data/resources/'+filename, game)
     else:
         resp = http.download(url+'/'+filename, 'data/resources/'+customname, game)
-    if resp == 0:
-        game.logger.log('Success !', 1)
     return resp
 
 
 def info(game, filename):
     game.logger.log('Getting resource info (HTTP-get)\''+filename+'\'.', 0)
     data = http.get('https://nodelife.glitch.me/api/get/info/'+filename+'?app='+game.build.http(), game)
-    game.logger.log('Success !', 0)
     return data

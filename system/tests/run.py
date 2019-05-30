@@ -26,7 +26,6 @@
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
 
-import os
 import sys
 import time
 from traceback import format_exception
@@ -77,23 +76,6 @@ if not system.machine.lower() in tested_ARM:
     game.logger.log('Your CPU running \''+system.machine+'\' has not been tested, if you find issues please report '
                                                          'them to our github page '
                                                          '<https://github.com/Jackthehack21/NodeLife)', 2)
-if int(os.path.getsize('data/logs/log.txt')/1024/1024) >= 2:
-    game.logger.log('Your Log.txt (data/logs/log.txt) is extremely'
-                    'large '+str(int(os.path.getsize('data/logs/log.txt')/1024/1024))+'mb and should not be that '
-                    'large, if you have experienced no problems please type D and press enter, and we will delete '
-                    'it for you, otherwise just press enter.', 3)
-    time.sleep(0.5)  # let logger finish anything not finished
-    os.remove('data/logs/log.txt')
-    game.logger.log('Log Wiped', 2)  # Use this to re-create the file as well
-    time.sleep(0.5)
-elif int(os.path.getsize('data/logs/log.txt')/1024/1024) >= 1:
-    game.logger.log('Your Log.txt (data/logs/log.txt) is very large >1mb and should not be that large, if you have '
-                    'experienced no problems please type D and press enter, and we will delete it for you, '
-                    'otherwise just press enter.', 2)
-    time.sleep(0.5)  # let logger finish anything not finished
-    os.remove('data/logs/log.txt')
-    game.logger.log('Log Wiped', 2)  # Use this to re-create the file as well
-    time.sleep(0.5)
 game.logger.log('System Check Complete.', 0)
 game.logger.log('Running preboot functions.', 0)
 preboot.run(game)

@@ -44,7 +44,7 @@ def progressbar(chunk, chunk_size, total_size):
         percent = 100
     bars = ("█"*math.floor(percent/5))+(" "*(20-math.floor(percent/5)))
     sys.stdout.write("\r")
-    sys.stdout.write("[%s] %d/100 Downloading..." % (bars, percent))
+    sys.stdout.write("\x1b[1m\033[33m[%s] %d/100 Downloading...\x1b[1m\033[36m" % (bars, percent))
     # sys.stdout.flush()
 
 
@@ -84,7 +84,7 @@ def download(url, path, game, progress=True):
     try:
         if progress:
             request.urlretrieve(url, path, progressbar)
-            print("Done")
+            print("Done\x1b[1m\033[39m")
         else:
             request.urlretrieve(url, path)
         return 0

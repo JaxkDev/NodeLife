@@ -36,36 +36,46 @@ import platform
 import sys
 import time
 
+speeds = {
+    "veryslow": 0.2,
+    "slow": 0.14,
+    "normal": 0.09,
+    "fast": 0.05,
+    "insane": 0.01
+}
 
-def slow(txt, delay):
+
+def slow(txt, game):
     if platform.uname().system.lower() != "windows":
         sys.stdout.write(txt)
         return
-    for i in txt:
-        sys.stdout.write(i)  # todo config
-        time.sleep(delay)
+    if game.config.get().get("Graphics", "slow_text").lower() == "yes":
+        for i in txt:
+            sys.stdout.write(i)
+            time.sleep(speeds[game.config.get().get("Graphics", "slow_text_speed").lower()])
+    else:
+        sys.stdout.write(txt)
 
 
 def a(game):
-    slow('Hi there !', 0.05)
+    slow('Hi there !', game)
     sys.stdout.write('\n\n')
     time.sleep(0.5)
-    slow('This game was made possible by me Jack Honour (aka Jackthehack)', 0.1)
+    slow('This game was made possible by me Jack Honour (aka Jackthehack)', game)
     sys.stdout.write('\n')
     slow('this was originally made for educational purposes but was soon developed further and is now a on going '
-         'project, Originally started in JavaScript it is now all in pure python', 0.1)
+         'project, Originally started in JavaScript it is now all in pure python', game)
     sys.stdout.write('\n')
-    slow('it is fully open-source (github.com/Jackthehack21/NodeLife) and does accept PR\'s and feature requests', 0.1)
+    slow('it is fully open-source (github.com/Jackthehack21/NodeLife) and does accept PR\'s and feature requests', game)
     sys.stdout.write('\n')
     slow('If you want to see something in the game create a issue and choose feature request template, or if your not '
-         'on github im on Discord ! (Jackthehaxk21#8860)', 0.1)
-    sys.stdout.write('\n')
-    sys.stdout.write('\n\n\n\033[32mAbout the Game:\033[39m\n')
+         'on github im on Discord ! (Jackthehaxk21#8860)', game)
+    sys.stdout.write('\n\n\033[32mAbout the Game:\033[39m\n')
     slow('You are a communication expert working in NASA\'s HQ, one day while eating doughnuts you receive a '
-         'transmission from coordinates not located on earth, but somewhere out there in space.', 0.1)
+         'transmission from coordinates not located on earth, but somewhere out there in space.', game)
     sys.stdout.write('\n')
     slow('you begin talking to this person on the other end and guide them to safety, '
-         'can you help him survive !?...', 0.1)
+         'can you help him survive !?...', game)
     sys.stdout.write('\n\n')
     time.sleep(10)
     if not game.travis:

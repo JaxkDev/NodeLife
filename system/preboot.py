@@ -40,6 +40,7 @@ def run(game):
     eval(game.os.system.lower()+'()')  # todo swap out for else.
     resources(game)
     setup.exec(game)
+    game.threadManager.spawn()
     return
 
 

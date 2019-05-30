@@ -65,10 +65,8 @@ def check(game):
     else:
         while int(old['latest']) < int(new['latest']):
             old['latest'] = int(old['latest'])+1
-            print('')
             print('Notice '+str(old['latest'])+': '+str(new[str(old['latest'])]))
-            print('')
-        time.sleep(3)
+        time.sleep(1)
     f = open('./data/notices.dat', 'w')
     f.write(json.dumps(new))
     f.close()

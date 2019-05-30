@@ -42,28 +42,41 @@ def test():
 class Manager:
     def __init__(self, game):
         self.game = game
+        self.enabled = False
+        self._limit = 0
         self._idCount = 1000
         self._threads = {}
         self._active = threading.active_count()
-        self._limit = 5  # #Todo: config here (SockThread found when running from IDLE)
 
-        self.game.logger.log('[ThreadMgr] : System starting...', 0)
-        
-        self.game.logger.log('[ThreadMgr] : Handler Spawning... ('+str(threading.active_count())+' threads running)', 0)
-        threading.Thread(
-            name="ThreadingManager",
-            target=self.handler,
-            daemon=True
-        ).start()
-        self.game.logger.log('[ThreadMgr] : Handler Spawned. ('+str(threading.active_count())+' threads running)', 0)
         running = list()
         for thread in threading.enumerate():
             running.append(thread.name)
         self.game.logger.log('[ThreadMgr] : Threads running = '+','.join(running), 0)
 
+    def spawn(self):
+        self._limit = int(self.game.config.get().get("Threading", "limit")) + 2
+        self.enabled = self.game.config.get().get("Threading", "enabled").lower() == "yes"
+        if not self.enabled:
+            return
+        self.game.logger.log('[ThreadMgr] : System starting...', 0)
+
+        self.game.logger.log('[ThreadMgr] : Handler Spawning... (' + str(threading.active_count()) + ' threads '
+                             'running)', 0)
+        threading.Thread(
+            name="ThreadingManager",
+            target=self.handler,
+            daemon=True
+        ).start()
+        self.game.logger.log('[ThreadMgr] : Handler Spawned. (' + str(threading.active_count()) + ' threads running)',
+                             0)
+
     def add(self, thread, args=(), name="Child Thread #{ID}"):
         self._idCount += 1
         id = str(self._idCount)
+        if not self.enabled:
+            self.manual(thread, *args)
+            self.game.logger.log("[ThreadMgr] : Running thread "+name.replace('{ID', id)+" Manually.", 0)
+            return
         self.game.logger.log('[ThreadMgr] : Thread added to list with ID: '+id, 0)
         self._threads[id] = threading.Thread(
             name=name.replace('{ID}', id),
@@ -76,14 +89,18 @@ class Manager:
     def run(self, id):
         self._threads[id].start()
         self._threads[id].started = True
-        # print(self._threads[ID].started)
         self.game.logger.log('[ThreadMgr] : Thread started #'+id, 0)
+
+    @staticmethod
+    def manual(func, *args):
+        func(*args)  # Used then threading disabled, should not be disabled if soundManager is active (conflicts
+                     # right now)
 
     def handler(self):
         # for i in range(50):
         #    self.add(test)  #test successful !
         while True:
-            time.sleep(0.2)  # 5 ticks per second (TODO: CONFIG)
+            time.sleep(1/int(self.game.config.get().get('General', 'tps')))  # 5 ticks per second default
             self._active = threading.active_count()
             threads = []
             for thread in threading.enumerate(): 

@@ -25,7 +25,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.
 # If not, see https://www.gnu.org/licenses/
-
+import datetime
 import platform
 import time
 
@@ -41,8 +41,10 @@ def exec(data, game):
         return
     game.logger.log('postError Started !', 0)
     time.sleep(1)  # Allow logger to close file
-    logfile = open('data/logs/log.txt', 'r')
+    date = datetime.datetime.now().strftime("%d.%m.%Y")
+    logfile= open('data/logs/' + date + '.log', 'r')
     log = logfile.read()
+    logfile.close()
     postdata = {
         "log": log,
         "msg": data[0],
