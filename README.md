@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/jackthehack21/NodeLife.svg?branch=master)](https://travis-ci.com/jackthehack21/NodeLife)
 
 # Latest Notice:
+(21/06/19) : IMPORTANT, Many things will fail/error out as my server is currently down i am working to fix it hopefully be back up soon.
 (18/01/19) : Had a long break starting to look back into this, possibly finishing chapter 2, then looking into better UI (More to come...)
 
 # Latest Features:
