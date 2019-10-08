@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.com/jackthehack21/NodeLife.svg?branch=master)](https://travis-ci.com/jackthehack21/NodeLife)
+[![Build Status](https://travis-ci.com/JaxkDev/NodeLife.svg?branch=master)](https://travis-ci.com/JaxkDev/NodeLife)
 
 # Latest Notice:
+(08/10/19) : All Network related requests may fail due to github account name changed.
+
 (22/06/19) : Server back up and running smoothly.
 
 (21/06/19) : Server is currently down i am working to fix it hopefully be back up soon.
@@ -44,7 +46,7 @@ In the future the game will get and use you Device UUID for securing resuests to
 You may request to see a list of all details our servers hold by emailing me at gangnam253@gmail.com and you may also request for us to wipe your data.
 
 For any other queries you should contact me at
-gangnam253@gmail.com = Mail
+JaxkDev@gmail.com 	 = Mail
 Jackthehaxk21#8860   = Discord
 JaxkDev              = Twitter
 
@@ -52,7 +54,7 @@ JaxkDev              = Twitter
 
 
 Contact Details:
-  Jackthehack21 <gangnam253@gmail.com - Email>
+  JaxkDev <JaxkDev@gmail.com - Email>
   <Jackthehaxk21#8860 - Discord>
   <@JaxkDev - Twitter>
 
